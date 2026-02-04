@@ -17,6 +17,27 @@
 
 ---
 
+<div align="center">
+  <h2>🎯 Interactive TTS Comparison</h2>
+  <p><strong>Listen to side-by-side comparisons of Audar TTS vs ElevenLabs</strong></p>
+  <p>
+    <a href="comparison.html">
+      <img src="https://img.shields.io/badge/▶%20PLAY%20NOW-Interactive%20Player-blue?style=for-the-badge&logo=google-chrome&logoColor=white" alt="Interactive Comparison Player">
+    </a>
+  </p>
+  <p><em>Full-featured audio player with play/pause, volume control, and progress bars</em></p>
+</div>
+
+---
+
+## Architecture
+
+<p align="center">
+  <img src="assets/audar_tts_diagrams.png?v=2" alt="Audar-TTS Architecture" width="100%"/>
+</p>
+
+---
+
 ## Architecture
 
 <p align="center">
