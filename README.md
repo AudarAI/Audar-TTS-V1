@@ -26,7 +26,6 @@
       <img src="https://img.shields.io/badge/▶%20OPEN%20INTERACTIVE%20PLAYER-Click%20Here-blue?style=for-the-badge&logo=google-chrome&logoColor=white" alt="Open Interactive Comparison Player">
     </a>
   </p>
-  <p><em>Note: If GitHub Pages is not enabled, <a href="comparison.html">download comparison.html</a> and open it locally in your browser.</em></p>
 </div>
 
 ---
