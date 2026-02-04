@@ -1,0 +1,55 @@
+# Python
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+.Python
+build/
+develop-eggs/
+dist/
+downloads/
+eggs/
+.eggs/
+lib/
+lib64/
+parts/
+sdist/
+var/
+wheels/
+*.egg-info/
+.installed.cfg
+*.egg
+
+# Virtual environments
+.env
+.venv
+env/
+venv/
+ENV/
+
+# IDE
+.idea/
+.vscode/
+*.swp
+*.swo
+*~
+
+# Model files (download from HuggingFace)
+*.gguf
+*.safetensors
+*.bin
+*.pt
+*.pth
+
+# Output and cache
+output/
+.cache/
+*.wav
+*.mp3
+
+# OS
+.DS_Store
+Thumbs.db
+
+# Logs
+*.log
