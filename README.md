@@ -1,19 +1,8 @@
-<p align="center">
-  <img src="assets/architecture_overview.png" alt="Audar-TTS" width="600"/>
-</p>
-
 <h1 align="center">Audar-TTS</h1>
 
 <p align="center">
-  <strong>Lightning-Fast Zero-Shot Voice Cloning</strong>
-</p>
-
-<p align="center">
-  <a href="#features">Features</a> •
-  <a href="#installation">Installation</a> •
-  <a href="#quick-start">Quick Start</a> •
-  <a href="#api-reference">API</a> •
-  <a href="#performance">Performance</a>
+  <strong>Lightning-Fast Zero-Shot Voice Cloning</strong><br/>
+  Clone any voice with 3 seconds of audio · 2x faster than real-time · Bilingual EN/AR
 </p>
 
 <p align="center">
@@ -25,7 +14,13 @@
 
 ---
 
-Clone any voice with just **3 seconds** of audio. Generate natural speech **2x faster than real-time**.
+## Architecture
+
+<p align="center">
+  <img src="assets/audar_tts_diagrams.png" alt="Audar-TTS Architecture" width="100%"/>
+</p>
+
+---
 
 ## Features
 
@@ -38,9 +33,7 @@ Clone any voice with just **3 seconds** of audio. Generate natural speech **2x f
 | **Bilingual** | English + Arabic with code-switching |
 | **Speaker Caching** | Instant reuse of encoded voices |
 
-<p align="center">
-  <img src="assets/voice_cloning_overview.png" alt="Voice Cloning" width="500"/>
-</p>
+---
 
 ## Installation
 
@@ -60,6 +53,8 @@ brew install espeak-ng
 sudo apt-get install espeak-ng
 ```
 
+---
+
 ## Quick Start
 
 ### Python API
@@ -76,20 +71,18 @@ audio, metrics = tts.speak(
     speaker="Eve",
     output="hello.wav"
 )
-print(f"Generated {metrics['duration']:.1f}s audio")
 
 # Streaming (low latency)
 for chunk, info in tts.stream("Long text here...", speaker="Eve"):
-    play_audio(chunk)  # Play each ~1s chunk as it's generated
-    print(f"Chunk {info['chunk']}: {info['duration']:.1f}s")
+    play_audio(chunk)  # Play each ~1s chunk
 
 # Clone a new voice
 tts.clone_voice(
     name="my_voice",
-    audio_path="reference.wav",      # 3-10 seconds
+    audio_path="reference.wav",
     transcript="What I said in the recording"
 )
-tts.speak("Now speaking in the cloned voice!", speaker="my_voice")
+tts.speak("Now in cloned voice!", speaker="my_voice")
 ```
 
 ### Command Line
@@ -101,15 +94,14 @@ python audar_tts.py "Hello world!" -s Eve -o output.wav
 # Streaming mode
 python audar_tts.py "Long text here" -s Eve --stream
 
-# Clone and use custom voice
-python audar_tts.py "Hello!" -s my_voice --clone recording.wav --transcript "Original text"
-
-# List available voices
-python audar_tts.py --list-voices
-
 # Arabic text
-python audar_tts.py "مرحبا بالعالم" -s Abdullah --lang ar
+python audar_tts.py "مرحبا بالعالم" -s Eve --lang ar
+
+# List voices
+python audar_tts.py --list-voices
 ```
+
+---
 
 ## API Reference
 
@@ -117,112 +109,49 @@ python audar_tts.py "مرحبا بالعالم" -s Abdullah --lang ar
 
 ```python
 AudarTTS(
-    model_path=None,      # Path to GGUF model (auto-downloads if None)
-    voices_dir=None,      # Directory with voice profiles
-    n_ctx=8192,           # Context window size
-    verbose=False,        # Enable verbose logging
-    lazy_load=False       # Defer model loading
+    model_path=None,      # Path to GGUF (auto-downloads if None)
+    voices_dir=None,      # Voice profiles directory
+    n_ctx=8192,           # Context window
+    verbose=False
 )
 ```
 
 ### Methods
 
-| Method | Description | Returns |
-|--------|-------------|---------|
-| `speak(text, speaker, output, lang)` | Synthesize speech | `(audio_array, metrics)` |
-| `stream(text, speaker, lang, chunk_size)` | Stream synthesis | Generator of `(chunk, metrics)` |
-| `clone_voice(name, audio_path, transcript)` | Clone a voice | `Speaker` object |
-| `voices` | List available voices | `List[str]` |
+| Method | Description |
+|--------|-------------|
+| `speak(text, speaker, output, lang)` | Synthesize speech → `(audio, metrics)` |
+| `stream(text, speaker, lang)` | Stream synthesis → Generator |
+| `clone_voice(name, audio_path, transcript)` | Clone voice → `Speaker` |
+| `voices` | List available voices |
 
-### Metrics Dictionary
-
-```python
-{
-    'duration': 3.5,        # Audio duration (seconds)
-    'total_time': 1.6,      # Processing time (seconds)
-    'rtf': 0.46,            # Real-time factor
-    'num_codes': 175,       # Speech codes generated
-    'tok_per_sec': 109.4    # Generation speed
-}
-```
-
-## Streaming Architecture
-
-<p align="center">
-  <img src="assets/streaming_pipeline.png" alt="Streaming" width="500"/>
-</p>
-
-The streaming API generates audio in ~1 second chunks:
-
-```python
-for audio_chunk, metrics in tts.stream("Your text here", speaker="Eve"):
-    # Each chunk is ~1 second of audio (50 codes)
-    # First chunk arrives in ~500ms
-    play_audio(audio_chunk)
-```
+---
 
 ## Performance
 
 | Metric | Value |
 |--------|-------|
-| **Real-Time Factor** | 0.46x (2.2x faster than real-time) |
-| **First Chunk Latency** | ~500ms |
-| **Reference Audio** | 3-10 seconds |
-| **Model Size** | ~800MB (Q8 quantized) |
-| **Sample Rate** | 24kHz |
+| Real-Time Factor | 0.46x |
+| First Chunk Latency | ~500ms |
+| Model Size | ~800MB |
+| Sample Rate | 24kHz |
 
-### Hardware Requirements
+---
 
-| Configuration | RTF | First Chunk |
-|---------------|-----|-------------|
-| CPU (8-core) | ~1.2x | ~1.5s |
-| GPU (RTX 3060) | ~0.5x | ~0.6s |
-| GPU (RTX 4090) | ~0.3x | ~0.3s |
-| Apple M2 Pro | ~0.6x | ~0.7s |
+## Documentation
 
-## Model Architecture
+- **[TECHNICAL_REPORT.md](TECHNICAL_REPORT.md)** — Detailed architecture and implementation
+- **[docs/streaming.md](docs/streaming.md)** — Streaming synthesis guide
+- **[docs/voice-cloning.md](docs/voice-cloning.md)** — Voice cloning deep dive
 
-<p align="center">
-  <img src="assets/transformer_core.png" alt="Transformer" width="500"/>
-</p>
-
-Audar-TTS uses a neural codec language model architecture:
-
-- **Encoder**: Neural audio codec (discrete speech tokens)
-- **Core**: Transformer language model (24 layers)
-- **Decoder**: Autoregressive speech code generation
-
-See [TECHNICAL_REPORT.md](TECHNICAL_REPORT.md) for detailed documentation.
-
-## Voice Profiles
-
-Place voice profiles in the `voice_profiles/` directory:
-
-```
-voice_profiles/
-├── Eve.wav              # Reference audio (3-10s)
-├── Eve.txt              # Transcript (optional, improves quality)
-├── Eve_phonemized.txt   # Pre-phonemized (optional, faster)
-└── ...
-```
+---
 
 ## License
 
-Apache 2.0 - See [LICENSE](LICENSE) for details.
-
-## Citation
-
-```bibtex
-@software{audar_tts_2025,
-  title={Audar-TTS: Lightning-Fast Zero-Shot Voice Cloning},
-  author={Audar AI},
-  year={2025},
-  url={https://github.com/AudarAI/Audar-TTS-V1}
-}
-```
+Apache 2.0 — See [LICENSE](LICENSE)
 
 ---
 
 <p align="center">
-  <strong>Built with ❤️ by <a href="https://audar.ai">Audar AI</a></strong>
+  Built with ❤️ by <a href="https://audar.ai">Audar AI</a>
 </p>
