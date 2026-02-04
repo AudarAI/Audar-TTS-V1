@@ -1,0 +1,190 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 900 1100">
+  <defs>
+    <linearGradient id="cardGrad" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" style="stop-color:#ffffff"/>
+      <stop offset="100%" style="stop-color:#fafafa"/>
+    </linearGradient>
+    <filter id="cardShadow" x="-10%" y="-10%" width="120%" height="130%">
+      <feDropShadow dx="0" dy="4" stdDeviation="8" flood-color="#000" flood-opacity="0.08"/>
+    </filter>
+  </defs>
+  
+  <!-- Background -->
+  <rect width="900" height="1100" fill="#f5f5f7"/>
+  
+  <!-- Header -->
+  <text x="450" y="50" text-anchor="middle" font-family="-apple-system, BlinkMacSystemFont, 'SF Pro Display', sans-serif" font-size="32" font-weight="600" fill="#1d1d1f">Streaming Synthesis</text>
+  <text x="450" y="80" text-anchor="middle" font-family="-apple-system, 'SF Pro Text', sans-serif" font-size="15" fill="#86868b">Real-time chunked generation with 500ms first-chunk latency</text>
+  
+  <!-- Timeline visualization -->
+  <g transform="translate(50, 110)">
+    <rect x="0" y="0" width="800" height="320" rx="16" fill="url(#cardGrad)" filter="url(#cardShadow)"/>
+    
+    <text x="30" y="35" font-family="-apple-system, 'SF Pro Display'" font-size="16" font-weight="600" fill="#1d1d1f">Pipeline Timeline</text>
+    
+    <!-- Row 1: Token Generation -->
+    <g transform="translate(30, 60)">
+      <rect x="0" y="0" width="140" height="50" rx="8" fill="#AF52DE" opacity="0.15"/>
+      <text x="70" y="22" text-anchor="middle" font-family="-apple-system" font-size="12" font-weight="500" fill="#AF52DE">Token Gen</text>
+      <text x="70" y="38" text-anchor="middle" font-family="-apple-system" font-size="10" fill="#86868b">LLM Output</text>
+      
+      <g transform="translate(160, 5)">
+        <rect x="0" y="0" width="100" height="40" rx="6" fill="#AF52DE"/>
+        <text x="50" y="25" text-anchor="middle" font-family="'SF Mono'" font-size="9" fill="white">T1-50</text>
+        
+        <rect x="110" y="0" width="100" height="40" rx="6" fill="#AF52DE"/>
+        <text x="160" y="25" text-anchor="middle" font-family="'SF Mono'" font-size="9" fill="white">T51-100</text>
+        
+        <rect x="220" y="0" width="100" height="40" rx="6" fill="#AF52DE"/>
+        <text x="270" y="25" text-anchor="middle" font-family="'SF Mono'" font-size="9" fill="white">T101-150</text>
+        
+        <rect x="330" y="0" width="100" height="40" rx="6" fill="#AF52DE" opacity="0.5"/>
+        <text x="380" y="25" text-anchor="middle" font-family="'SF Mono'" font-size="9" fill="white">T151-200</text>
+        
+        <rect x="440" y="0" width="100" height="40" rx="6" fill="#AF52DE" opacity="0.3"/>
+        <text x="490" y="25" text-anchor="middle" font-family="'SF Mono'" font-size="9" fill="white">...</text>
+      </g>
+    </g>
+    
+    <!-- Arrow -->
+    <path d="M400 120 L400 135" stroke="#c7c7cc" stroke-width="1.5" fill="none"/>
+    <polygon points="396,132 400,140 404,132" fill="#c7c7cc"/>
+    
+    <!-- Row 2: Chunk Buffer -->
+    <g transform="translate(30, 150)">
+      <rect x="0" y="0" width="140" height="50" rx="8" fill="#FF9500" opacity="0.15"/>
+      <text x="70" y="22" text-anchor="middle" font-family="-apple-system" font-size="12" font-weight="500" fill="#FF9500">Chunk Buffer</text>
+      <text x="70" y="38" text-anchor="middle" font-family="-apple-system" font-size="10" fill="#86868b">50-code window</text>
+      
+      <g transform="translate(160, 5)">
+        <rect x="0" y="0" width="100" height="40" rx="6" fill="#FF9500"/>
+        <text x="50" y="18" text-anchor="middle" font-family="'SF Mono'" font-size="9" fill="white">Chunk 1</text>
+        <text x="50" y="32" text-anchor="middle" font-family="'SF Mono'" font-size="8" fill="rgba(255,255,255,0.7)">[0:50]</text>
+        
+        <rect x="110" y="0" width="100" height="40" rx="6" fill="#FF9500"/>
+        <text x="160" y="18" text-anchor="middle" font-family="'SF Mono'" font-size="9" fill="white">Chunk 2</text>
+        <text x="160" y="32" text-anchor="middle" font-family="'SF Mono'" font-size="8" fill="rgba(255,255,255,0.7)">[50:100]</text>
+        
+        <rect x="220" y="0" width="100" height="40" rx="6" fill="#FF9500"/>
+        <text x="270" y="18" text-anchor="middle" font-family="'SF Mono'" font-size="9" fill="white">Chunk 3</text>
+        <text x="270" y="32" text-anchor="middle" font-family="'SF Mono'" font-size="8" fill="rgba(255,255,255,0.7)">[100:150]</text>
+        
+        <rect x="330" y="0" width="100" height="40" rx="6" fill="#FF9500" opacity="0.5"/>
+        <text x="380" y="25" text-anchor="middle" font-family="'SF Mono'" font-size="9" fill="white">...</text>
+      </g>
+    </g>
+    
+    <!-- Arrow -->
+    <path d="M400 210 L400 225" stroke="#c7c7cc" stroke-width="1.5" fill="none"/>
+    <polygon points="396,222 400,230 404,222" fill="#c7c7cc"/>
+    
+    <!-- Row 3: Audio Decode -->
+    <g transform="translate(30, 240)">
+      <rect x="0" y="0" width="140" height="50" rx="8" fill="#34C759" opacity="0.15"/>
+      <text x="70" y="22" text-anchor="middle" font-family="-apple-system" font-size="12" font-weight="500" fill="#34C759">Audio Decode</text>
+      <text x="70" y="38" text-anchor="middle" font-family="-apple-system" font-size="10" fill="#86868b">Codec Output</text>
+      
+      <g transform="translate(160, 5)">
+        <rect x="0" y="0" width="100" height="40" rx="6" fill="#34C759"/>
+        <path d="M15 20 Q30 8 45 20 Q60 32 75 20 Q85 12 90 20" stroke="white" stroke-width="1.5" fill="none"/>
+        <text x="50" y="35" text-anchor="middle" font-family="-apple-system" font-size="8" fill="white">~1.0s</text>
+        
+        <rect x="110" y="0" width="100" height="40" rx="6" fill="#34C759"/>
+        <path d="M125 20 Q140 8 155 20 Q170 32 185 20 Q195 12 200 20" stroke="white" stroke-width="1.5" fill="none"/>
+        <text x="160" y="35" text-anchor="middle" font-family="-apple-system" font-size="8" fill="white">~1.0s</text>
+        
+        <rect x="220" y="0" width="100" height="40" rx="6" fill="#34C759"/>
+        <path d="M235 20 Q250 8 265 20 Q280 32 295 20 Q305 12 310 20" stroke="white" stroke-width="1.5" fill="none"/>
+        <text x="270" y="35" text-anchor="middle" font-family="-apple-system" font-size="8" fill="white">~1.0s</text>
+        
+        <rect x="330" y="0" width="100" height="40" rx="6" fill="#34C759" opacity="0.5"/>
+        <text x="380" y="25" text-anchor="middle" font-family="-apple-system" font-size="9" fill="white">...</text>
+      </g>
+    </g>
+  </g>
+  
+  <!-- Metrics Panel -->
+  <g transform="translate(50, 450)">
+    <rect x="0" y="0" width="800" height="180" rx="16" fill="url(#cardGrad)" filter="url(#cardShadow)"/>
+    
+    <text x="30" y="35" font-family="-apple-system, 'SF Pro Display'" font-size="16" font-weight="600" fill="#1d1d1f">Performance Metrics</text>
+    
+    <g transform="translate(30, 55)">
+      <rect x="0" y="0" width="175" height="100" rx="12" fill="#f5f5f7" stroke="#e5e5ea"/>
+      <text x="87" y="30" text-anchor="middle" font-family="-apple-system" font-size="28" font-weight="600" fill="#007AFF">500ms</text>
+      <text x="87" y="50" text-anchor="middle" font-family="-apple-system" font-size="12" fill="#86868b">First Chunk Latency</text>
+      <text x="87" y="70" text-anchor="middle" font-family="-apple-system" font-size="10" fill="#86868b">Time to first audio</text>
+    </g>
+    
+    <g transform="translate(220, 55)">
+      <rect x="0" y="0" width="175" height="100" rx="12" fill="#f5f5f7" stroke="#e5e5ea"/>
+      <text x="87" y="30" text-anchor="middle" font-family="-apple-system" font-size="28" font-weight="600" fill="#34C759">0.46x</text>
+      <text x="87" y="50" text-anchor="middle" font-family="-apple-system" font-size="12" fill="#86868b">Real-Time Factor</text>
+      <text x="87" y="70" text-anchor="middle" font-family="-apple-system" font-size="10" fill="#86868b">2.2x faster than playback</text>
+    </g>
+    
+    <g transform="translate(410, 55)">
+      <rect x="0" y="0" width="175" height="100" rx="12" fill="#f5f5f7" stroke="#e5e5ea"/>
+      <text x="87" y="30" text-anchor="middle" font-family="-apple-system" font-size="28" font-weight="600" fill="#AF52DE">50</text>
+      <text x="87" y="50" text-anchor="middle" font-family="-apple-system" font-size="12" fill="#86868b">Codes/Second</text>
+      <text x="87" y="70" text-anchor="middle" font-family="-apple-system" font-size="10" fill="#86868b">20ms per frame</text>
+    </g>
+    
+    <g transform="translate(600, 55)">
+      <rect x="0" y="0" width="175" height="100" rx="12" fill="#f5f5f7" stroke="#e5e5ea"/>
+      <text x="87" y="30" text-anchor="middle" font-family="-apple-system" font-size="28" font-weight="600" fill="#FF9500">~1s</text>
+      <text x="87" y="50" text-anchor="middle" font-family="-apple-system" font-size="12" fill="#86868b">Chunk Duration</text>
+      <text x="87" y="70" text-anchor="middle" font-family="-apple-system" font-size="10" fill="#86868b">50 codes per chunk</text>
+    </g>
+  </g>
+  
+  <!-- Code Example -->
+  <g transform="translate(50, 650)">
+    <rect x="0" y="0" width="800" height="200" rx="16" fill="#1d1d1f" filter="url(#cardShadow)"/>
+    
+    <text x="30" y="35" font-family="-apple-system, 'SF Pro Display'" font-size="14" font-weight="600" fill="white">Streaming API Usage</text>
+    
+    <g transform="translate(30, 55)">
+      <text y="0" font-family="'SF Mono', monospace" font-size="12" fill="#86868b"># Real-time streaming synthesis</text>
+      <text y="22" font-family="'SF Mono', monospace" font-size="12"><tspan fill="#FF7AB2">for</tspan><tspan fill="white"> audio_chunk </tspan><tspan fill="#FF7AB2">in</tspan><tspan fill="#64D2FF"> tts.stream</tspan><tspan fill="white">(text, speaker):</tspan></text>
+      <text y="44" font-family="'SF Mono', monospace" font-size="12" fill="#86868b">    # Each chunk is ~1 second of audio (24000 samples)</text>
+      <text y="66" font-family="'SF Mono', monospace" font-size="12"><tspan fill="white">    </tspan><tspan fill="#64D2FF">play_audio</tspan><tspan fill="white">(audio_chunk)</tspan><tspan fill="#86868b">  # Immediate playback</tspan></text>
+      <text y="88" font-family="'SF Mono', monospace" font-size="12" fill="#86868b">    # Next chunk generates while previous plays</text>
+      
+      <text y="120" font-family="'SF Mono', monospace" font-size="12" fill="#86868b"># Parameters: chunk_size=50 (default), lang="en"</text>
+    </g>
+    
+    <g transform="translate(30, 180)">
+      <text x="0" y="0" font-family="-apple-system" font-size="11" fill="#34C759">✓ Low latency</text>
+      <text x="120" y="0" font-family="-apple-system" font-size="11" fill="#34C759">✓ Memory efficient</text>
+      <text x="280" y="0" font-family="-apple-system" font-size="11" fill="#34C759">✓ Continuous playback</text>
+      <text x="450" y="0" font-family="-apple-system" font-size="11" fill="#34C759">✓ Generator-based</text>
+    </g>
+  </g>
+  
+  <!-- Technical Details -->
+  <g transform="translate(50, 870)">
+    <rect x="0" y="0" width="800" height="200" rx="16" fill="url(#cardGrad)" filter="url(#cardShadow)"/>
+    
+    <text x="30" y="35" font-family="-apple-system, 'SF Pro Display'" font-size="16" font-weight="600" fill="#1d1d1f">Streaming Architecture Details</text>
+    
+    <g transform="translate(30, 55)">
+      <rect x="0" y="0" width="370" height="120" rx="12" fill="#f5f5f7" stroke="#e5e5ea"/>
+      <text x="20" y="25" font-family="-apple-system" font-size="12" font-weight="500" fill="#1d1d1f">Buffer Management</text>
+      <text x="20" y="48" font-family="-apple-system" font-size="11" fill="#86868b">• Accumulate tokens until chunk_size reached</text>
+      <text x="20" y="68" font-family="-apple-system" font-size="11" fill="#86868b">• Yield decoded audio immediately</text>
+      <text x="20" y="88" font-family="-apple-system" font-size="11" fill="#86868b">• Flush remaining codes at end-of-sequence</text>
+      <text x="20" y="108" font-family="-apple-system" font-size="11" fill="#86868b">• Stop on TARGET_CODES_END token</text>
+    </g>
+    
+    <g transform="translate(420, 55)">
+      <rect x="0" y="0" width="350" height="120" rx="12" fill="#f5f5f7" stroke="#e5e5ea"/>
+      <text x="20" y="25" font-family="-apple-system" font-size="12" font-weight="500" fill="#1d1d1f">Latency Optimization</text>
+      <text x="20" y="48" font-family="-apple-system" font-size="11" fill="#86868b">• Parallel generation + playback</text>
+      <text x="20" y="68" font-family="-apple-system" font-size="11" fill="#86868b">• No full-sequence buffering needed</text>
+      <text x="20" y="88" font-family="-apple-system" font-size="11" fill="#86868b">• Constant memory regardless of length</text>
+      <text x="20" y="108" font-family="-apple-system" font-size="11" fill="#86868b">• ~22ms codec decode per chunk</text>
+    </g>
+  </g>
+  
+</svg>

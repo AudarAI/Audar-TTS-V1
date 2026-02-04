@@ -1,0 +1,221 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 900 1300">
+  <defs>
+    <linearGradient id="cardGrad" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" style="stop-color:#ffffff"/>
+      <stop offset="100%" style="stop-color:#fafafa"/>
+    </linearGradient>
+    <linearGradient id="layerGrad" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" style="stop-color:#AF52DE"/>
+      <stop offset="100%" style="stop-color:#5856D6"/>
+    </linearGradient>
+    <filter id="cardShadow" x="-10%" y="-10%" width="120%" height="130%">
+      <feDropShadow dx="0" dy="4" stdDeviation="8" flood-color="#000" flood-opacity="0.08"/>
+    </filter>
+  </defs>
+  
+  <!-- Background -->
+  <rect width="900" height="1300" fill="#f5f5f7"/>
+  
+  <!-- Header -->
+  <text x="450" y="50" text-anchor="middle" font-family="-apple-system, BlinkMacSystemFont, 'SF Pro Display', sans-serif" font-size="32" font-weight="600" fill="#1d1d1f">Transformer Architecture</text>
+  <text x="450" y="80" text-anchor="middle" font-family="-apple-system, 'SF Pro Text', sans-serif" font-size="15" fill="#86868b">Decoder-only LLM for autoregressive speech code generation</text>
+  
+  <!-- Input Embeddings -->
+  <g transform="translate(50, 110)">
+    <rect x="0" y="0" width="800" height="120" rx="16" fill="url(#cardGrad)" filter="url(#cardShadow)"/>
+    
+    <rect x="0" y="0" width="800" height="44" rx="16" fill="#007AFF"/>
+    <rect x="0" y="28" width="800" height="16" fill="#007AFF"/>
+    <text x="24" y="28" font-family="-apple-system, 'SF Pro Display'" font-size="14" font-weight="600" fill="white" letter-spacing="0.5">INPUT EMBEDDING LAYER</text>
+    
+    <g transform="translate(30, 55)">
+      <rect x="0" y="0" width="350" height="50" rx="10" fill="#f5f5f7" stroke="#e5e5ea"/>
+      <text x="175" y="22" text-anchor="middle" font-family="-apple-system" font-size="12" font-weight="500" fill="#1d1d1f">Unified Token Embedding</text>
+      <text x="175" y="40" text-anchor="middle" font-family="-apple-system" font-size="11" fill="#86868b">Text tokens + 8192 speech codes + 8 delimiters</text>
+    </g>
+    
+    <g transform="translate(420, 55)">
+      <rect x="0" y="0" width="350" height="50" rx="10" fill="#f5f5f7" stroke="#e5e5ea"/>
+      <text x="175" y="22" text-anchor="middle" font-family="-apple-system" font-size="12" font-weight="500" fill="#1d1d1f">RoPE Positional Encoding</text>
+      <text x="175" y="40" text-anchor="middle" font-family="-apple-system" font-size="11" fill="#86868b">Rotary Position Embeddings (context: 8192)</text>
+    </g>
+  </g>
+  
+  <!-- Arrow -->
+  <path d="M450 240 L450 260" stroke="#c7c7cc" stroke-width="2" fill="none"/>
+  <polygon points="445,255 450,265 455,255" fill="#c7c7cc"/>
+  
+  <!-- Transformer Layers Block -->
+  <g transform="translate(50, 275)">
+    <rect x="0" y="0" width="800" height="520" rx="16" fill="url(#cardGrad)" filter="url(#cardShadow)"/>
+    
+    <rect x="0" y="0" width="800" height="44" rx="16" fill="url(#layerGrad)"/>
+    <rect x="0" y="28" width="800" height="16" fill="#5856D6"/>
+    <text x="24" y="28" font-family="-apple-system, 'SF Pro Display'" font-size="14" font-weight="600" fill="white" letter-spacing="0.5">24 TRANSFORMER DECODER LAYERS</text>
+    <text x="776" y="28" text-anchor="end" font-family="-apple-system" font-size="12" fill="rgba(255,255,255,0.8)">×24</text>
+    
+    <!-- Single Layer Detail -->
+    <g transform="translate(30, 60)">
+      <!-- Grouped Query Attention -->
+      <rect x="0" y="0" width="740" height="140" rx="12" fill="#f5f5f7" stroke="#e5e5ea"/>
+      <text x="20" y="28" font-family="-apple-system, 'SF Pro Display'" font-size="14" font-weight="600" fill="#1d1d1f">Grouped Query Attention (GQA)</text>
+      
+      <g transform="translate(20, 45)">
+        <rect x="0" y="0" width="160" height="75" rx="8" fill="#fff" stroke="#e5e5ea"/>
+        <text x="80" y="22" text-anchor="middle" font-family="-apple-system" font-size="11" font-weight="500" fill="#AF52DE">Query Heads</text>
+        <text x="80" y="42" text-anchor="middle" font-family="-apple-system" font-size="10" fill="#86868b">Full attention heads</text>
+        <text x="80" y="60" text-anchor="middle" font-family="'SF Mono'" font-size="10" fill="#636366">n_heads × head_dim</text>
+      </g>
+      
+      <g transform="translate(190, 45)">
+        <rect x="0" y="0" width="160" height="75" rx="8" fill="#fff" stroke="#e5e5ea"/>
+        <text x="80" y="22" text-anchor="middle" font-family="-apple-system" font-size="11" font-weight="500" fill="#007AFF">KV Heads</text>
+        <text x="80" y="42" text-anchor="middle" font-family="-apple-system" font-size="10" fill="#86868b">Grouped (fewer)</text>
+        <text x="80" y="60" text-anchor="middle" font-family="'SF Mono'" font-size="10" fill="#636366">n_kv_heads × head_dim</text>
+      </g>
+      
+      <g transform="translate(380, 45)">
+        <rect x="0" y="0" width="160" height="75" rx="8" fill="#fff" stroke="#e5e5ea"/>
+        <text x="80" y="22" text-anchor="middle" font-family="-apple-system" font-size="11" font-weight="500" fill="#FF9500">Causal Mask</text>
+        <text x="80" y="42" text-anchor="middle" font-family="-apple-system" font-size="10" fill="#86868b">Decoder-only</text>
+        <text x="80" y="60" text-anchor="middle" font-family="'SF Mono'" font-size="10" fill="#636366">Future tokens masked</text>
+      </g>
+      
+      <g transform="translate(570, 45)">
+        <rect x="0" y="0" width="150" height="75" rx="8" fill="#AF52DE" opacity="0.1" stroke="#AF52DE"/>
+        <text x="75" y="22" text-anchor="middle" font-family="-apple-system" font-size="11" font-weight="500" fill="#AF52DE">RMSNorm</text>
+        <text x="75" y="42" text-anchor="middle" font-family="-apple-system" font-size="10" fill="#86868b">Pre-norm</text>
+        <text x="75" y="60" text-anchor="middle" font-family="-apple-system" font-size="10" fill="#86868b">+ Residual</text>
+      </g>
+    </g>
+    
+    <!-- Arrow between attention and FFN -->
+    <path d="M450 210 L450 230" stroke="#c7c7cc" stroke-width="1.5" fill="none"/>
+    <polygon points="446,227 450,235 454,227" fill="#c7c7cc"/>
+    
+    <!-- Feed Forward Network -->
+    <g transform="translate(30, 250)">
+      <rect x="0" y="0" width="740" height="140" rx="12" fill="#f5f5f7" stroke="#e5e5ea"/>
+      <text x="20" y="28" font-family="-apple-system, 'SF Pro Display'" font-size="14" font-weight="600" fill="#1d1d1f">Feed Forward Network (SwiGLU)</text>
+      
+      <g transform="translate(20, 45)">
+        <rect x="0" y="0" width="160" height="75" rx="8" fill="#fff" stroke="#e5e5ea"/>
+        <text x="80" y="22" text-anchor="middle" font-family="-apple-system" font-size="11" font-weight="500" fill="#34C759">Gate Projection</text>
+        <text x="80" y="42" text-anchor="middle" font-family="'SF Mono'" font-size="10" fill="#636366">W_gate × x</text>
+        <text x="80" y="60" text-anchor="middle" font-family="-apple-system" font-size="10" fill="#86868b">→ SiLU activation</text>
+      </g>
+      
+      <g transform="translate(190, 45)">
+        <rect x="0" y="0" width="160" height="75" rx="8" fill="#fff" stroke="#e5e5ea"/>
+        <text x="80" y="22" text-anchor="middle" font-family="-apple-system" font-size="11" font-weight="500" fill="#007AFF">Up Projection</text>
+        <text x="80" y="42" text-anchor="middle" font-family="'SF Mono'" font-size="10" fill="#636366">W_up × x</text>
+        <text x="80" y="60" text-anchor="middle" font-family="-apple-system" font-size="10" fill="#86868b">Linear transform</text>
+      </g>
+      
+      <g transform="translate(380, 45)">
+        <rect x="0" y="0" width="160" height="75" rx="8" fill="#fff" stroke="#e5e5ea"/>
+        <text x="80" y="22" text-anchor="middle" font-family="-apple-system" font-size="11" font-weight="500" fill="#FF9500">Down Projection</text>
+        <text x="80" y="42" text-anchor="middle" font-family="'SF Mono'" font-size="10" fill="#636366">W_down × (g ⊙ u)</text>
+        <text x="80" y="60" text-anchor="middle" font-family="-apple-system" font-size="10" fill="#86868b">Back to hidden_dim</text>
+      </g>
+      
+      <g transform="translate(570, 45)">
+        <rect x="0" y="0" width="150" height="75" rx="8" fill="#34C759" opacity="0.1" stroke="#34C759"/>
+        <text x="75" y="22" text-anchor="middle" font-family="-apple-system" font-size="11" font-weight="500" fill="#34C759">RMSNorm</text>
+        <text x="75" y="42" text-anchor="middle" font-family="-apple-system" font-size="10" fill="#86868b">Pre-norm</text>
+        <text x="75" y="60" text-anchor="middle" font-family="-apple-system" font-size="10" fill="#86868b">+ Residual</text>
+      </g>
+    </g>
+    
+    <!-- Layer repeat indicator -->
+    <g transform="translate(30, 410)">
+      <rect x="0" y="0" width="740" height="90" rx="12" fill="#f5f5f7" stroke="#c7c7cc" stroke-dasharray="6,4"/>
+      <text x="370" y="35" text-anchor="middle" font-family="-apple-system" font-size="14" fill="#86868b">... repeated 24 times ...</text>
+      <text x="370" y="60" text-anchor="middle" font-family="-apple-system" font-size="12" fill="#86868b">Each layer: Attention → RMSNorm → FFN → RMSNorm → Residual Add</text>
+      <text x="370" y="80" text-anchor="middle" font-family="-apple-system" font-size="11" fill="#AF52DE">Qwen 0.5B Backbone Architecture</text>
+    </g>
+  </g>
+  
+  <!-- Arrow -->
+  <path d="M450 805 L450 825" stroke="#c7c7cc" stroke-width="2" fill="none"/>
+  <polygon points="445,820 450,830 455,820" fill="#c7c7cc"/>
+  
+  <!-- Output Layer -->
+  <g transform="translate(50, 840)">
+    <rect x="0" y="0" width="800" height="120" rx="16" fill="url(#cardGrad)" filter="url(#cardShadow)"/>
+    
+    <rect x="0" y="0" width="800" height="44" rx="16" fill="#FF3B30"/>
+    <rect x="0" y="28" width="800" height="16" fill="#FF3B30"/>
+    <text x="24" y="28" font-family="-apple-system, 'SF Pro Display'" font-size="14" font-weight="600" fill="white" letter-spacing="0.5">OUTPUT PROJECTION (LM HEAD)</text>
+    
+    <g transform="translate(30, 55)">
+      <rect x="0" y="0" width="230" height="50" rx="10" fill="#f5f5f7" stroke="#e5e5ea"/>
+      <text x="115" y="22" text-anchor="middle" font-family="-apple-system" font-size="12" font-weight="500" fill="#1d1d1f">Linear Projection</text>
+      <text x="115" y="40" text-anchor="middle" font-family="'SF Mono'" font-size="10" fill="#636366">hidden → vocab_size</text>
+    </g>
+    
+    <g transform="translate(280, 55)">
+      <rect x="0" y="0" width="230" height="50" rx="10" fill="#f5f5f7" stroke="#e5e5ea"/>
+      <text x="115" y="22" text-anchor="middle" font-family="-apple-system" font-size="12" font-weight="500" fill="#1d1d1f">Softmax</text>
+      <text x="115" y="40" text-anchor="middle" font-family="'SF Mono'" font-size="10" fill="#636366">logits → probabilities</text>
+    </g>
+    
+    <g transform="translate(530, 55)">
+      <rect x="0" y="0" width="240" height="50" rx="10" fill="#f5f5f7" stroke="#e5e5ea"/>
+      <text x="120" y="22" text-anchor="middle" font-family="-apple-system" font-size="12" font-weight="500" fill="#1d1d1f">Sampling</text>
+      <text x="120" y="40" text-anchor="middle" font-family="'SF Mono'" font-size="10" fill="#636366">top_k=40, top_p=0.95, T=0.3</text>
+    </g>
+  </g>
+  
+  <!-- Model Specifications -->
+  <g transform="translate(50, 980)">
+    <rect x="0" y="0" width="800" height="140" rx="16" fill="url(#cardGrad)" filter="url(#cardShadow)"/>
+    
+    <text x="30" y="35" font-family="-apple-system, 'SF Pro Display'" font-size="16" font-weight="600" fill="#1d1d1f">Model Specifications</text>
+    
+    <g transform="translate(30, 55)">
+      <rect x="0" y="0" width="175" height="70" rx="10" fill="#f5f5f7" stroke="#e5e5ea"/>
+      <text x="87" y="25" text-anchor="middle" font-family="-apple-system" font-size="20" font-weight="600" fill="#AF52DE">24</text>
+      <text x="87" y="45" text-anchor="middle" font-family="-apple-system" font-size="11" fill="#86868b">Decoder Layers</text>
+      <text x="87" y="60" text-anchor="middle" font-family="-apple-system" font-size="10" fill="#86868b">Qwen 0.5B</text>
+    </g>
+    
+    <g transform="translate(220, 55)">
+      <rect x="0" y="0" width="175" height="70" rx="10" fill="#f5f5f7" stroke="#e5e5ea"/>
+      <text x="87" y="25" text-anchor="middle" font-family="-apple-system" font-size="20" font-weight="600" fill="#007AFF">8,192</text>
+      <text x="87" y="45" text-anchor="middle" font-family="-apple-system" font-size="11" fill="#86868b">Vocabulary Size</text>
+      <text x="87" y="60" text-anchor="middle" font-family="-apple-system" font-size="10" fill="#86868b">Speech codes</text>
+    </g>
+    
+    <g transform="translate(410, 55)">
+      <rect x="0" y="0" width="175" height="70" rx="10" fill="#f5f5f7" stroke="#e5e5ea"/>
+      <text x="87" y="25" text-anchor="middle" font-family="-apple-system" font-size="20" font-weight="600" fill="#34C759">8,192</text>
+      <text x="87" y="45" text-anchor="middle" font-family="-apple-system" font-size="11" fill="#86868b">Context Window</text>
+      <text x="87" y="60" text-anchor="middle" font-family="-apple-system" font-size="10" fill="#86868b">Max tokens</text>
+    </g>
+    
+    <g transform="translate(600, 55)">
+      <rect x="0" y="0" width="170" height="70" rx="10" fill="#f5f5f7" stroke="#e5e5ea"/>
+      <text x="85" y="25" text-anchor="middle" font-family="-apple-system" font-size="20" font-weight="600" fill="#FF9500">~800MB</text>
+      <text x="85" y="45" text-anchor="middle" font-family="-apple-system" font-size="11" fill="#86868b">GGUF Q8_0</text>
+      <text x="85" y="60" text-anchor="middle" font-family="-apple-system" font-size="10" fill="#86868b">Quantized model</text>
+    </g>
+  </g>
+  
+  <!-- Output Tokens Reference -->
+  <g transform="translate(50, 1140)">
+    <rect x="0" y="0" width="800" height="140" rx="16" fill="#1d1d1f" filter="url(#cardShadow)"/>
+    
+    <text x="30" y="30" font-family="-apple-system, 'SF Pro Display'" font-size="14" font-weight="600" fill="white">Output Token Format</text>
+    
+    <g transform="translate(30, 50)">
+      <text y="0" font-family="'SF Mono', monospace" font-size="11" fill="#86868b"># Speech code tokens (8192 unique)</text>
+      <text y="20" font-family="'SF Mono', monospace" font-size="11" fill="#AF52DE">&lt;|speech_0|&gt;  &lt;|speech_1|&gt;  ...  &lt;|speech_8191|&gt;</text>
+      
+      <text y="50" font-family="'SF Mono', monospace" font-size="11" fill="#86868b"># Special delimiter tokens (8 total)</text>
+      <text y="70" font-family="'SF Mono', monospace" font-size="11"><tspan fill="#34C759">&lt;|REF_TEXT_START|&gt;</tspan><tspan fill="#636366">  </tspan><tspan fill="#34C759">&lt;|REF_TEXT_END|&gt;</tspan><tspan fill="#636366">  </tspan><tspan fill="#007AFF">&lt;|REF_SPEECH_START|&gt;</tspan><tspan fill="#636366">  </tspan><tspan fill="#007AFF">&lt;|REF_SPEECH_END|&gt;</tspan></text>
+      <text y="90" font-family="'SF Mono', monospace" font-size="11"><tspan fill="#FF9500">&lt;|TARGET_TEXT_START|&gt;</tspan><tspan fill="#636366">  </tspan><tspan fill="#FF9500">&lt;|TARGET_TEXT_END|&gt;</tspan><tspan fill="#636366">  </tspan><tspan fill="#FF3B30">&lt;|TARGET_CODES_START|&gt;</tspan><tspan fill="#636366">  </tspan><tspan fill="#FF3B30">&lt;|TARGET_CODES_END|&gt;</tspan></text>
+    </g>
+  </g>
+  
+</svg>

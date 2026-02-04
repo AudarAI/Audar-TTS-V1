@@ -1,0 +1,171 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 900 1200">
+  <defs>
+    <linearGradient id="cardGrad" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" style="stop-color:#ffffff"/>
+      <stop offset="100%" style="stop-color:#fafafa"/>
+    </linearGradient>
+    <filter id="cardShadow" x="-10%" y="-10%" width="120%" height="130%">
+      <feDropShadow dx="0" dy="4" stdDeviation="8" flood-color="#000" flood-opacity="0.08"/>
+    </filter>
+  </defs>
+  
+  <!-- Background -->
+  <rect width="900" height="1200" fill="#f5f5f7"/>
+  
+  <!-- Header -->
+  <text x="450" y="50" text-anchor="middle" font-family="-apple-system, BlinkMacSystemFont, 'SF Pro Display', sans-serif" font-size="32" font-weight="600" fill="#1d1d1f">Zero-Shot Voice Cloning</text>
+  <text x="450" y="80" text-anchor="middle" font-family="-apple-system, 'SF Pro Text', sans-serif" font-size="15" fill="#86868b">Clone any voice with 3-10 seconds of reference audio — no fine-tuning required</text>
+  
+  <!-- STEP 1 -->
+  <g transform="translate(50, 110)">
+    <rect x="0" y="0" width="800" height="140" rx="16" fill="url(#cardGrad)" filter="url(#cardShadow)"/>
+    
+    <circle cx="40" cy="35" r="20" fill="#34C759"/>
+    <text x="40" y="41" text-anchor="middle" font-family="-apple-system" font-size="14" font-weight="600" fill="white">1</text>
+    
+    <text x="75" y="35" font-family="-apple-system, 'SF Pro Display'" font-size="18" font-weight="600" fill="#1d1d1f">Reference Audio Input</text>
+    <text x="75" y="55" font-family="-apple-system, 'SF Pro Text'" font-size="13" fill="#86868b">Short audio sample captures speaker's voice characteristics</text>
+    
+    <g transform="translate(30, 75)">
+      <rect x="0" y="0" width="350" height="50" rx="10" fill="#f5f5f7" stroke="#e5e5ea"/>
+      <path d="M20 25 Q50 10 80 25 Q110 40 140 25 Q170 10 200 25 Q230 40 260 25 Q290 10 320 25" stroke="#34C759" stroke-width="2" fill="none"/>
+    </g>
+    
+    <g transform="translate(420, 75)">
+      <rect x="0" y="0" width="350" height="50" rx="10" fill="#f5f5f7" stroke="#e5e5ea"/>
+      <text x="20" y="20" font-family="-apple-system" font-size="11" font-weight="500" fill="#1d1d1f">Requirements:</text>
+      <text x="20" y="38" font-family="-apple-system" font-size="11" fill="#86868b">3-10 seconds • 16kHz+ • Clean audio • Single speaker</text>
+    </g>
+  </g>
+  
+  <!-- Arrow -->
+  <path d="M450 260 L450 280" stroke="#c7c7cc" stroke-width="2" fill="none"/>
+  <polygon points="445,275 450,285 455,275" fill="#c7c7cc"/>
+  
+  <!-- STEP 2 -->
+  <g transform="translate(50, 295)">
+    <rect x="0" y="0" width="800" height="160" rx="16" fill="url(#cardGrad)" filter="url(#cardShadow)"/>
+    
+    <circle cx="40" cy="35" r="20" fill="#007AFF"/>
+    <text x="40" y="41" text-anchor="middle" font-family="-apple-system" font-size="14" font-weight="600" fill="white">2</text>
+    
+    <text x="75" y="35" font-family="-apple-system, 'SF Pro Display'" font-size="18" font-weight="600" fill="#1d1d1f">Speaker Encoding</text>
+    <text x="75" y="55" font-family="-apple-system, 'SF Pro Text'" font-size="13" fill="#86868b">Neural codec extracts discrete voice representation at 50Hz</text>
+    
+    <g transform="translate(30, 75)">
+      <rect x="0" y="0" width="350" height="70" rx="10" fill="#f5f5f7" stroke="#e5e5ea"/>
+      <text x="20" y="22" font-family="-apple-system" font-size="12" font-weight="500" fill="#1d1d1f">DistillNeuCodec Encoder</text>
+      <text x="20" y="42" font-family="'SF Mono', monospace" font-size="10" fill="#007AFF">50 codes/second (20ms frames)</text>
+      <text x="20" y="58" font-family="'SF Mono', monospace" font-size="10" fill="#86868b">Codebook: 8192 discrete tokens</text>
+    </g>
+    
+    <g transform="translate(420, 75)">
+      <rect x="0" y="0" width="350" height="70" rx="10" fill="#1d1d1f"/>
+      <text x="20" y="22" font-family="'SF Mono', monospace" font-size="10" fill="#34C759">speaker_codes = codec.encode(audio)</text>
+      <text x="20" y="42" font-family="'SF Mono', monospace" font-size="10" fill="#86868b"># 5s audio → 250 codes</text>
+      <text x="20" y="58" font-family="'SF Mono', monospace" font-size="10" fill="#fff">[127, 4521, 892, 3847, 156, ...]</text>
+    </g>
+  </g>
+  
+  <!-- Arrow -->
+  <path d="M450 465 L450 485" stroke="#c7c7cc" stroke-width="2" fill="none"/>
+  <polygon points="445,480 450,490 455,480" fill="#c7c7cc"/>
+  
+  <!-- STEP 3 -->
+  <g transform="translate(50, 500)">
+    <rect x="0" y="0" width="800" height="160" rx="16" fill="url(#cardGrad)" filter="url(#cardShadow)"/>
+    
+    <circle cx="40" cy="35" r="20" fill="#FF9500"/>
+    <text x="40" y="41" text-anchor="middle" font-family="-apple-system" font-size="14" font-weight="600" fill="white">3</text>
+    
+    <text x="75" y="35" font-family="-apple-system, 'SF Pro Display'" font-size="18" font-weight="600" fill="#1d1d1f">Speaker Profile Caching</text>
+    <text x="75" y="55" font-family="-apple-system, 'SF Pro Text'" font-size="13" fill="#86868b">MD5-based cache enables instant voice reuse without re-encoding</text>
+    
+    <g transform="translate(30, 75)">
+      <rect x="0" y="0" width="350" height="70" rx="10" fill="#f5f5f7" stroke="#e5e5ea"/>
+      <text x="20" y="22" font-family="-apple-system" font-size="12" font-weight="500" fill="#1d1d1f">Speaker Profile Structure</text>
+      <text x="20" y="42" font-family="'SF Mono', monospace" font-size="10" fill="#86868b">codes: List[int]  # Discrete audio codes</text>
+      <text x="20" y="58" font-family="'SF Mono', monospace" font-size="10" fill="#86868b">phonemes: str     # Pre-computed IPA</text>
+    </g>
+    
+    <g transform="translate(420, 75)">
+      <rect x="0" y="0" width="350" height="70" rx="10" fill="#f5f5f7" stroke="#e5e5ea"/>
+      <text x="20" y="22" font-family="-apple-system" font-size="12" font-weight="500" fill="#1d1d1f">Cache Benefits</text>
+      <text x="20" y="42" font-family="-apple-system" font-size="11" fill="#34C759">✓ Skip encoding on subsequent calls</text>
+      <text x="20" y="58" font-family="-apple-system" font-size="11" fill="#34C759">✓ Auto-invalidate on audio change (MD5)</text>
+    </g>
+  </g>
+  
+  <!-- Arrow -->
+  <path d="M450 670 L450 690" stroke="#c7c7cc" stroke-width="2" fill="none"/>
+  <polygon points="445,685 450,695 455,685" fill="#c7c7cc"/>
+  
+  <!-- STEP 4 -->
+  <g transform="translate(50, 705)">
+    <rect x="0" y="0" width="800" height="180" rx="16" fill="url(#cardGrad)" filter="url(#cardShadow)"/>
+    
+    <circle cx="40" cy="35" r="20" fill="#AF52DE"/>
+    <text x="40" y="41" text-anchor="middle" font-family="-apple-system" font-size="14" font-weight="600" fill="white">4</text>
+    
+    <text x="75" y="35" font-family="-apple-system, 'SF Pro Display'" font-size="18" font-weight="600" fill="#1d1d1f">In-Context Voice Cloning</text>
+    <text x="75" y="55" font-family="-apple-system, 'SF Pro Text'" font-size="13" fill="#86868b">LLM learns to continue generating in reference voice style via prompt conditioning</text>
+    
+    <g transform="translate(30, 75)">
+      <rect x="0" y="0" width="740" height="90" rx="10" fill="#1d1d1f"/>
+      <text x="20" y="22" font-family="'SF Mono', monospace" font-size="10" fill="#86868b"># Training insight: Model sees ref_codes FIRST, then generates target_codes</text>
+      <text x="20" y="42" font-family="'SF Mono', monospace" font-size="10" fill="#34C759">&lt;|REF_SPEECH_START|&gt;</text>
+      <text x="165" y="42" font-family="'SF Mono', monospace" font-size="10" fill="#fff">{ref_codes}</text>
+      <text x="250" y="42" font-family="'SF Mono', monospace" font-size="10" fill="#34C759">&lt;|REF_SPEECH_END|&gt;</text>
+      <text x="400" y="42" font-family="'SF Mono', monospace" font-size="10" fill="#86868b">→ Learns voice characteristics</text>
+      <text x="20" y="62" font-family="'SF Mono', monospace" font-size="10" fill="#FF9500">&lt;|TARGET_CODES_START|&gt;</text>
+      <text x="195" y="62" font-family="'SF Mono', monospace" font-size="10" fill="#AF52DE">{generated_codes}</text>
+      <text x="340" y="62" font-family="'SF Mono', monospace" font-size="10" fill="#86868b">→ Continues in same voice!</text>
+      <text x="20" y="82" font-family="'SF Mono', monospace" font-size="10" fill="#86868b"># Label masking: Only predict target_codes (not ref_codes) → Prevents copying</text>
+    </g>
+  </g>
+  
+  <!-- Arrow -->
+  <path d="M450 895 L450 915" stroke="#c7c7cc" stroke-width="2" fill="none"/>
+  <polygon points="445,910 450,920 455,910" fill="#c7c7cc"/>
+  
+  <!-- STEP 5 -->
+  <g transform="translate(50, 930)">
+    <rect x="0" y="0" width="800" height="140" rx="16" fill="url(#cardGrad)" filter="url(#cardShadow)"/>
+    
+    <circle cx="40" cy="35" r="20" fill="#FF3B30"/>
+    <text x="40" y="41" text-anchor="middle" font-family="-apple-system" font-size="14" font-weight="600" fill="white">5</text>
+    
+    <text x="75" y="35" font-family="-apple-system, 'SF Pro Display'" font-size="18" font-weight="600" fill="#1d1d1f">Cloned Voice Output</text>
+    <text x="75" y="55" font-family="-apple-system, 'SF Pro Text'" font-size="13" fill="#86868b">Neural codec decoder reconstructs high-fidelity waveform at 24kHz</text>
+    
+    <g transform="translate(30, 75)">
+      <rect x="0" y="0" width="350" height="50" rx="10" fill="#f5f5f7" stroke="#e5e5ea"/>
+      <path d="M20 25 Q60 8 100 25 Q140 42 180 25 Q220 8 260 25 Q300 42 320 25" stroke="#FF3B30" stroke-width="2.5" fill="none"/>
+    </g>
+    
+    <g transform="translate(420, 75)">
+      <rect x="0" y="0" width="350" height="50" rx="10" fill="#f5f5f7" stroke="#e5e5ea"/>
+      <text x="20" y="20" font-family="-apple-system" font-size="11" font-weight="500" fill="#1d1d1f">Output Specifications:</text>
+      <text x="20" y="38" font-family="-apple-system" font-size="11" fill="#86868b">24kHz • 16-bit • Mono • WAV/NumPy array</text>
+    </g>
+  </g>
+  
+  <!-- Technical Details Box -->
+  <g transform="translate(50, 1090)">
+    <rect x="0" y="0" width="800" height="90" rx="12" fill="#f5f5f7" stroke="#e5e5ea"/>
+    <text x="400" y="25" text-anchor="middle" font-family="-apple-system, 'SF Pro Display'" font-size="14" font-weight="600" fill="#1d1d1f">Training Configuration for Zero-Shot Voice Cloning</text>
+    
+    <text x="50" y="50" font-family="-apple-system" font-size="11" fill="#86868b">Reference: 3-5s (max 5s)</text>
+    <text x="50" y="68" font-family="-apple-system" font-size="11" fill="#86868b">Temporal: 2x downsampling</text>
+    
+    <text x="250" y="50" font-family="-apple-system" font-size="11" fill="#86868b">LR: 2e-5 (lower than TTS)</text>
+    <text x="250" y="68" font-family="-apple-system" font-size="11" fill="#86868b">Steps: 200k (longer training)</text>
+    
+    <text x="450" y="50" font-family="-apple-system" font-size="11" fill="#86868b">Batch: 1 + grad_accum 4</text>
+    <text x="450" y="68" font-family="-apple-system" font-size="11" fill="#86868b">Dataset: 165k samples, 1.6k speakers</text>
+    
+    <text x="650" y="50" font-family="-apple-system" font-size="11" fill="#86868b">100% cross-text conditioning</text>
+    <text x="650" y="68" font-family="-apple-system" font-size="11" fill="#86868b">(ref_text ≠ target_text)</text>
+  </g>
+  
+</svg>
