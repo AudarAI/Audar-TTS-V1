@@ -4,6 +4,22 @@
 
 ---
 
+## Visual Overview
+
+![System Architecture](assets/architecture_overview.png)
+*Figure 1: Audar-TTS System Architecture - Three-stage pipeline from input to output*
+
+![Voice Cloning](assets/voice_cloning_overview.png)
+*Figure 2: Zero-Shot Voice Cloning Technology Overview*
+
+![Streaming Pipeline](assets/streaming_pipeline.png)
+*Figure 3: Real-Time Streaming Synthesis Pipeline*
+
+![Transformer Core](assets/transformer_core.png)
+*Figure 4: Transformer Encoder-Decoder Architecture*
+
+---
+
 ## Executive Summary
 
 Audar-TTS represents a significant advancement in zero-shot text-to-speech synthesis, achieving real-time voice cloning with minimal reference audio. Built on a neural codec language modeling paradigm, the system delivers human-quality speech synthesis at 2x faster than real-time playback speeds while requiring only 3 seconds of reference audio for voice cloning.
