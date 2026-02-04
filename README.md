@@ -20,12 +20,13 @@
 <div align="center">
   <h2>🎯 Interactive TTS Comparison</h2>
   <p><strong>Listen to side-by-side comparisons of Audar TTS vs ElevenLabs</strong></p>
-  <p><em>Basic audio players are embedded directly in the tables below. For full interactive experience with custom controls, visit:</em></p>
+  <p><em>Click below to open the interactive comparison player with full audio controls:</em></p>
   <p>
-    <a href="comparison.html">
-      <img src="https://img.shields.io/badge/▶%20FULL%20INTERACTIVE%20PLAYER-comparison.html-blue?style=for-the-badge&logo=google-chrome&logoColor=white" alt="Full Interactive Comparison Player">
+    <a href="https://audarai.github.io/Audar-TTS-V1/comparison.html">
+      <img src="https://img.shields.io/badge/▶%20OPEN%20INTERACTIVE%20PLAYER-Click%20Here-blue?style=for-the-badge&logo=google-chrome&logoColor=white" alt="Open Interactive Comparison Player">
     </a>
   </p>
+  <p><em>Note: If GitHub Pages is not enabled, <a href="comparison.html">download comparison.html</a> and open it locally in your browser.</em></p>
 </div>
 
 ---

@@ -895,27 +895,15 @@
                 });
             });
 
-            // Play/Pause functionality
+            // Play/Pause functionality - allows multiple simultaneous playback
             playButtons.forEach(button => {
                 button.addEventListener('click', () => {
                     const audioId = button.getAttribute('data-audio');
                     const audio = document.getElementById(audioId);
-                    const progressBar = audioElements[audioId]?.progressBar;
                     
                     if (!audio) return;
 
                     if (audio.paused) {
-                        // Pause all other audio elements
-                        Object.values(audioElements).forEach(element => {
-                            if (element.element !== audio && !element.element.paused) {
-                                element.element.pause();
-                                const otherBtn = document.querySelector(`.play-btn[data-audio="${element.element.id}"]`);
-                                if (otherBtn) {
-                                    otherBtn.textContent = '▶';
-                                }
-                            }
-                        });
-                        
                         audio.play();
                         button.textContent = '⏸';
                     } else {
