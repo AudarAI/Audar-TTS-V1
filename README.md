@@ -157,20 +157,20 @@ Side-by-side comparison of **Audar TTS Flash V1** vs **ElevenLabs Flash v2.5** u
 <tr>
 <td><b>Eve</b></td>
 <td><i>"The future of artificial intelligence lies not in replacing human creativity, but in amplifying it beyond imagination."</i></td>
-<td><audio controls src="https://github.com/AudarAI/Audar-TTS-V1/raw/main/samples/comparison/audar_en_1_eve.mp3"></audio></td>
-<td><audio controls src="https://github.com/AudarAI/Audar-TTS-V1/raw/main/samples/comparison/elevenlabs_en_1_eve.mp3"></audio></td>
+<td><audio controls><source src="samples/comparison/audar_en_1_eve.mp3" type="audio/mpeg"></audio></td>
+<td><audio controls><source src="samples/comparison/elevenlabs_en_1_eve.mp3" type="audio/mpeg"></audio></td>
 </tr>
 <tr>
 <td><b>Salem</b></td>
 <td><i>"After years of research, scientists finally discovered that the key to longevity was surprisingly simple: genuine human connection."</i></td>
-<td><audio controls src="https://github.com/AudarAI/Audar-TTS-V1/raw/main/samples/comparison/audar_en_2_salem.mp3"></audio></td>
-<td><audio controls src="https://github.com/AudarAI/Audar-TTS-V1/raw/main/samples/comparison/elevenlabs_en_2_salem.mp3"></audio></td>
+<td><audio controls><source src="samples/comparison/audar_en_2_salem.mp3" type="audio/mpeg"></audio></td>
+<td><audio controls><source src="samples/comparison/elevenlabs_en_2_salem.mp3" type="audio/mpeg"></audio></td>
 </tr>
 <tr>
 <td><b>Amal</b></td>
 <td><i>"In the quiet moments between chaos and calm, we often find the answers we've been searching for all along."</i></td>
-<td><audio controls src="https://github.com/AudarAI/Audar-TTS-V1/raw/main/samples/comparison/audar_en_3_amal.mp3"></audio></td>
-<td><audio controls src="https://github.com/AudarAI/Audar-TTS-V1/raw/main/samples/comparison/elevenlabs_en_3_amal.mp3"></audio></td>
+<td><audio controls><source src="samples/comparison/audar_en_3_amal.mp3" type="audio/mpeg"></audio></td>
+<td><audio controls><source src="samples/comparison/elevenlabs_en_3_amal.mp3" type="audio/mpeg"></audio></td>
 </tr>
 </table>
 
@@ -186,20 +186,20 @@ Side-by-side comparison of **Audar TTS Flash V1** vs **ElevenLabs Flash v2.5** u
 <tr>
 <td><b>Salama</b></td>
 <td dir="rtl"><i>"في عالم يتسارع فيه كل شيء، تبقى الحكمة هي البوصلة التي ترشدنا نحو القرارات الصائبة."</i></td>
-<td><audio controls src="https://github.com/AudarAI/Audar-TTS-V1/raw/main/samples/comparison/audar_ar_1_salama.mp3"></audio></td>
-<td><audio controls src="https://github.com/AudarAI/Audar-TTS-V1/raw/main/samples/comparison/elevenlabs_ar_1_salama.mp3"></audio></td>
+<td><audio controls><source src="samples/comparison/audar_ar_1_salama.mp3" type="audio/mpeg"></audio></td>
+<td><audio controls><source src="samples/comparison/elevenlabs_ar_1_salama.mp3" type="audio/mpeg"></audio></td>
 </tr>
 <tr>
 <td><b>Amin</b></td>
 <td dir="rtl"><i>"لا تقاس قيمة الإنسان بما يملك، بل بما يقدم للآخرين من خير وعطاء دون انتظار مقابل."</i></td>
-<td><audio controls src="https://github.com/AudarAI/Audar-TTS-V1/raw/main/samples/comparison/audar_ar_2_amin.mp3"></audio></td>
-<td><audio controls src="https://github.com/AudarAI/Audar-TTS-V1/raw/main/samples/comparison/elevenlabs_ar_2_amin.mp3"></audio></td>
+<td><audio controls><source src="samples/comparison/audar_ar_2_amin.mp3" type="audio/mpeg"></audio></td>
+<td><audio controls><source src="samples/comparison/elevenlabs_ar_2_amin.mp3" type="audio/mpeg"></audio></td>
 </tr>
 <tr>
 <td><b>Hanaa</b></td>
 <td dir="rtl"><i>"كل رحلة ألف ميل تبدأ بخطوة واحدة، فلا تستهن بالبدايات الصغيرة التي تصنع المستقبل العظيم."</i></td>
-<td><audio controls src="https://github.com/AudarAI/Audar-TTS-V1/raw/main/samples/comparison/audar_ar_3_hanaa.mp3"></audio></td>
-<td><audio controls src="https://github.com/AudarAI/Audar-TTS-V1/raw/main/samples/comparison/elevenlabs_ar_3_hanaa.mp3"></audio></td>
+<td><audio controls><source src="samples/comparison/audar_ar_3_hanaa.mp3" type="audio/mpeg"></audio></td>
+<td><audio controls><source src="samples/comparison/elevenlabs_ar_3_hanaa.mp3" type="audio/mpeg"></audio></td>
 </tr>
 </table>
 
@@ -215,14 +215,14 @@ Side-by-side comparison of **Audar TTS Flash V1** vs **ElevenLabs Flash v2.5** u
 <tr>
 <td><b>Eve</b></td>
 <td><i>"Welcome to our innovation hub, مرحباً بكم في مركز الابتكار، where ideas transform into reality."</i></td>
-<td><audio controls src="https://github.com/AudarAI/Audar-TTS-V1/raw/main/samples/comparison/audar_mix_1_eve.mp3"></audio></td>
-<td><audio controls src="https://github.com/AudarAI/Audar-TTS-V1/raw/main/samples/comparison/elevenlabs_mix_1_eve.mp3"></audio></td>
+<td><audio controls><source src="samples/comparison/audar_mix_1_eve.mp3" type="audio/mpeg"></audio></td>
+<td><audio controls><source src="samples/comparison/elevenlabs_mix_1_eve.mp3" type="audio/mpeg"></audio></td>
 </tr>
 <tr>
 <td><b>Amal</b></td>
 <td><i>"The team worked tirelessly, والنتيجة كانت مذهلة، delivering beyond all expectations."</i></td>
-<td><audio controls src="https://github.com/AudarAI/Audar-TTS-V1/raw/main/samples/comparison/audar_mix_2_amal.mp3"></audio></td>
-<td><audio controls src="https://github.com/AudarAI/Audar-TTS-V1/raw/main/samples/comparison/elevenlabs_mix_2_amal.mp3"></audio></td>
+<td><audio controls><source src="samples/comparison/audar_mix_2_amal.mp3" type="audio/mpeg"></audio></td>
+<td><audio controls><source src="samples/comparison/elevenlabs_mix_2_amal.mp3" type="audio/mpeg"></audio></td>
 </tr>
 </table>
 
@@ -241,19 +241,19 @@ ElevenLabs does not support expressive tags. Audar TTS renders them naturally.
 <td><b>Eve</b></td>
 <td><code>[laughs]</code></td>
 <td><i>"I can't believe you actually did that! [laughs] That's the funniest thing I've heard all week!"</i></td>
-<td><audio controls src="https://github.com/AudarAI/Audar-TTS-V1/raw/main/samples/comparison/audar_expr_1_eve.mp3"></audio></td>
+<td><audio controls><source src="samples/comparison/audar_expr_1_eve.mp3" type="audio/mpeg"></audio></td>
 </tr>
 <tr>
 <td><b>Salama</b></td>
 <td><code>[whispers]</code></td>
 <td><i>"[whispers] Listen carefully, I'm only going to say this once. The secret ingredient is... love."</i></td>
-<td><audio controls src="https://github.com/AudarAI/Audar-TTS-V1/raw/main/samples/comparison/audar_expr_2_salama.mp3"></audio></td>
+<td><audio controls><source src="samples/comparison/audar_expr_2_salama.mp3" type="audio/mpeg"></audio></td>
 </tr>
 <tr>
 <td><b>Amal</b></td>
 <td><code>[sighs]</code></td>
 <td><i>"[sighs] After everything we've been through, I never thought we'd actually make it here."</i></td>
-<td><audio controls src="https://github.com/AudarAI/Audar-TTS-V1/raw/main/samples/comparison/audar_expr_3_amal.mp3"></audio></td>
+<td><audio controls><source src="samples/comparison/audar_expr_3_amal.mp3" type="audio/mpeg"></audio></td>
 </tr>
 </table>
 
