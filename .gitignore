@@ -50,6 +50,8 @@ output/
 *.pth
 !voices/*.wav
 !voices/**/*.pt
+!samples/comparison/*.wav
+!samples/comparison/*.mp3
 
 # OS
 .DS_Store
