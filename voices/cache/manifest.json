@@ -1,0 +1,69 @@
+{
+  "speakers": [
+    {
+      "name": "Eve",
+      "cache_file": "Eve.pt",
+      "duration_sec": 7.98,
+      "num_codes": 399,
+      "gender": "female",
+      "lang": "en",
+      "description": "Clear English voice"
+    },
+    {
+      "name": "أمل",
+      "cache_file": "أمل.pt",
+      "duration_sec": 7.98,
+      "num_codes": 399,
+      "gender": "female",
+      "lang": "ar",
+      "description": "Amal - Hope (feminine)"
+    },
+    {
+      "name": "سلامة",
+      "cache_file": "سلامة.pt",
+      "duration_sec": 8.06,
+      "num_codes": 403,
+      "gender": "female",
+      "lang": "ar",
+      "description": "Salama - Peace (feminine)"
+    },
+    {
+      "name": "أمين",
+      "cache_file": "أمين.pt",
+      "duration_sec": 7.98,
+      "num_codes": 399,
+      "gender": "male",
+      "lang": "ar",
+      "description": "Amin - Trustworthy (masculine)"
+    },
+    {
+      "name": "هناء",
+      "cache_file": "هناء.pt",
+      "duration_sec": 7.98,
+      "num_codes": 399,
+      "gender": "female",
+      "lang": "ar",
+      "description": "Hanaa - Happiness (feminine)"
+    },
+    {
+      "name": "سالم",
+      "cache_file": "سالم.pt",
+      "duration_sec": 7.98,
+      "num_codes": 399,
+      "gender": "male",
+      "lang": "ar",
+      "description": "Salem - Peaceful (masculine)"
+    },
+    {
+      "name": "وديع",
+      "cache_file": "وديع.pt",
+      "duration_sec": 7.98,
+      "num_codes": 399,
+      "gender": "male",
+      "lang": "ar",
+      "description": "Wadee - Gentle (masculine)"
+    }
+  ],
+  "version": "1.0",
+  "codec": "distill-neucodec"
+}

@@ -38,14 +38,18 @@ ENV/
 *.gguf
 *.safetensors
 *.bin
-*.pt
-*.pth
 
 # Output and cache
 output/
 .cache/
+
+# Exclude audio/model files except in voices/ directory
 *.wav
 *.mp3
+*.pt
+*.pth
+!voices/*.wav
+!voices/**/*.pt
 
 # OS
 .DS_Store

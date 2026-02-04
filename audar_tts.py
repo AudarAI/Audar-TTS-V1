@@ -87,9 +87,9 @@ class Speaker:
 
 
 class SpeakerManager:
-    """Manages speaker profiles with automatic caching."""
+    """Manages speaker profiles with automatic caching and pre-encoded support."""
     
-    def __init__(self, voices_dir: Path, cache_dir: Path):
+    def __init__(self, voices_dir: Path, cache_dir: Path, use_preencoded: bool = True):
         self.voices_dir = Path(voices_dir)
         self.cache_dir = Path(cache_dir)
         self.cache_dir.mkdir(parents=True, exist_ok=True)
@@ -97,6 +97,37 @@ class SpeakerManager:
         self._codec = None
         self._phonemizer_en = None
         self._phonemizer_ar = None
+        self._use_preencoded = use_preencoded
+        
+        # Auto-load pre-encoded speakers if available
+        if use_preencoded:
+            self._load_preencoded_speakers()
+    
+    def _load_preencoded_speakers(self):
+        """Load pre-encoded speakers from .pt cache files for instant availability."""
+        import torch
+        
+        preencoded_dir = self.voices_dir / "cache"
+        if not preencoded_dir.exists():
+            return
+        
+        for pt_file in preencoded_dir.glob("*.pt"):
+            try:
+                data = torch.load(pt_file, map_location='cpu', weights_only=False)
+                name = data.get('name', pt_file.stem)
+                
+                speaker = Speaker(
+                    name=name,
+                    audio_path=str(self.voices_dir / f"{name}.wav"),
+                    transcript=data.get('transcript', ''),
+                    phonemes=data.get('phonemes', ''),
+                    codes=data.get('codes', []),
+                    lang=data.get('metadata', {}).get('lang', 'ar'),
+                    _cached=True
+                )
+                self._speakers[name] = speaker
+            except Exception:
+                continue  # Skip invalid cache files
     
     def _ensure_codec(self):
         if self._codec is None:
@@ -166,15 +197,43 @@ class SpeakerManager:
         return ' '.join(phonemes_parts)
     
     def list_voices(self) -> List[str]:
+        """List all available voices including pre-encoded ones."""
         voices = set()
+        # From wav files
         for f in self.voices_dir.glob("*.wav"):
             voices.add(f.stem)
+        # From pre-encoded cache
+        for name in self._speakers.keys():
+            voices.add(name)
         return sorted(voices)
     
     def get(self, name: str) -> Speaker:
+        """Get speaker by name, using pre-encoded cache if available."""
+        # Return cached speaker if already loaded
         if name in self._speakers and self._speakers[name].is_cached:
             return self._speakers[name]
         
+        # Try loading from pre-encoded .pt file
+        preencoded_path = self.voices_dir / "cache" / f"{name}.pt"
+        if preencoded_path.exists():
+            import torch
+            try:
+                data = torch.load(preencoded_path, map_location='cpu', weights_only=False)
+                speaker = Speaker(
+                    name=name,
+                    audio_path=str(self.voices_dir / f"{name}.wav"),
+                    transcript=data.get('transcript', ''),
+                    phonemes=data.get('phonemes', ''),
+                    codes=data.get('codes', []),
+                    lang=data.get('metadata', {}).get('lang', 'ar'),
+                    _cached=True
+                )
+                self._speakers[name] = speaker
+                return speaker
+            except Exception:
+                pass  # Fall through to standard loading
+        
+        # Standard loading from audio file
         audio_path = self.voices_dir / f"{name}.wav"
         if not audio_path.exists():
             available = self.list_voices()[:10]
@@ -310,6 +369,7 @@ class AudarTTS:
         n_ctx: Context length for the language model (default 8192).
         verbose: Enable verbose logging.
         lazy_load: If True, defer model loading until first synthesis.
+        use_preencoded: If True, load pre-encoded speaker codes from .pt files (recommended).
     
     Example:
         tts = AudarTTS()
@@ -334,9 +394,10 @@ class AudarTTS:
         n_ctx: int = MAX_CONTEXT,
         verbose: bool = False,
         lazy_load: bool = False,
+        use_preencoded: bool = True,
     ):
         self.model_path = Path(model_path) if model_path else None
-        self.voices_dir = Path(voices_dir) if voices_dir else Path("voice_profiles")
+        self.voices_dir = Path(voices_dir) if voices_dir else Path("voices")
         self.cache_dir = Path(cache_dir) if cache_dir else Path(".cache")
         self.n_ctx = n_ctx
         self.verbose = verbose
@@ -344,7 +405,7 @@ class AudarTTS:
         self._llm = None
         self._tokenizer = None
         self._codec = None
-        self._speakers = SpeakerManager(self.voices_dir, self.cache_dir)
+        self._speakers = SpeakerManager(self.voices_dir, self.cache_dir, use_preencoded)
         self._stop_token_id = None
         self._initialized = False
         
