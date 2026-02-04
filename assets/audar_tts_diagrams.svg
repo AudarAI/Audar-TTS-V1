@@ -1,4 +1,4 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 900 1100" style="max-width:100%;height:auto;">
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 900 1110" style="max-width:100%;height:auto;">
   <defs>
     <filter id="s" x="-2%" y="-2%" width="104%" height="108%">
       <feDropShadow dx="0" dy="1" stdDeviation="2" flood-color="#000" flood-opacity="0.08"/>
@@ -41,14 +41,19 @@
   
   <!-- Arrows -->
   <path d="M170 145 L170 165 M450 145 L450 165 M730 145 L730 165" stroke="#ccc" stroke-width="1.5"/>
-  <path d="M170 165 L170 175 L450 175 L450 185 M730 165 L730 175 L450 175" stroke="#ccc" stroke-width="1.5"/>
-  <polygon points="446,182 450,190 454,182" fill="#ccc"/>
+  <path d="M170 165 L170 175 L450 175 M730 165 L730 175 L450 175" stroke="#ccc" stroke-width="1.5"/>
+  
+  <!-- Multimodal Fusion Point -->
+  <circle cx="450" cy="175" r="8" fill="#6366f1"/>
+  <text x="505" y="179" font-family="system-ui" font-size="9" font-weight="500" fill="#6366f1">Multimodal Sequence Fusion</text>
+  <path d="M450 183 L450 200" stroke="#ccc" stroke-width="1.5"/>
+  <polygon points="446,197 450,205 454,197" fill="#ccc"/>
   
   <!-- Row 2: Processing -->
   <g transform="translate(40,200)">
     <rect width="400" height="55" rx="8" fill="#fff" filter="url(#s)"/>
     <text x="16" y="22" font-family="system-ui" font-size="12" font-weight="600" fill="#333">Codec Encoder</text>
-    <text x="16" y="40" font-family="system-ui" font-size="10" fill="#888">DistillNeuCodec @ 50Hz → codes[0-8191]</text>
+    <text x="16" y="40" font-family="system-ui" font-size="10" fill="#888">DistillNeuCodec @ 50Hz → codes[0-65535]</text>
   </g>
   
   <g transform="translate(460,200)">
@@ -73,7 +78,7 @@
     <text x="210" y="42" font-family="monospace" font-size="9" fill="#f59e0b">[TARGET_TEXT]</text>
     <text x="320" y="42" font-family="monospace" font-size="9" fill="#888">→</text>
     <text x="335" y="42" font-family="monospace" font-size="9" fill="#a855f7">[TARGET_CODES]</text>
-    <text x="16" y="58" font-family="monospace" font-size="9" fill="#666">Unified vocab: 8192 speech codes + text tokens + delimiters</text>
+    <text x="16" y="58" font-family="monospace" font-size="9" fill="#666">Unified vocab: 65536 speech codes + text tokens + 8 delimiters</text>
   </g>
   
   <!-- Arrow -->
@@ -82,44 +87,45 @@
   
   <!-- Row 4: LLM -->
   <g transform="translate(40,395)">
-    <rect width="820" height="60" rx="8" fill="#fff" filter="url(#s)"/>
+    <rect width="820" height="70" rx="8" fill="#fff" filter="url(#s)"/>
     <rect width="820" height="26" rx="8" fill="linear-gradient(90deg,#3b82f6,#8b5cf6)"/>
     <rect width="820" height="26" rx="8" fill="#6366f1"/>
-    <text x="16" y="18" font-family="system-ui" font-size="11" font-weight="600" fill="#fff">TRANSFORMER LLM</text>
-    <text x="780" y="18" font-family="system-ui" font-size="10" fill="rgba(255,255,255,0.8)" text-anchor="end">Qwen 0.5B · GGUF Q8_0</text>
-    <text x="16" y="46" font-family="system-ui" font-size="10" fill="#666">24 layers · GQA · 8192 context · top_k=40 · top_p=0.95 · temp=0.3</text>
+    <text x="16" y="18" font-family="system-ui" font-size="11" font-weight="600" fill="#fff">DECODER-ONLY NEURAL CODEC LM</text>
+    <text x="780" y="18" font-family="system-ui" font-size="10" fill="rgba(255,255,255,0.8)" text-anchor="end">Qwen2.5-0.5B Base · Bilingual Fine-tuned</text>
+    <text x="16" y="46" font-family="system-ui" font-size="10" fill="#666">24 transformer layers · Grouped Query Attention · RMSNorm · SwiGLU FFN · 8192 context</text>
+    <text x="16" y="60" font-family="system-ui" font-size="9" fill="#888">Generation: top_k=40 · top_p=0.95 · temp=0.3 · repeat_penalty=1.1 | GGUF Q8_0 optimized</text>
   </g>
   
   <!-- Arrow -->
-  <path d="M450 455 L450 475" stroke="#ccc" stroke-width="1.5"/>
-  <polygon points="446,472 450,480 454,472" fill="#ccc"/>
+  <path d="M450 465 L450 485" stroke="#ccc" stroke-width="1.5"/>
+  <polygon points="446,482 450,490 454,482" fill="#ccc"/>
   
   <!-- Row 5: Output -->
-  <g transform="translate(40,490)">
+  <g transform="translate(40,500)">
     <rect width="260" height="50" rx="8" fill="#fff" filter="url(#s)"/>
     <text x="16" y="22" font-family="system-ui" font-size="11" font-weight="600" fill="#333">Token Extract</text>
-    <text x="16" y="38" font-family="monospace" font-size="9" fill="#888">&lt;speech_X&gt; → int</text>
+    <text x="16" y="38" font-family="monospace" font-size="9" fill="#888">&lt;speech_X&gt; → int [0-65535]</text>
   </g>
   
-  <g transform="translate(320,490)">
+  <g transform="translate(320,500)">
     <rect width="260" height="50" rx="8" fill="#fff" filter="url(#s)"/>
     <text x="16" y="22" font-family="system-ui" font-size="11" font-weight="600" fill="#333">Codec Decoder</text>
     <text x="16" y="38" font-family="system-ui" font-size="9" fill="#888">codes → 24kHz waveform</text>
   </g>
   
-  <g transform="translate(600,490)">
+  <g transform="translate(600,500)">
     <rect width="260" height="50" rx="8" fill="#ef4444" filter="url(#s)"/>
     <text x="16" y="22" font-family="system-ui" font-size="11" font-weight="600" fill="#fff">AUDIO OUTPUT</text>
     <text x="16" y="38" font-family="system-ui" font-size="9" fill="rgba(255,255,255,0.9)">24kHz · 16-bit · Mono</text>
   </g>
   
   <!-- Arrows between outputs -->
-  <path d="M300 515 L320 515 M580 515 L600 515" stroke="#ccc" stroke-width="1.5"/>
-  <polygon points="317,511 325,515 317,519" fill="#ccc"/>
-  <polygon points="597,511 605,515 597,519" fill="#ccc"/>
+  <path d="M300 525 L320 525 M580 525 L600 525" stroke="#ccc" stroke-width="1.5"/>
+  <polygon points="317,521 325,525 317,529" fill="#ccc"/>
+  <polygon points="597,521 605,525 597,529" fill="#ccc"/>
   
   <!-- Metrics bar -->
-  <g transform="translate(40,560)">
+  <g transform="translate(40,570)">
     <rect width="820" height="32" rx="6" fill="#f0f0f0"/>
     <text x="70" y="21" text-anchor="middle" font-family="system-ui" font-size="10" fill="#333">RTF 0.46x</text>
     <text x="200" y="21" text-anchor="middle" font-family="system-ui" font-size="10" fill="#333">500ms latency</text>
@@ -130,13 +136,13 @@
   </g>
   
   <!-- ===== VOICE CLONING DIAGRAM ===== -->
-  <line x1="40" y1="620" x2="860" y2="620" stroke="#e0e0e0" stroke-width="1"/>
+  <line x1="40" y1="630" x2="860" y2="630" stroke="#e0e0e0" stroke-width="1"/>
   
-  <text x="450" y="660" text-anchor="middle" font-family="system-ui,sans-serif" font-size="20" font-weight="600" fill="#111">Zero-Shot Voice Cloning</text>
-  <text x="450" y="680" text-anchor="middle" font-family="system-ui,sans-serif" font-size="11" fill="#666">Clone any voice with 3 seconds — no fine-tuning</text>
+  <text x="450" y="670" text-anchor="middle" font-family="system-ui,sans-serif" font-size="20" font-weight="600" fill="#111">Zero-Shot Voice Cloning</text>
+  <text x="450" y="690" text-anchor="middle" font-family="system-ui,sans-serif" font-size="11" fill="#666">Clone any voice with 3 seconds — no fine-tuning</text>
   
   <!-- Step 1 -->
-  <g transform="translate(40,705)">
+  <g transform="translate(40,715)">
     <circle cx="16" cy="16" r="16" fill="#22c55e"/>
     <text x="16" y="21" text-anchor="middle" font-family="system-ui" font-size="12" font-weight="600" fill="#fff">1</text>
     <rect x="45" y="0" width="360" height="55" rx="8" fill="#fff" filter="url(#s)"/>
@@ -145,7 +151,7 @@
   </g>
   
   <!-- Step 2 -->
-  <g transform="translate(455,705)">
+  <g transform="translate(455,715)">
     <circle cx="16" cy="16" r="16" fill="#3b82f6"/>
     <text x="16" y="21" text-anchor="middle" font-family="system-ui" font-size="12" font-weight="600" fill="#fff">2</text>
     <rect x="45" y="0" width="360" height="55" rx="8" fill="#fff" filter="url(#s)"/>
@@ -154,11 +160,11 @@
   </g>
   
   <!-- Arrow -->
-  <path d="M450 780 L450 800" stroke="#ccc" stroke-width="1.5"/>
-  <polygon points="446,797 450,805 454,797" fill="#ccc"/>
+  <path d="M450 790 L450 810" stroke="#ccc" stroke-width="1.5"/>
+  <polygon points="446,807 450,815 454,807" fill="#ccc"/>
   
   <!-- Step 3 -->
-  <g transform="translate(40,815)">
+  <g transform="translate(40,825)">
     <circle cx="16" cy="16" r="16" fill="#f59e0b"/>
     <text x="16" y="21" text-anchor="middle" font-family="system-ui" font-size="12" font-weight="600" fill="#fff">3</text>
     <rect x="45" y="0" width="770" height="60" rx="8" fill="#fff" filter="url(#s)"/>
@@ -168,11 +174,11 @@
   </g>
   
   <!-- Arrow -->
-  <path d="M450 875 L450 895" stroke="#ccc" stroke-width="1.5"/>
-  <polygon points="446,892 450,900 454,892" fill="#ccc"/>
+  <path d="M450 885 L450 905" stroke="#ccc" stroke-width="1.5"/>
+  <polygon points="446,902 450,910 454,902" fill="#ccc"/>
   
   <!-- Step 4 -->
-  <g transform="translate(40,910)">
+  <g transform="translate(40,920)">
     <circle cx="16" cy="16" r="16" fill="#8b5cf6"/>
     <text x="16" y="21" text-anchor="middle" font-family="system-ui" font-size="12" font-weight="600" fill="#fff">4</text>
     <rect x="45" y="0" width="770" height="50" rx="8" fill="#fff" filter="url(#s)"/>
@@ -181,11 +187,11 @@
   </g>
   
   <!-- Arrow -->
-  <path d="M450 960 L450 980" stroke="#ccc" stroke-width="1.5"/>
-  <polygon points="446,977 450,985 454,977" fill="#ccc"/>
+  <path d="M450 970 L450 990" stroke="#ccc" stroke-width="1.5"/>
+  <polygon points="446,987 450,995 454,987" fill="#ccc"/>
   
   <!-- Step 5 -->
-  <g transform="translate(40,995)">
+  <g transform="translate(40,1005)">
     <circle cx="16" cy="16" r="16" fill="#ef4444"/>
     <text x="16" y="21" text-anchor="middle" font-family="system-ui" font-size="12" font-weight="600" fill="#fff">5</text>
     <rect x="45" y="0" width="360" height="50" rx="8" fill="#fff" filter="url(#s)"/>
@@ -193,18 +199,18 @@
     <text x="60" y="38" font-family="system-ui" font-size="10" fill="#888">Codec decode → 24kHz waveform</text>
   </g>
   
-  <g transform="translate(455,995)">
+  <g transform="translate(455,1005)">
     <rect x="45" y="0" width="360" height="50" rx="8" fill="none" stroke="#ef4444" stroke-width="2"/>
     <text x="225" y="22" text-anchor="middle" font-family="system-ui" font-size="12" font-weight="600" fill="#ef4444">Cloned Voice Output</text>
     <text x="225" y="40" text-anchor="middle" font-family="system-ui" font-size="10" fill="#888">Target text in reference voice</text>
   </g>
   
   <!-- Arrow between step 5 boxes -->
-  <path d="M405 1020 L455 1020" stroke="#ccc" stroke-width="1.5"/>
-  <polygon points="452,1016 460,1020 452,1024" fill="#ccc"/>
+  <path d="M405 1030 L455 1030" stroke="#ccc" stroke-width="1.5"/>
+  <polygon points="452,1026 460,1030 452,1034" fill="#ccc"/>
   
   <!-- Footer -->
-  <g transform="translate(40,1065)">
+  <g transform="translate(40,1075)">
     <rect width="820" height="25" rx="4" fill="#f5f5f5"/>
     <text x="410" y="17" text-anchor="middle" font-family="system-ui" font-size="9" fill="#888">Training: LR 1e-5 · 140k steps · bf16 · Label masking on target_codes only · 100% cross-text conditioning</text>
   </g>
