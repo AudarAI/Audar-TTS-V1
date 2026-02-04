@@ -38,14 +38,6 @@
 
 ---
 
-## Architecture
-
-<p align="center">
-  <img src="assets/audar_tts_diagrams.png?v=2" alt="Audar-TTS Architecture" width="100%"/>
-</p>
-
----
-
 ## Features
 
 | Feature | Description |
@@ -166,30 +158,30 @@ AudarTTS(
 
 Interactive side-by-side comparison of **Audar TTS Flash V1** vs **ElevenLabs Flash v2.5** using the **same speaker voice** (instant voice cloning) and **identical text**.
 
-The comparison tables below include embedded audio players with play/pause, volume control, and progress bars for direct playback.
+> **[Open Full Interactive Player](https://audarai.github.io/Audar-TTS-V1/comparison.html)** for the best experience with embedded audio controls.
 
 ### English
 
 | Speaker | Text | Audar TTS Flash V1 | ElevenLabs Flash |
 |---------|------|:------------------:|:----------------:|
-| **Eve** | *"The future of artificial intelligence lies not in replacing human creativity, but in amplifying it beyond imagination."* | <audio controls><source src="samples/comparison/audar_en_1_eve.mp3" type="audio/mpeg"></audio> | <audio controls><source src="samples/comparison/elevenlabs_en_1_eve.mp3" type="audio/mpeg"></audio> |
-| **Salem** | *"After years of research, scientists finally discovered that the key to longevity was surprisingly simple: genuine human connection."* | <audio controls><source src="samples/comparison/audar_en_2_salem.mp3" type="audio/mpeg"></audio> | <audio controls><source src="samples/comparison/elevenlabs_en_2_salem.mp3" type="audio/mpeg"></audio> |
-| **Amal** | *"In the quiet moments between chaos and calm, we often find the answers we've been searching for all along."* | <audio controls><source src="samples/comparison/audar_en_3_amal.mp3" type="audio/mpeg"></audio> | <audio controls><source src="samples/comparison/elevenlabs_en_3_amal.mp3" type="audio/mpeg"></audio> |
+| **Eve** | *"The future of artificial intelligence lies not in replacing human creativity, but in amplifying it beyond imagination."* | [▶ Play](https://audarai.github.io/Audar-TTS-V1/samples/comparison/audar_en_1_eve.mp3) | [▶ Play](https://audarai.github.io/Audar-TTS-V1/samples/comparison/elevenlabs_en_1_eve.mp3) |
+| **Salem** | *"After years of research, scientists finally discovered that the key to longevity was surprisingly simple: genuine human connection."* | [▶ Play](https://audarai.github.io/Audar-TTS-V1/samples/comparison/audar_en_2_salem.mp3) | [▶ Play](https://audarai.github.io/Audar-TTS-V1/samples/comparison/elevenlabs_en_2_salem.mp3) |
+| **Amal** | *"In the quiet moments between chaos and calm, we often find the answers we've been searching for all along."* | [▶ Play](https://audarai.github.io/Audar-TTS-V1/samples/comparison/audar_en_3_amal.mp3) | [▶ Play](https://audarai.github.io/Audar-TTS-V1/samples/comparison/elevenlabs_en_3_amal.mp3) |
 
 ### Arabic
 
 | Speaker | Text | Audar TTS Flash V1 | ElevenLabs Flash |
 |---------|------|:------------------:|:----------------:|
-| **Salama** | *"<span dir="rtl">في عالم يتسارع فيه كل شيء، تبقى الحكمة هي البوصلة التي ترشدنا نحو القرارات الصائبة.</span>"* | <audio controls><source src="samples/comparison/audar_ar_1_salama.mp3" type="audio/mpeg"></audio> | <audio controls><source src="samples/comparison/elevenlabs_ar_1_salama.mp3" type="audio/mpeg"></audio> |
-| **Amin** | *"<span dir="rtl">لا تقاس قيمة الإنسان بما يملك، بل بما يقدم للآخرين من خير وعطاء دون انتظار مقابل.</span>"* | <audio controls><source src="samples/comparison/audar_ar_2_amin.mp3" type="audio/mpeg"></audio> | <audio controls><source src="samples/comparison/elevenlabs_ar_2_amin.mp3" type="audio/mpeg"></audio> |
-| **Hanaa** | *"<span dir="rtl">كل رحلة ألف ميل تبدأ بخطوة واحدة، فلا تستهن بالبدايات الصغيرة التي تصنع المستقبل العظيم.</span>"* | <audio controls><source src="samples/comparison/audar_ar_3_hanaa.mp3" type="audio/mpeg"></audio> | <audio controls><source src="samples/comparison/elevenlabs_ar_3_hanaa.mp3" type="audio/mpeg"></audio> |
+| **Salama** | *"في عالم يتسارع فيه كل شيء، تبقى الحكمة هي البوصلة التي ترشدنا نحو القرارات الصائبة."* | [▶ Play](https://audarai.github.io/Audar-TTS-V1/samples/comparison/audar_ar_1_salama.mp3) | [▶ Play](https://audarai.github.io/Audar-TTS-V1/samples/comparison/elevenlabs_ar_1_salama.mp3) |
+| **Amin** | *"لا تقاس قيمة الإنسان بما يملك، بل بما يقدم للآخرين من خير وعطاء دون انتظار مقابل."* | [▶ Play](https://audarai.github.io/Audar-TTS-V1/samples/comparison/audar_ar_2_amin.mp3) | [▶ Play](https://audarai.github.io/Audar-TTS-V1/samples/comparison/elevenlabs_ar_2_amin.mp3) |
+| **Hanaa** | *"كل رحلة ألف ميل تبدأ بخطوة واحدة، فلا تستهن بالبدايات الصغيرة التي تصنع المستقبل العظيم."* | [▶ Play](https://audarai.github.io/Audar-TTS-V1/samples/comparison/audar_ar_3_hanaa.mp3) | [▶ Play](https://audarai.github.io/Audar-TTS-V1/samples/comparison/elevenlabs_ar_3_hanaa.mp3) |
 
 ### Code-Switching (EN/AR)
 
 | Speaker | Text | Audar TTS Flash V1 | ElevenLabs Flash |
 |---------|------|:------------------:|:----------------:|
-| **Eve** | *"Welcome to our innovation hub, مرحباً بكم في مركز الابتكار، where ideas transform into reality."* | <audio controls><source src="samples/comparison/audar_mix_1_eve.mp3" type="audio/mpeg"></audio> | <audio controls><source src="samples/comparison/elevenlabs_mix_1_eve.mp3" type="audio/mpeg"></audio> |
-| **Amal** | *"The team worked tirelessly, والنتيجة كانت مذهلة، delivering beyond all expectations."* | <audio controls><source src="samples/comparison/audar_mix_2_amal.mp3" type="audio/mpeg"></audio> | <audio controls><source src="samples/comparison/elevenlabs_mix_2_amal.mp3" type="audio/mpeg"></audio> |
+| **Eve** | *"Welcome to our innovation hub, مرحباً بكم في مركز الابتكار، where ideas transform into reality."* | [▶ Play](https://audarai.github.io/Audar-TTS-V1/samples/comparison/audar_mix_1_eve.mp3) | [▶ Play](https://audarai.github.io/Audar-TTS-V1/samples/comparison/elevenlabs_mix_1_eve.mp3) |
+| **Amal** | *"The team worked tirelessly, والنتيجة كانت مذهلة، delivering beyond all expectations."* | [▶ Play](https://audarai.github.io/Audar-TTS-V1/samples/comparison/audar_mix_2_amal.mp3) | [▶ Play](https://audarai.github.io/Audar-TTS-V1/samples/comparison/elevenlabs_mix_2_amal.mp3) |
 
 ### Expressive Tags (Audar Exclusive)
 
@@ -197,9 +189,9 @@ ElevenLabs does not support expressive tags. Audar TTS renders them naturally.
 
 | Speaker | Tag | Text | Audar TTS Flash V1 |
 |---------|-----|------|:------------------:|
-| **Eve** | `[laughs]` | *"I can't believe you actually did that! [laughs] That's the funniest thing I've heard all week!"* | <audio controls><source src="samples/comparison/audar_expr_1_eve.mp3" type="audio/mpeg"></audio> |
-| **Salama** | `[whispers]` | *"[whispers] Listen carefully, I'm only going to say this once. The secret ingredient is... love."* | <audio controls><source src="samples/comparison/audar_expr_2_salama.mp3" type="audio/mpeg"></audio> |
-| **Amal** | `[sighs]` | *"[sighs] After everything we've been through, I never thought we'd actually make it here."* | <audio controls><source src="samples/comparison/audar_expr_3_amal.mp3" type="audio/mpeg"></audio> |
+| **Eve** | `[laughs]` | *"I can't believe you actually did that! [laughs] That's the funniest thing I've heard all week!"* | [▶ Play](https://audarai.github.io/Audar-TTS-V1/samples/comparison/audar_expr_1_eve.mp3) |
+| **Salama** | `[whispers]` | *"[whispers] Listen carefully, I'm only going to say this once. The secret ingredient is... love."* | [▶ Play](https://audarai.github.io/Audar-TTS-V1/samples/comparison/audar_expr_2_salama.mp3) |
+| **Amal** | `[sighs]` | *"[sighs] After everything we've been through, I never thought we'd actually make it here."* | [▶ Play](https://audarai.github.io/Audar-TTS-V1/samples/comparison/audar_expr_3_amal.mp3) |
 
 ### Feature Comparison
 
