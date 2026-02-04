@@ -1,0 +1,295 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 1600">
+  <defs>
+    <filter id="shadow" x="-5%" y="-5%" width="110%" height="115%">
+      <feDropShadow dx="0" dy="2" stdDeviation="4" flood-color="#000" flood-opacity="0.06"/>
+    </filter>
+    <linearGradient id="headerGrad" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%" style="stop-color:#007AFF"/>
+      <stop offset="100%" style="stop-color:#5856D6"/>
+    </linearGradient>
+  </defs>
+  
+  <!-- Background -->
+  <rect width="1200" height="1600" fill="#f5f5f7"/>
+  
+  <!-- ========== DIAGRAM 1: SYSTEM ARCHITECTURE ========== -->
+  
+  <!-- Title -->
+  <text x="600" y="45" text-anchor="middle" font-family="-apple-system, BlinkMacSystemFont, 'SF Pro Display', sans-serif" font-size="28" font-weight="600" fill="#1d1d1f">Audar-TTS System Architecture</text>
+  <text x="600" y="72" text-anchor="middle" font-family="-apple-system, 'SF Pro Text'" font-size="14" fill="#86868b">Neural Codec Language Model • Zero-Shot Voice Cloning • Bilingual EN/AR</text>
+  
+  <!-- Row 1: Inputs -->
+  <g transform="translate(60, 100)">
+    <!-- Reference Audio -->
+    <rect x="0" y="0" width="340" height="100" rx="12" fill="#fff" filter="url(#shadow)"/>
+    <rect x="0" y="0" width="340" height="32" rx="12" fill="#34C759"/>
+    <rect x="0" y="20" width="340" height="12" fill="#34C759"/>
+    <text x="16" y="22" font-family="-apple-system" font-size="12" font-weight="600" fill="#fff">REFERENCE AUDIO</text>
+    
+    <text x="16" y="54" font-family="-apple-system" font-size="12" font-weight="500" fill="#1d1d1f">Duration: 3-10 seconds</text>
+    <text x="16" y="72" font-family="-apple-system" font-size="11" fill="#86868b">Format: WAV/MP3 • 16kHz+ • Mono</text>
+    <path d="M200 55 Q230 42 260 55 Q290 68 310 55" stroke="#34C759" stroke-width="2" fill="none"/>
+    
+    <!-- Reference Text -->
+    <rect x="360" y="0" width="340" height="100" rx="12" fill="#fff" filter="url(#shadow)"/>
+    <rect x="360" y="0" width="340" height="32" rx="12" fill="#007AFF"/>
+    <rect x="360" y="20" width="340" height="12" fill="#007AFF"/>
+    <text x="376" y="22" font-family="-apple-system" font-size="12" font-weight="600" fill="#fff">REFERENCE TEXT (Optional)</text>
+    
+    <text x="376" y="54" font-family="-apple-system" font-size="12" font-weight="500" fill="#1d1d1f">Transcript of reference audio</text>
+    <text x="376" y="74" font-family="'SF Mono'" font-size="11" fill="#636366" direction="rtl" unicode-bidi="bidi-override">"مرحبا، اسمي آيڤي"</text>
+    
+    <!-- Target Text -->
+    <rect x="720" y="0" width="340" height="100" rx="12" fill="#fff" filter="url(#shadow)"/>
+    <rect x="720" y="0" width="340" height="32" rx="12" fill="#FF9500"/>
+    <rect x="720" y="20" width="340" height="12" fill="#FF9500"/>
+    <text x="736" y="22" font-family="-apple-system" font-size="12" font-weight="600" fill="#fff">TARGET TEXT</text>
+    
+    <text x="736" y="54" font-family="-apple-system" font-size="12" font-weight="500" fill="#1d1d1f">Text to synthesize (EN/AR mixed)</text>
+    <text x="736" y="74" font-family="'SF Mono'" font-size="11" fill="#636366">"Welcome مرحبا to Audar AI"</text>
+  </g>
+  
+  <!-- Arrows -->
+  <path d="M230 200 L230 225" stroke="#c7c7cc" stroke-width="2" fill="none"/>
+  <polygon points="225,222 230,232 235,222" fill="#c7c7cc"/>
+  <path d="M590 200 L590 225" stroke="#c7c7cc" stroke-width="2" fill="none"/>
+  <polygon points="585,222 590,232 595,222" fill="#c7c7cc"/>
+  <path d="M950 200 L950 225" stroke="#c7c7cc" stroke-width="2" fill="none"/>
+  <polygon points="945,222 950,232 955,222" fill="#c7c7cc"/>
+  
+  <!-- Row 2: Processing -->
+  <g transform="translate(60, 240)">
+    <!-- Codec Encoder -->
+    <rect x="0" y="0" width="340" height="90" rx="12" fill="#fff" filter="url(#shadow)"/>
+    <text x="16" y="28" font-family="-apple-system" font-size="13" font-weight="600" fill="#1d1d1f">Neural Codec Encoder</text>
+    <text x="16" y="48" font-family="-apple-system" font-size="11" fill="#86868b">DistillNeuCodec @ 50Hz (20ms frames)</text>
+    <text x="16" y="68" font-family="'SF Mono'" font-size="10" fill="#34C759">→ codes[0-8191]: [127, 4521, 892...]</text>
+    
+    <!-- Phonemizer (Ref) -->
+    <rect x="360" y="0" width="340" height="90" rx="12" fill="#fff" filter="url(#shadow)"/>
+    <text x="376" y="28" font-family="-apple-system" font-size="13" font-weight="600" fill="#1d1d1f">Phonemizer (G2P)</text>
+    <text x="376" y="48" font-family="-apple-system" font-size="11" fill="#86868b">eSpeak NG • Auto code-switching EN↔AR</text>
+    <text x="376" y="68" font-family="'SF Mono'" font-size="10" fill="#007AFF">→ /mærħæbæ ʔɪsmi ʔaɪvi/</text>
+    
+    <!-- Phonemizer (Target) -->
+    <rect x="720" y="0" width="340" height="90" rx="12" fill="#fff" filter="url(#shadow)"/>
+    <text x="736" y="28" font-family="-apple-system" font-size="13" font-weight="600" fill="#1d1d1f">Phonemizer (G2P)</text>
+    <text x="736" y="48" font-family="-apple-system" font-size="11" fill="#86868b">Bilingual: en-us + ar auto-detect</text>
+    <text x="736" y="68" font-family="'SF Mono'" font-size="10" fill="#FF9500">→ /wɛlkəm mærħæbæ tu ɔdɑr/</text>
+  </g>
+  
+  <!-- Merge arrows -->
+  <path d="M230 330 L230 355 L600 355 L600 380" stroke="#c7c7cc" stroke-width="2" fill="none"/>
+  <path d="M590 330 L590 355" stroke="#c7c7cc" stroke-width="2" fill="none"/>
+  <path d="M950 330 L950 355 L600 355" stroke="#c7c7cc" stroke-width="2" fill="none"/>
+  <polygon points="595,377 600,387 605,377" fill="#c7c7cc"/>
+  
+  <!-- Row 3: Prompt Template -->
+  <g transform="translate(60, 395)">
+    <rect x="0" y="0" width="1080" height="140" rx="12" fill="#1d1d1f" filter="url(#shadow)"/>
+    <text x="20" y="26" font-family="-apple-system" font-size="13" font-weight="600" fill="#fff">V2 Prompt Template • 8 Delimiters</text>
+    
+    <text x="20" y="52" font-family="'SF Mono'" font-size="10" fill="#86868b">user: Convert the text to speech:</text>
+    <text x="20" y="70" font-family="'SF Mono'" font-size="10"><tspan fill="#34C759">&lt;|REF_TEXT_START|&gt;</tspan><tspan fill="#fff">{ref_phonemes}</tspan><tspan fill="#34C759">&lt;|REF_TEXT_END|&gt;</tspan></text>
+    <text x="20" y="88" font-family="'SF Mono'" font-size="10"><tspan fill="#007AFF">&lt;|REF_SPEECH_START|&gt;</tspan><tspan fill="#fff">&lt;|speech_127|&gt;&lt;|speech_4521|&gt;...</tspan><tspan fill="#007AFF">&lt;|REF_SPEECH_END|&gt;</tspan></text>
+    <text x="20" y="106" font-family="'SF Mono'" font-size="10"><tspan fill="#FF9500">&lt;|TARGET_TEXT_START|&gt;</tspan><tspan fill="#fff">{target_phonemes}</tspan><tspan fill="#FF9500">&lt;|TARGET_TEXT_END|&gt;</tspan></text>
+    <text x="20" y="124" font-family="'SF Mono'" font-size="10"><tspan fill="#86868b">assistant:</tspan><tspan fill="#FF3B30">&lt;|TARGET_CODES_START|&gt;</tspan><tspan fill="#AF52DE">&lt;|speech_X|&gt;...</tspan><tspan fill="#FF3B30">&lt;|TARGET_CODES_END|&gt;</tspan></text>
+    
+    <text x="750" y="52" font-family="-apple-system" font-size="10" fill="#86868b">Tokenizer: HuggingFace AutoTokenizer</text>
+    <text x="750" y="70" font-family="-apple-system" font-size="10" fill="#86868b">Vocab: 8192 speech + text + 8 delimiters</text>
+    <text x="750" y="88" font-family="-apple-system" font-size="10" fill="#86868b">Stop token: &lt;|TARGET_CODES_END|&gt;</text>
+  </g>
+  
+  <!-- Arrow -->
+  <path d="M600 535 L600 560" stroke="#c7c7cc" stroke-width="2" fill="none"/>
+  <polygon points="595,557 600,567 605,557" fill="#c7c7cc"/>
+  
+  <!-- Row 4: LLM -->
+  <g transform="translate(60, 575)">
+    <rect x="0" y="0" width="1080" height="100" rx="12" fill="#fff" filter="url(#shadow)"/>
+    <rect x="0" y="0" width="1080" height="36" rx="12" fill="url(#headerGrad)"/>
+    <rect x="0" y="24" width="1080" height="12" fill="#5856D6"/>
+    <text x="20" y="24" font-family="-apple-system" font-size="13" font-weight="600" fill="#fff">TRANSFORMER LANGUAGE MODEL</text>
+    <text x="1060" y="24" text-anchor="end" font-family="-apple-system" font-size="11" fill="rgba(255,255,255,0.8)">Qwen 0.5B • GGUF Q8_0 • ~800MB</text>
+    
+    <g transform="translate(20, 50)">
+      <rect x="0" y="0" width="160" height="36" rx="6" fill="#f5f5f7"/>
+      <text x="80" y="16" text-anchor="middle" font-family="-apple-system" font-size="11" font-weight="500" fill="#1d1d1f">24 Layers</text>
+      <text x="80" y="30" text-anchor="middle" font-family="-apple-system" font-size="10" fill="#86868b">Decoder-only</text>
+    </g>
+    <g transform="translate(200, 50)">
+      <rect x="0" y="0" width="160" height="36" rx="6" fill="#f5f5f7"/>
+      <text x="80" y="16" text-anchor="middle" font-family="-apple-system" font-size="11" font-weight="500" fill="#1d1d1f">GQA</text>
+      <text x="80" y="30" text-anchor="middle" font-family="-apple-system" font-size="10" fill="#86868b">Grouped Query Attn</text>
+    </g>
+    <g transform="translate(380, 50)">
+      <rect x="0" y="0" width="160" height="36" rx="6" fill="#f5f5f7"/>
+      <text x="80" y="16" text-anchor="middle" font-family="-apple-system" font-size="11" font-weight="500" fill="#1d1d1f">8192 Context</text>
+      <text x="80" y="30" text-anchor="middle" font-family="-apple-system" font-size="10" fill="#86868b">Max tokens</text>
+    </g>
+    <g transform="translate(560, 50)">
+      <rect x="0" y="0" width="160" height="36" rx="6" fill="#f5f5f7"/>
+      <text x="80" y="16" text-anchor="middle" font-family="-apple-system" font-size="11" font-weight="500" fill="#1d1d1f">top_k=40</text>
+      <text x="80" y="30" text-anchor="middle" font-family="-apple-system" font-size="10" fill="#86868b">top_p=0.95, T=0.3</text>
+    </g>
+    <g transform="translate(740, 50)">
+      <rect x="0" y="0" width="160" height="36" rx="6" fill="#f5f5f7"/>
+      <text x="80" y="16" text-anchor="middle" font-family="-apple-system" font-size="11" font-weight="500" fill="#1d1d1f">RMSNorm</text>
+      <text x="80" y="30" text-anchor="middle" font-family="-apple-system" font-size="10" fill="#86868b">SwiGLU FFN</text>
+    </g>
+    <g transform="translate(920, 50)">
+      <rect x="0" y="0" width="140" height="36" rx="6" fill="#f5f5f7"/>
+      <text x="70" y="16" text-anchor="middle" font-family="-apple-system" font-size="11" font-weight="500" fill="#1d1d1f">repeat_pen</text>
+      <text x="70" y="30" text-anchor="middle" font-family="-apple-system" font-size="10" fill="#86868b">1.1</text>
+    </g>
+  </g>
+  
+  <!-- Arrow -->
+  <path d="M600 675 L600 700" stroke="#c7c7cc" stroke-width="2" fill="none"/>
+  <polygon points="595,697 600,707 605,697" fill="#c7c7cc"/>
+  
+  <!-- Row 5: Output -->
+  <g transform="translate(60, 715)">
+    <rect x="0" y="0" width="340" height="80" rx="12" fill="#fff" filter="url(#shadow)"/>
+    <text x="16" y="26" font-family="-apple-system" font-size="13" font-weight="600" fill="#1d1d1f">Token Extraction</text>
+    <text x="16" y="46" font-family="'SF Mono'" font-size="10" fill="#86868b">&lt;|speech_X|&gt; → int(X)</text>
+    <text x="16" y="64" font-family="'SF Mono'" font-size="10" fill="#AF52DE">[892, 3847, 156, 7234...]</text>
+    
+    <rect x="370" y="0" width="340" height="80" rx="12" fill="#fff" filter="url(#shadow)"/>
+    <text x="386" y="26" font-family="-apple-system" font-size="13" font-weight="600" fill="#1d1d1f">Codec Decoder</text>
+    <text x="386" y="46" font-family="-apple-system" font-size="11" fill="#86868b">DistillNeuCodec • 50 codes → 1s audio</text>
+    <text x="386" y="64" font-family="'SF Mono'" font-size="10" fill="#34C759">codes[N] → waveform[N×480]</text>
+    
+    <rect x="740" y="0" width="340" height="80" rx="12" fill="#fff" filter="url(#shadow)"/>
+    <rect x="740" y="0" width="340" height="32" rx="12" fill="#FF3B30"/>
+    <rect x="740" y="20" width="340" height="12" fill="#FF3B30"/>
+    <text x="756" y="22" font-family="-apple-system" font-size="12" font-weight="600" fill="#fff">AUDIO OUTPUT</text>
+    <text x="756" y="54" font-family="-apple-system" font-size="11" fill="#1d1d1f">24kHz • 16-bit • Mono</text>
+    <path d="M820 65 Q860 52 900 65 Q940 78 980 65 Q1020 52 1050 65" stroke="#FF3B30" stroke-width="2" fill="none"/>
+  </g>
+  
+  <!-- Arrows between outputs -->
+  <path d="M400 755 L370 755" stroke="#c7c7cc" stroke-width="2" fill="none"/>
+  <polygon points="373,750 363,755 373,760" fill="#c7c7cc"/>
+  <path d="M710 755 L740 755" stroke="#c7c7cc" stroke-width="2" fill="none"/>
+  <polygon points="737,750 747,755 737,760" fill="#c7c7cc"/>
+  
+  <!-- Performance Metrics Bar -->
+  <g transform="translate(60, 815)">
+    <rect x="0" y="0" width="1080" height="40" rx="8" fill="#f0f0f5"/>
+    <text x="80" y="26" text-anchor="middle" font-family="-apple-system" font-size="12" font-weight="500" fill="#1d1d1f">RTF: 0.46x</text>
+    <text x="250" y="26" text-anchor="middle" font-family="-apple-system" font-size="12" font-weight="500" fill="#1d1d1f">Latency: 500ms</text>
+    <text x="420" y="26" text-anchor="middle" font-family="-apple-system" font-size="12" font-weight="500" fill="#1d1d1f">50 codes/sec</text>
+    <text x="590" y="26" text-anchor="middle" font-family="-apple-system" font-size="12" font-weight="500" fill="#1d1d1f">24kHz output</text>
+    <text x="760" y="26" text-anchor="middle" font-family="-apple-system" font-size="12" font-weight="500" fill="#1d1d1f">Streaming: 50-code chunks</text>
+    <text x="970" y="26" text-anchor="middle" font-family="-apple-system" font-size="12" font-weight="500" fill="#1d1d1f">Bilingual EN/AR</text>
+  </g>
+  
+  <!-- ========== DIAGRAM 2: ZERO-SHOT VOICE CLONING ========== -->
+  
+  <!-- Divider -->
+  <line x1="60" y1="890" x2="1140" y2="890" stroke="#e5e5ea" stroke-width="1"/>
+  
+  <!-- Title -->
+  <text x="600" y="935" text-anchor="middle" font-family="-apple-system, 'SF Pro Display'" font-size="28" font-weight="600" fill="#1d1d1f">Zero-Shot Voice Cloning Process</text>
+  <text x="600" y="962" text-anchor="middle" font-family="-apple-system, 'SF Pro Text'" font-size="14" fill="#86868b">Clone any voice with 3 seconds of audio — no fine-tuning required</text>
+  
+  <!-- Step 1 -->
+  <g transform="translate(60, 990)">
+    <circle cx="24" cy="24" r="24" fill="#34C759"/>
+    <text x="24" y="30" text-anchor="middle" font-family="-apple-system" font-size="16" font-weight="600" fill="#fff">1</text>
+    
+    <rect x="60" y="0" width="480" height="100" rx="12" fill="#fff" filter="url(#shadow)"/>
+    <text x="80" y="28" font-family="-apple-system" font-size="14" font-weight="600" fill="#1d1d1f">Reference Audio Encoding</text>
+    <text x="80" y="48" font-family="-apple-system" font-size="12" fill="#86868b">Speaker provides 3-10 second voice sample</text>
+    
+    <rect x="80" y="58" width="440" height="32" rx="6" fill="#f5f5f7"/>
+    <text x="100" y="78" font-family="'SF Mono'" font-size="10" fill="#636366">audio.wav → DistillNeuCodec.encode() → [127, 4521, 892, 3847, 156...]</text>
+    
+    <!-- Arrow to step 2 -->
+    <path d="M540 50 L560 50" stroke="#c7c7cc" stroke-width="2" fill="none"/>
+    <polygon points="557,45 567,50 557,55" fill="#c7c7cc"/>
+    
+    <!-- Step 2 (same row) -->
+    <rect x="580" y="0" width="480" height="100" rx="12" fill="#fff" filter="url(#shadow)"/>
+    <circle cx="604" cy="24" r="24" fill="#007AFF"/>
+    <text x="604" y="30" text-anchor="middle" font-family="-apple-system" font-size="16" font-weight="600" fill="#fff">2</text>
+    
+    <text x="640" y="28" font-family="-apple-system" font-size="14" font-weight="600" fill="#1d1d1f">Speaker Profile Caching</text>
+    <text x="640" y="48" font-family="-apple-system" font-size="12" fill="#86868b">MD5-based cache for instant reuse</text>
+    
+    <rect x="640" y="58" width="400" height="32" rx="6" fill="#f5f5f7"/>
+    <text x="660" y="78" font-family="'SF Mono'" font-size="10" fill="#636366">Speaker { codes: [...], phonemes: "...", duration: 5.2s }</text>
+  </g>
+  
+  <!-- Arrow down -->
+  <path d="M600 1090 L600 1115" stroke="#c7c7cc" stroke-width="2" fill="none"/>
+  <polygon points="595,1112 600,1122 605,1112" fill="#c7c7cc"/>
+  
+  <!-- Step 3 -->
+  <g transform="translate(60, 1130)">
+    <circle cx="24" cy="24" r="24" fill="#FF9500"/>
+    <text x="24" y="30" text-anchor="middle" font-family="-apple-system" font-size="16" font-weight="600" fill="#fff">3</text>
+    
+    <rect x="60" y="0" width="1000" height="120" rx="12" fill="#fff" filter="url(#shadow)"/>
+    <text x="80" y="28" font-family="-apple-system" font-size="14" font-weight="600" fill="#1d1d1f">Target Text Input with Code-Switching</text>
+    <text x="80" y="48" font-family="-apple-system" font-size="12" fill="#86868b">Bilingual text with automatic language detection</text>
+    
+    <rect x="80" y="60" width="960" height="48" rx="6" fill="#1d1d1f"/>
+    <text x="100" y="80" font-family="'SF Mono'" font-size="11" fill="#86868b">Input:</text>
+    <text x="150" y="80" font-family="'SF Mono'" font-size="11" fill="#fff">"Welcome مرحبا بكم to the Audar AI demonstration تجربة"</text>
+    <text x="100" y="98" font-family="'SF Mono'" font-size="11" fill="#86868b">Phonemes:</text>
+    <text x="180" y="98" font-family="'SF Mono'" font-size="11" fill="#FF9500">/wɛlkəm mærħæbæ bikum tu ðə ɔdɑr eɪaɪ dɛmənstreɪʃən tædʒribæ/</text>
+  </g>
+  
+  <!-- Arrow down -->
+  <path d="M600 1250 L600 1275" stroke="#c7c7cc" stroke-width="2" fill="none"/>
+  <polygon points="595,1272 600,1282 605,1272" fill="#c7c7cc"/>
+  
+  <!-- Step 4 -->
+  <g transform="translate(60, 1290)">
+    <circle cx="24" cy="24" r="24" fill="#AF52DE"/>
+    <text x="24" y="30" text-anchor="middle" font-family="-apple-system" font-size="16" font-weight="600" fill="#fff">4</text>
+    
+    <rect x="60" y="0" width="1000" height="100" rx="12" fill="#fff" filter="url(#shadow)"/>
+    <text x="80" y="28" font-family="-apple-system" font-size="14" font-weight="600" fill="#1d1d1f">In-Context Voice Cloning (Zero-Shot)</text>
+    <text x="80" y="48" font-family="-apple-system" font-size="12" fill="#86868b">Model learns voice from reference codes in prompt context, generates target in same voice</text>
+    
+    <rect x="80" y="60" width="960" height="30" rx="6" fill="#f5f5f7"/>
+    <text x="100" y="80" font-family="'SF Mono'" font-size="10"><tspan fill="#007AFF">[ref_codes]</tspan><tspan fill="#86868b"> → LLM sees voice pattern → generates </tspan><tspan fill="#AF52DE">[target_codes]</tspan><tspan fill="#86868b"> in same voice style</tspan></text>
+  </g>
+  
+  <!-- Arrow down -->
+  <path d="M600 1390 L600 1415" stroke="#c7c7cc" stroke-width="2" fill="none"/>
+  <polygon points="595,1412 600,1422 605,1412" fill="#c7c7cc"/>
+  
+  <!-- Step 5 -->
+  <g transform="translate(60, 1430)">
+    <circle cx="24" cy="24" r="24" fill="#FF3B30"/>
+    <text x="24" y="30" text-anchor="middle" font-family="-apple-system" font-size="16" font-weight="600" fill="#fff">5</text>
+    
+    <rect x="60" y="0" width="480" height="80" rx="12" fill="#fff" filter="url(#shadow)"/>
+    <text x="80" y="28" font-family="-apple-system" font-size="14" font-weight="600" fill="#1d1d1f">Audio Synthesis</text>
+    <text x="80" y="48" font-family="-apple-system" font-size="12" fill="#86868b">Codec decoder reconstructs waveform</text>
+    <text x="80" y="68" font-family="'SF Mono'" font-size="10" fill="#34C759">codes[N] → DistillNeuCodec.decode() → 24kHz WAV</text>
+    
+    <!-- Arrow to output -->
+    <path d="M540 40 L560 40" stroke="#c7c7cc" stroke-width="2" fill="none"/>
+    <polygon points="557,35 567,40 557,45" fill="#c7c7cc"/>
+    
+    <!-- Output -->
+    <rect x="580" y="0" width="480" height="80" rx="12" fill="#FF3B30" opacity="0.1" filter="url(#shadow)"/>
+    <rect x="580" y="0" width="480" height="80" rx="12" fill="none" stroke="#FF3B30" stroke-width="2"/>
+    <text x="820" y="28" text-anchor="middle" font-family="-apple-system" font-size="14" font-weight="600" fill="#FF3B30">Cloned Voice Output</text>
+    <text x="820" y="48" text-anchor="middle" font-family="-apple-system" font-size="12" fill="#86868b">Target text spoken in reference speaker's voice</text>
+    <path d="M680 62 Q740 48 800 62 Q860 76 920 62 Q960 52 980 62" stroke="#FF3B30" stroke-width="2" fill="none"/>
+  </g>
+  
+  <!-- Training Details Footer -->
+  <g transform="translate(60, 1530)">
+    <rect x="0" y="0" width="1080" height="55" rx="8" fill="#f0f0f5"/>
+    <text x="20" y="20" font-family="-apple-system" font-size="11" font-weight="600" fill="#1d1d1f">Training Configuration (finetune_config_zvc_robust.yaml)</text>
+    <text x="20" y="40" font-family="-apple-system" font-size="10" fill="#86868b">LR: 1e-5 • Steps: 140k • Batch: 2×16×8=256 effective • bf16+tf32 • Label masking: only target_codes (not ref_codes) • 100% cross-text conditioning</text>
+  </g>
+  
+</svg>
