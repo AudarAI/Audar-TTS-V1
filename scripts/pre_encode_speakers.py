@@ -28,15 +28,15 @@ logging.basicConfig(
 logger = logging.getLogger(__name__)
 
 
-# Speaker metadata with Arabic names
+# Speaker metadata - All speakers are multilingual (EN/AR) by default
 SPEAKER_METADATA = {
-    "Eve": {"gender": "female", "lang": "en", "description": "Clear English voice"},
-    "سلامة": {"gender": "female", "lang": "ar", "description": "Salama - Peace (feminine)"},
-    "أمل": {"gender": "female", "lang": "ar", "description": "Amal - Hope (feminine)"},
-    "هناء": {"gender": "female", "lang": "ar", "description": "Hanaa - Happiness (feminine)"},
-    "سالم": {"gender": "male", "lang": "ar", "description": "Salem - Peaceful (masculine)"},
-    "أمين": {"gender": "male", "lang": "ar", "description": "Amin - Trustworthy (masculine)"},
-    "وديع": {"gender": "male", "lang": "ar", "description": "Wadee - Gentle (masculine)"},
+    "Eve": {"gender": "female", "lang": "multilingual", "description": "Clear expressive voice"},
+    "Salama": {"gender": "female", "lang": "multilingual", "description": "Salama - Peace (سلامة)"},
+    "Amal": {"gender": "female", "lang": "multilingual", "description": "Amal - Hope (أمل)"},
+    "Hanaa": {"gender": "female", "lang": "multilingual", "description": "Hanaa - Happiness (هناء)"},
+    "Salem": {"gender": "male", "lang": "multilingual", "description": "Salem - Peaceful (سالم)"},
+    "Amin": {"gender": "male", "lang": "multilingual", "description": "Amin - Trustworthy (أمين)"},
+    "Wadee": {"gender": "male", "lang": "multilingual", "description": "Wadee - Gentle (وديع)"},
 }
 
 

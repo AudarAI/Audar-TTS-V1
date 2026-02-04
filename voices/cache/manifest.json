@@ -1,67 +1,67 @@
 {
   "speakers": [
     {
+      "name": "Amal",
+      "cache_file": "Amal.pt",
+      "duration_sec": 7.98,
+      "num_codes": 399,
+      "gender": "female",
+      "lang": "multilingual",
+      "description": "Amal - Hope (أمل)"
+    },
+    {
       "name": "Eve",
       "cache_file": "Eve.pt",
       "duration_sec": 7.98,
       "num_codes": 399,
       "gender": "female",
-      "lang": "en",
-      "description": "Clear English voice"
+      "lang": "multilingual",
+      "description": "Clear expressive voice"
     },
     {
-      "name": "أمل",
-      "cache_file": "أمل.pt",
+      "name": "Hanaa",
+      "cache_file": "Hanaa.pt",
       "duration_sec": 7.98,
       "num_codes": 399,
       "gender": "female",
-      "lang": "ar",
-      "description": "Amal - Hope (feminine)"
+      "lang": "multilingual",
+      "description": "Hanaa - Happiness (هناء)"
     },
     {
-      "name": "سلامة",
-      "cache_file": "سلامة.pt",
+      "name": "Wadee",
+      "cache_file": "Wadee.pt",
+      "duration_sec": 7.98,
+      "num_codes": 399,
+      "gender": "male",
+      "lang": "multilingual",
+      "description": "Wadee - Gentle (وديع)"
+    },
+    {
+      "name": "Amin",
+      "cache_file": "Amin.pt",
+      "duration_sec": 7.98,
+      "num_codes": 399,
+      "gender": "male",
+      "lang": "multilingual",
+      "description": "Amin - Trustworthy (أمين)"
+    },
+    {
+      "name": "Salama",
+      "cache_file": "Salama.pt",
       "duration_sec": 8.06,
       "num_codes": 403,
       "gender": "female",
-      "lang": "ar",
-      "description": "Salama - Peace (feminine)"
+      "lang": "multilingual",
+      "description": "Salama - Peace (سلامة)"
     },
     {
-      "name": "أمين",
-      "cache_file": "أمين.pt",
+      "name": "Salem",
+      "cache_file": "Salem.pt",
       "duration_sec": 7.98,
       "num_codes": 399,
       "gender": "male",
-      "lang": "ar",
-      "description": "Amin - Trustworthy (masculine)"
-    },
-    {
-      "name": "هناء",
-      "cache_file": "هناء.pt",
-      "duration_sec": 7.98,
-      "num_codes": 399,
-      "gender": "female",
-      "lang": "ar",
-      "description": "Hanaa - Happiness (feminine)"
-    },
-    {
-      "name": "سالم",
-      "cache_file": "سالم.pt",
-      "duration_sec": 7.98,
-      "num_codes": 399,
-      "gender": "male",
-      "lang": "ar",
-      "description": "Salem - Peaceful (masculine)"
-    },
-    {
-      "name": "وديع",
-      "cache_file": "وديع.pt",
-      "duration_sec": 7.98,
-      "num_codes": 399,
-      "gender": "male",
-      "lang": "ar",
-      "description": "Wadee - Gentle (masculine)"
+      "lang": "multilingual",
+      "description": "Salem - Peaceful (سالم)"
     }
   ],
   "version": "1.0",

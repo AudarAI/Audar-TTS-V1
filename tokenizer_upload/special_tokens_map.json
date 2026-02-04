@@ -1,0 +1,26 @@
+{
+  "additional_special_tokens": [
+    "<|REF_SPEECH_START|>",
+    "<|REF_SPEECH_END|>",
+    "<|TARGET_TEXT_START|>",
+    "<|TARGET_TEXT_END|>",
+    "<|TARGET_CODES_START|>",
+    "<|TARGET_CODES_END|>",
+    "<|REF_TEXT_START|>",
+    "<|REF_TEXT_END|>"
+  ],
+  "eos_token": {
+    "content": "<|im_end|>",
+    "lstrip": false,
+    "normalized": false,
+    "rstrip": false,
+    "single_word": false
+  },
+  "pad_token": {
+    "content": "<|im_end|>",
+    "lstrip": false,
+    "normalized": false,
+    "rstrip": false,
+    "single_word": false
+  }
+}
