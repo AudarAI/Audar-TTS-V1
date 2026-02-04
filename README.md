@@ -20,7 +20,7 @@
 ## Architecture
 
 <p align="center">
-  <img src="assets/audar_tts_diagrams.png" alt="Audar-TTS Architecture" width="100%"/>
+  <img src="assets/audar_tts_diagrams.png?v=2" alt="Audar-TTS Architecture" width="100%"/>
 </p>
 
 ---
