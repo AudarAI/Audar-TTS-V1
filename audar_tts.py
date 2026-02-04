@@ -57,7 +57,8 @@ MAX_CONTEXT = 8192
 DEFAULT_CHUNK_SIZE = 50
 
 # HuggingFace model identifiers
-HF_MODEL_REPO = "AudarAI/audar-tts-flash-v1"
+HF_MODEL_REPO = "audarai/audar_tts_flash_v1_gguf"
+HF_TOKENIZER_REPO = "AudarAI/audar-tts-flash-v1"
 HF_CODEC_REPO = "neuphonic/distill-neucodec"
 
 
@@ -390,7 +391,7 @@ class AudarTTS:
         # Load HF tokenizer
         print(f"[2/3] Loading tokenizer...")
         from transformers import AutoTokenizer
-        self._tokenizer = AutoTokenizer.from_pretrained(HF_MODEL_REPO)
+        self._tokenizer = AutoTokenizer.from_pretrained(HF_TOKENIZER_REPO)
         self._stop_token_id = self._tokenizer.convert_tokens_to_ids('<|TARGET_CODES_END|>')
         
         # Load codec

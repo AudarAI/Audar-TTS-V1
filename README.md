@@ -6,6 +6,9 @@
 </p>
 
 <p align="center">
+  <a href="https://huggingface.co/audarai/audar_tts_flash_v1_gguf">
+    <img src="https://img.shields.io/badge/%F0%9F%A4%97%20Hugging%20Face-Model-yellow" alt="Hugging Face"/>
+  </a>
   <img src="https://img.shields.io/badge/python-3.8+-blue.svg" alt="Python 3.8+"/>
   <img src="https://img.shields.io/badge/license-Apache%202.0-green.svg" alt="License"/>
   <img src="https://img.shields.io/badge/RTF-0.46x-brightgreen.svg" alt="RTF"/>
