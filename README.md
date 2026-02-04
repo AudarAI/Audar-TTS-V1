@@ -141,6 +141,44 @@ AudarTTS(
 
 ---
 
+## TTS Comparison
+
+Comparison of Audar TTS Flash V1 against ElevenLabs Flash across different scenarios.
+
+| Scenario | Speaker | Audar TTS Flash V1 | ElevenLabs Flash |
+|----------|---------|:------------------:|:----------------:|
+| English | Eve | :white_check_mark: | :white_check_mark: |
+| Arabic | Salama | :white_check_mark: | :white_check_mark: |
+| Mixed EN/AR | Amal | :white_check_mark: | :white_check_mark: |
+| `[laughs]` | Eve | :white_check_mark: | :x: |
+| `[whispers]` | Eve | :white_check_mark: | :x: |
+| `[excited]` | Eve | :white_check_mark: | :x: |
+| `[sarcastic]` | Eve | :white_check_mark: | :x: |
+
+### Key Differentiators
+
+| Feature | Audar TTS Flash V1 | ElevenLabs Flash |
+|---------|:------------------:|:----------------:|
+| Expressive Tags | :white_check_mark: | :x: |
+| Code-Switching (EN/AR) | :white_check_mark: | :white_check_mark: |
+| Zero-Shot Cloning | :white_check_mark: | :white_check_mark: |
+| On-Premise Deployment | :white_check_mark: | :x: |
+| Open Source | :white_check_mark: | :x: |
+
+### Available Speakers
+
+| Name | Language | Style |
+|------|----------|-------|
+| Eve | EN/AR | Clear, expressive |
+| Salama | EN/AR | Calm, peaceful |
+| Amal | EN/AR | Warm, hopeful |
+| Hanaa | EN/AR | Bright, happy |
+| Salem | EN/AR | Professional |
+| Amin | EN/AR | Trustworthy |
+| Wadee | EN/AR | Gentle, soft |
+
+---
+
 ## Documentation
 
 - **[TECHNICAL_REPORT.md](TECHNICAL_REPORT.md)** — Detailed architecture and implementation
