@@ -143,54 +143,36 @@ AudarTTS(
 
 ## TTS Comparison
 
-Side-by-side comparison of **Audar TTS Flash V1** vs **ElevenLabs Flash v2.5** with identical input text.
+Side-by-side comparison of **Audar TTS Flash V1** vs **ElevenLabs Flash v2.5** using the **same speaker voice** (instant voice cloning) and **identical text**.
 
-> Click the audio links to listen. Both services use their default voice for fair comparison.
+> Click audio links to download and listen.
 
 ### English
 
-**Text:** *"The art of speech synthesis has transformed how we interact with technology."*
-
-| Service | Speaker | Audio |
-|---------|---------|:-----:|
-| **Audar TTS Flash V1** | Eve | [audar_english.wav](samples/comparison/audar_english.wav) |
-| **ElevenLabs Flash** | Rachel | [elevenlabs_english.mp3](samples/comparison/elevenlabs_english.mp3) |
+| Speaker | Text | Audar TTS Flash V1 | ElevenLabs Flash |
+|---------|------|:------------------:|:----------------:|
+| **Eve** | *"The art of speech synthesis has transformed how we interact with technology."* | [audar_english_eve.wav](samples/comparison/audar_english_eve.wav) | [elevenlabs_english_eve.mp3](samples/comparison/elevenlabs_english_eve.mp3) |
 
 ### Arabic
 
-**Text:** *"لقد شهد عالم تحويل النص إلى كلام تطورات هائلة في السنوات الأخيرة."*
-
-| Service | Speaker | Audio |
-|---------|---------|:-----:|
-| **Audar TTS Flash V1** | Salama | [audar_arabic.wav](samples/comparison/audar_arabic.wav) |
-| **ElevenLabs Flash** | Rachel | [elevenlabs_arabic.mp3](samples/comparison/elevenlabs_arabic.mp3) |
+| Speaker | Text | Audar TTS Flash V1 | ElevenLabs Flash |
+|---------|------|:------------------:|:----------------:|
+| **Salama** | *"لقد شهد عالم تحويل النص إلى كلام تطورات هائلة في السنوات الأخيرة."* | [audar_arabic_salama.wav](samples/comparison/audar_arabic_salama.wav) | [elevenlabs_arabic_salama.mp3](samples/comparison/elevenlabs_arabic_salama.mp3) |
 
 ### Mixed EN/AR (Code-Switching)
 
-**Text:** *"Welcome to our demo. مرحباً بكم في العرض التوضيحي."*
-
-| Service | Speaker | Audio |
-|---------|---------|:-----:|
-| **Audar TTS Flash V1** | Amal | [audar_mixed.wav](samples/comparison/audar_mixed.wav) |
-| **ElevenLabs Flash** | Rachel | [elevenlabs_mixed.mp3](samples/comparison/elevenlabs_mixed.mp3) |
+| Speaker | Text | Audar TTS Flash V1 | ElevenLabs Flash |
+|---------|------|:------------------:|:----------------:|
+| **Amal** | *"Welcome to our demo. مرحباً بكم في العرض التوضيحي."* | [audar_mixed_amal.wav](samples/comparison/audar_mixed_amal.wav) | [elevenlabs_mixed_amal.mp3](samples/comparison/elevenlabs_mixed_amal.mp3) |
 
 ### Expressive Tags (Audar Exclusive)
 
 ElevenLabs does not support expressive tags. Audar TTS renders them naturally.
 
-**`[laughs]`** — *"I just heard the funniest joke! [laughs] Can you believe it?"*
-
-| Service | Audio |
-|---------|:-----:|
-| **Audar TTS Flash V1** | [audar_laughs.wav](samples/comparison/audar_laughs.wav) |
-| **ElevenLabs Flash** | Not supported |
-
-**`[whispers]`** — *"[whispers] Come closer, I need to tell you a secret."*
-
-| Service | Audio |
-|---------|:-----:|
-| **Audar TTS Flash V1** | [audar_whispers.wav](samples/comparison/audar_whispers.wav) |
-| **ElevenLabs Flash** | Not supported |
+| Speaker | Tag | Text | Audio |
+|---------|-----|------|:-----:|
+| **Eve** | `[laughs]` | *"I just heard the funniest joke! [laughs] Can you believe it?"* | [audar_laughs_eve.wav](samples/comparison/audar_laughs_eve.wav) |
+| **Eve** | `[whispers]` | *"[whispers] Come closer, I need to tell you a secret."* | [audar_whispers_eve.wav](samples/comparison/audar_whispers_eve.wav) |
 
 ### Feature Comparison
 
