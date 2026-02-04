@@ -1,0 +1,986 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Audar TTS vs ElevenLabs Comparison</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            line-height: 1.6;
+            color: #333;
+            background: #f8f9fa;
+            padding: 20px;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            background: white;
+            border-radius: 12px;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.08);
+            overflow: hidden;
+        }
+
+        header {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 30px 40px;
+            text-align: center;
+        }
+
+        h1 {
+            font-size: 2.5rem;
+            font-weight: 600;
+            margin-bottom: 10px;
+        }
+
+        .subtitle {
+            font-size: 1.1rem;
+            opacity: 0.9;
+            max-width: 600px;
+            margin: 0 auto;
+        }
+
+        .section {
+            padding: 40px;
+            border-bottom: 1px solid #eee;
+        }
+
+        .section:last-child {
+            border-bottom: none;
+        }
+
+        .section-title {
+            font-size: 1.8rem;
+            font-weight: 600;
+            color: #2c3e50;
+            margin-bottom: 30px;
+            padding-bottom: 15px;
+            border-bottom: 2px solid #3498db;
+        }
+
+        .audio-grid {
+            display: grid;
+            gap: 30px;
+            margin-top: 20px;
+        }
+
+        .audio-item {
+            background: #fff;
+            border-radius: 10px;
+            padding: 25px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.05);
+            transition: transform 0.2s ease, box-shadow 0.2s ease;
+            border: 1px solid #e9ecef;
+        }
+
+        .audio-item:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 4px 20px rgba(0,0,0,0.1);
+        }
+
+        .speaker-info {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 15px;
+            flex-wrap: wrap;
+            gap: 15px;
+        }
+
+        .speaker-name {
+            font-weight: 600;
+            font-size: 1.1rem;
+            color: #2c3e50;
+            background: #ecf0f1;
+            padding: 6px 12px;
+            border-radius: 20px;
+        }
+
+        .text-content {
+            font-style: italic;
+            color: #555;
+            margin-bottom: 20px;
+            padding: 15px;
+            background: #f8f9fa;
+            border-radius: 8px;
+            border-left: 4px solid #3498db;
+        }
+
+        .text-content[dir="rtl"] {
+            direction: rtl;
+            text-align: right;
+            border-left: none;
+            border-right: 4px solid #3498db;
+        }
+
+        .player-container {
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+        }
+
+        .player-row {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            padding: 15px;
+            background: #f1f3f4;
+            border-radius: 8px;
+        }
+
+        .service-label {
+            font-weight: 600;
+            min-width: 150px;
+            color: #2c3e50;
+        }
+
+        .audio-player {
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+        }
+
+        .controls {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            background: #2c3e50;
+            padding: 12px 15px;
+            border-radius: 6px;
+        }
+
+        .control-btn {
+            background: #3498db;
+            border: none;
+            color: white;
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 16px;
+            transition: background-color 0.2s ease;
+        }
+
+        .control-btn:hover {
+            background: #2980b9;
+        }
+
+        .control-btn:disabled {
+            background: #95a5a6;
+            cursor: not-allowed;
+        }
+
+        .progress-container {
+            flex: 1;
+            background: rgba(255,255,255,0.2);
+            border-radius: 10px;
+            height: 8px;
+            cursor: pointer;
+            position: relative;
+        }
+
+        .progress-bar {
+            height: 100%;
+            background: #3498db;
+            border-radius: 10px;
+            width: 0%;
+            transition: width 0.1s ease;
+        }
+
+        .volume-container {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            color: white;
+            font-size: 14px;
+        }
+
+        .volume-slider {
+            width: 80px;
+            height: 6px;
+            background: rgba(255,255,255,0.3);
+            border-radius: 3px;
+            outline: none;
+            -webkit-appearance: none;
+        }
+
+        .volume-slider::-webkit-slider-thumb {
+            -webkit-appearance: none;
+            appearance: none;
+            width: 16px;
+            height: 16px;
+            border-radius: 50%;
+            background: white;
+            cursor: pointer;
+        }
+
+        .time-display {
+            color: white;
+            font-size: 12px;
+            min-width: 60px;
+            text-align: center;
+        }
+
+        .expressive-note {
+            background: #fff3cd;
+            border: 1px solid #ffeaa7;
+            color: #856404;
+            padding: 15px;
+            border-radius: 8px;
+            margin: 20px 0;
+            font-size: 0.9rem;
+        }
+
+        @media (max-width: 768px) {
+            .speaker-info {
+                flex-direction: column;
+                align-items: stretch;
+            }
+            
+            .player-row {
+                flex-direction: column;
+                align-items: stretch;
+            }
+            
+            .service-label {
+                min-width: auto;
+                margin-bottom: 10px;
+            }
+            
+            .controls {
+                flex-wrap: wrap;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>Audar TTS vs ElevenLabs Comparison</h1>
+            <p class="subtitle">Side-by-side comparison using the same speaker voice and identical text</p>
+        </header>
+
+        <div class="section">
+            <h2 class="section-title">English</h2>
+            <div class="audio-grid">
+                <!-- English 1 -->
+                <div class="audio-item">
+                    <div class="speaker-info">
+                        <span class="speaker-name">Eve</span>
+                    </div>
+                    <div class="text-content">
+                        "The future of artificial intelligence lies not in replacing human creativity, but in amplifying it beyond imagination."
+                    </div>
+                    <div class="player-container">
+                        <div class="player-row">
+                            <div class="service-label">Audar TTS Flash V1</div>
+                            <div class="audio-player">
+                                <div class="controls">
+                                    <button class="control-btn play-btn" data-audio="audar_en_1_eve">▶</button>
+                                    <div class="progress-container">
+                                        <div class="progress-bar" id="progress-audar_en_1_eve"></div>
+                                    </div>
+                                    <div class="volume-container">
+                                        <span>🔊</span>
+                                        <input type="range" class="volume-slider" min="0" max="1" step="0.01" value="0.7" data-audio="audar_en_1_eve">
+                                    </div>
+                                    <div class="time-display" id="time-audar_en_1_eve">0:00</div>
+                                </div>
+                                <audio id="audar_en_1_eve" preload="none">
+                                    <source src="samples/comparison/audar_en_1_eve.mp3" type="audio/mpeg">
+                                </audio>
+                            </div>
+                        </div>
+                        <div class="player-row">
+                            <div class="service-label">ElevenLabs Flash</div>
+                            <div class="audio-player">
+                                <div class="controls">
+                                    <button class="control-btn play-btn" data-audio="elevenlabs_en_1_eve">▶</button>
+                                    <div class="progress-container">
+                                        <div class="progress-bar" id="progress-elevenlabs_en_1_eve"></div>
+                                    </div>
+                                    <div class="volume-container">
+                                        <span>🔊</span>
+                                        <input type="range" class="volume-slider" min="0" max="1" step="0.01" value="0.7" data-audio="elevenlabs_en_1_eve">
+                                    </div>
+                                    <div class="time-display" id="time-elevenlabs_en_1_eve">0:00</div>
+                                </div>
+                                <audio id="elevenlabs_en_1_eve" preload="none">
+                                    <source src="samples/comparison/elevenlabs_en_1_eve.mp3" type="audio/mpeg">
+                                </audio>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- English 2 -->
+                <div class="audio-item">
+                    <div class="speaker-info">
+                        <span class="speaker-name">Salem</span>
+                    </div>
+                    <div class="text-content">
+                        "After years of research, scientists finally discovered that the key to longevity was surprisingly simple: genuine human connection."
+                    </div>
+                    <div class="player-container">
+                        <div class="player-row">
+                            <div class="service-label">Audar TTS Flash V1</div>
+                            <div class="audio-player">
+                                <div class="controls">
+                                    <button class="control-btn play-btn" data-audio="audar_en_2_salem">▶</button>
+                                    <div class="progress-container">
+                                        <div class="progress-bar" id="progress-audar_en_2_salem"></div>
+                                    </div>
+                                    <div class="volume-container">
+                                        <span>🔊</span>
+                                        <input type="range" class="volume-slider" min="0" max="1" step="0.01" value="0.7" data-audio="audar_en_2_salem">
+                                    </div>
+                                    <div class="time-display" id="time-audar_en_2_salem">0:00</div>
+                                </div>
+                                <audio id="audar_en_2_salem" preload="none">
+                                    <source src="samples/comparison/audar_en_2_salem.mp3" type="audio/mpeg">
+                                </audio>
+                            </div>
+                        </div>
+                        <div class="player-row">
+                            <div class="service-label">ElevenLabs Flash</div>
+                            <div class="audio-player">
+                                <div class="controls">
+                                    <button class="control-btn play-btn" data-audio="elevenlabs_en_2_salem">▶</button>
+                                    <div class="progress-container">
+                                        <div class="progress-bar" id="progress-elevenlabs_en_2_salem"></div>
+                                    </div>
+                                    <div class="volume-container">
+                                        <span>🔊</span>
+                                        <input type="range" class="volume-slider" min="0" max="1" step="0.01" value="0.7" data-audio="elevenlabs_en_2_salem">
+                                    </div>
+                                    <div class="time-display" id="time-elevenlabs_en_2_salem">0:00</div>
+                                </div>
+                                <audio id="elevenlabs_en_2_salem" preload="none">
+                                    <source src="samples/comparison/elevenlabs_en_2_salem.mp3" type="audio/mpeg">
+                                </audio>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- English 3 -->
+                <div class="audio-item">
+                    <div class="speaker-info">
+                        <span class="speaker-name">Amal</span>
+                    </div>
+                    <div class="text-content">
+                        "In the quiet moments between chaos and calm, we often find the answers we've been searching for all along."
+                    </div>
+                    <div class="player-container">
+                        <div class="player-row">
+                            <div class="service-label">Audar TTS Flash V1</div>
+                            <div class="audio-player">
+                                <div class="controls">
+                                    <button class="control-btn play-btn" data-audio="audar_en_3_amal">▶</button>
+                                    <div class="progress-container">
+                                        <div class="progress-bar" id="progress-audar_en_3_amal"></div>
+                                    </div>
+                                    <div class="volume-container">
+                                        <span>🔊</span>
+                                        <input type="range" class="volume-slider" min="0" max="1" step="0.01" value="0.7" data-audio="audar_en_3_amal">
+                                    </div>
+                                    <div class="time-display" id="time-audar_en_3_amal">0:00</div>
+                                </div>
+                                <audio id="audar_en_3_amal" preload="none">
+                                    <source src="samples/comparison/audar_en_3_amal.mp3" type="audio/mpeg">
+                                </audio>
+                            </div>
+                        </div>
+                        <div class="player-row">
+                            <div class="service-label">ElevenLabs Flash</div>
+                            <div class="audio-player">
+                                <div class="controls">
+                                    <button class="control-btn play-btn" data-audio="elevenlabs_en_3_amal">▶</button>
+                                    <div class="progress-container">
+                                        <div class="progress-bar" id="progress-elevenlabs_en_3_amal"></div>
+                                    </div>
+                                    <div class="volume-container">
+                                        <span>🔊</span>
+                                        <input type="range" class="volume-slider" min="0" max="1" step="0.01" value="0.7" data-audio="elevenlabs_en_3_amal">
+                                    </div>
+                                    <div class="time-display" id="time-elevenlabs_en_3_amal">0:00</div>
+                                </div>
+                                <audio id="elevenlabs_en_3_amal" preload="none">
+                                    <source src="samples/comparison/elevenlabs_en_3_amal.mp3" type="audio/mpeg">
+                                </audio>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="section">
+            <h2 class="section-title">Arabic</h2>
+            <div class="audio-grid">
+                <!-- Arabic 1 -->
+                <div class="audio-item">
+                    <div class="speaker-info">
+                        <span class="speaker-name">Salama</span>
+                    </div>
+                    <div class="text-content" dir="rtl">
+                        "في عالم يتسارع فيه كل شيء، تبقى الحكمة هي البوصلة التي ترشدنا نحو القرارات الصائبة."
+                    </div>
+                    <div class="player-container">
+                        <div class="player-row">
+                            <div class="service-label">Audar TTS Flash V1</div>
+                            <div class="audio-player">
+                                <div class="controls">
+                                    <button class="control-btn play-btn" data-audio="audar_ar_1_salama">▶</button>
+                                    <div class="progress-container">
+                                        <div class="progress-bar" id="progress-audar_ar_1_salama"></div>
+                                    </div>
+                                    <div class="volume-container">
+                                        <span>🔊</span>
+                                        <input type="range" class="volume-slider" min="0" max="1" step="0.01" value="0.7" data-audio="audar_ar_1_salama">
+                                    </div>
+                                    <div class="time-display" id="time-audar_ar_1_salama">0:00</div>
+                                </div>
+                                <audio id="audar_ar_1_salama" preload="none">
+                                    <source src="samples/comparison/audar_ar_1_salama.mp3" type="audio/mpeg">
+                                </audio>
+                            </div>
+                        </div>
+                        <div class="player-row">
+                            <div class="service-label">ElevenLabs Flash</div>
+                            <div class="audio-player">
+                                <div class="controls">
+                                    <button class="control-btn play-btn" data-audio="elevenlabs_ar_1_salama">▶</button>
+                                    <div class="progress-container">
+                                        <div class="progress-bar" id="progress-elevenlabs_ar_1_salama"></div>
+                                    </div>
+                                    <div class="volume-container">
+                                        <span>🔊</span>
+                                        <input type="range" class="volume-slider" min="0" max="1" step="0.01" value="0.7" data-audio="elevenlabs_ar_1_salama">
+                                    </div>
+                                    <div class="time-display" id="time-elevenlabs_ar_1_salama">0:00</div>
+                                </div>
+                                <audio id="elevenlabs_ar_1_salama" preload="none">
+                                    <source src="samples/comparison/elevenlabs_ar_1_salama.mp3" type="audio/mpeg">
+                                </audio>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Arabic 2 -->
+                <div class="audio-item">
+                    <div class="speaker-info">
+                        <span class="speaker-name">Amin</span>
+                    </div>
+                    <div class="text-content" dir="rtl">
+                        "لا تقاس قيمة الإنسان بما يملك، بل بما يقدم للآخرين من خير وعطاء دون انتظار مقابل."
+                    </div>
+                    <div class="player-container">
+                        <div class="player-row">
+                            <div class="service-label">Audar TTS Flash V1</div>
+                            <div class="audio-player">
+                                <div class="controls">
+                                    <button class="control-btn play-btn" data-audio="audar_ar_2_amin">▶</button>
+                                    <div class="progress-container">
+                                        <div class="progress-bar" id="progress-audar_ar_2_amin"></div>
+                                    </div>
+                                    <div class="volume-container">
+                                        <span>🔊</span>
+                                        <input type="range" class="volume-slider" min="0" max="1" step="0.01" value="0.7" data-audio="audar_ar_2_amin">
+                                    </div>
+                                    <div class="time-display" id="time-audar_ar_2_amin">0:00</div>
+                                </div>
+                                <audio id="audar_ar_2_amin" preload="none">
+                                    <source src="samples/comparison/audar_ar_2_amin.mp3" type="audio/mpeg">
+                                </audio>
+                            </div>
+                        </div>
+                        <div class="player-row">
+                            <div class="service-label">ElevenLabs Flash</div>
+                            <div class="audio-player">
+                                <div class="controls">
+                                    <button class="control-btn play-btn" data-audio="elevenlabs_ar_2_amin">▶</button>
+                                    <div class="progress-container">
+                                        <div class="progress-bar" id="progress-elevenlabs_ar_2_amin"></div>
+                                    </div>
+                                    <div class="volume-container">
+                                        <span>🔊</span>
+                                        <input type="range" class="volume-slider" min="0" max="1" step="0.01" value="0.7" data-audio="elevenlabs_ar_2_amin">
+                                    </div>
+                                    <div class="time-display" id="time-elevenlabs_ar_2_amin">0:00</div>
+                                </div>
+                                <audio id="elevenlabs_ar_2_amin" preload="none">
+                                    <source src="samples/comparison/elevenlabs_ar_2_amin.mp3" type="audio/mpeg">
+                                </audio>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Arabic 3 -->
+                <div class="audio-item">
+                    <div class="speaker-info">
+                        <span class="speaker-name">Hanaa</span>
+                    </div>
+                    <div class="text-content" dir="rtl">
+                        "كل رحلة ألف ميل تبدأ بخطوة واحدة، فلا تستهن بالبدايات الصغيرة التي تصنع المستقبل العظيم."
+                    </div>
+                    <div class="player-container">
+                        <div class="player-row">
+                            <div class="service-label">Audar TTS Flash V1</div>
+                            <div class="audio-player">
+                                <div class="controls">
+                                    <button class="control-btn play-btn" data-audio="audar_ar_3_hanaa">▶</button>
+                                    <div class="progress-container">
+                                        <div class="progress-bar" id="progress-audar_ar_3_hanaa"></div>
+                                    </div>
+                                    <div class="volume-container">
+                                        <span>🔊</span>
+                                        <input type="range" class="volume-slider" min="0" max="1" step="0.01" value="0.7" data-audio="audar_ar_3_hanaa">
+                                    </div>
+                                    <div class="time-display" id="time-audar_ar_3_hanaa">0:00</div>
+                                </div>
+                                <audio id="audar_ar_3_hanaa" preload="none">
+                                    <source src="samples/comparison/audar_ar_3_hanaa.mp3" type="audio/mpeg">
+                                </audio>
+                            </div>
+                        </div>
+                        <div class="player-row">
+                            <div class="service-label">ElevenLabs Flash</div>
+                            <div class="audio-player">
+                                <div class="controls">
+                                    <button class="control-btn play-btn" data-audio="elevenlabs_ar_3_hanaa">▶</button>
+                                    <div class="progress-container">
+                                        <div class="progress-bar" id="progress-elevenlabs_ar_3_hanaa"></div>
+                                    </div>
+                                    <div class="volume-container">
+                                        <span>🔊</span>
+                                        <input type="range" class="volume-slider" min="0" max="1" step="0.01" value="0.7" data-audio="elevenlabs_ar_3_hanaa">
+                                    </div>
+                                    <div class="time-display" id="time-elevenlabs_ar_3_hanaa">0:00</div>
+                                </div>
+                                <audio id="elevenlabs_ar_3_hanaa" preload="none">
+                                    <source src="samples/comparison/elevenlabs_ar_3_hanaa.mp3" type="audio/mpeg">
+                                </audio>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="section">
+            <h2 class="section-title">Code-Switching (EN/AR)</h2>
+            <div class="audio-grid">
+                <!-- Code-Switch 1 -->
+                <div class="audio-item">
+                    <div class="speaker-info">
+                        <span class="speaker-name">Eve</span>
+                    </div>
+                    <div class="text-content">
+                        "Welcome to our innovation hub, مرحباً بكم في مركز الابتكار، where ideas transform into reality."
+                    </div>
+                    <div class="player-container">
+                        <div class="player-row">
+                            <div class="service-label">Audar TTS Flash V1</div>
+                            <div class="audio-player">
+                                <div class="controls">
+                                    <button class="control-btn play-btn" data-audio="audar_mix_1_eve">▶</button>
+                                    <div class="progress-container">
+                                        <div class="progress-bar" id="progress-audar_mix_1_eve"></div>
+                                    </div>
+                                    <div class="volume-container">
+                                        <span>🔊</span>
+                                        <input type="range" class="volume-slider" min="0" max="1" step="0.01" value="0.7" data-audio="audar_mix_1_eve">
+                                    </div>
+                                    <div class="time-display" id="time-audar_mix_1_eve">0:00</div>
+                                </div>
+                                <audio id="audar_mix_1_eve" preload="none">
+                                    <source src="samples/comparison/audar_mix_1_eve.mp3" type="audio/mpeg">
+                                </audio>
+                            </div>
+                        </div>
+                        <div class="player-row">
+                            <div class="service-label">ElevenLabs Flash</div>
+                            <div class="audio-player">
+                                <div class="controls">
+                                    <button class="control-btn play-btn" data-audio="elevenlabs_mix_1_eve">▶</button>
+                                    <div class="progress-container">
+                                        <div class="progress-bar" id="progress-elevenlabs_mix_1_eve"></div>
+                                    </div>
+                                    <div class="volume-container">
+                                        <span>🔊</span>
+                                        <input type="range" class="volume-slider" min="0" max="1" step="0.01" value="0.7" data-audio="elevenlabs_mix_1_eve">
+                                    </div>
+                                    <div class="time-display" id="time-elevenlabs_mix_1_eve">0:00</div>
+                                </div>
+                                <audio id="elevenlabs_mix_1_eve" preload="none">
+                                    <source src="samples/comparison/elevenlabs_mix_1_eve.mp3" type="audio/mpeg">
+                                </audio>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Code-Switch 2 -->
+                <div class="audio-item">
+                    <div class="speaker-info">
+                        <span class="speaker-name">Amal</span>
+                    </div>
+                    <div class="text-content">
+                        "The team worked tirelessly, والنتيجة كانت مذهلة، delivering beyond all expectations."
+                    </div>
+                    <div class="player-container">
+                        <div class="player-row">
+                            <div class="service-label">Audar TTS Flash V1</div>
+                            <div class="audio-player">
+                                <div class="controls">
+                                    <button class="control-btn play-btn" data-audio="audar_mix_2_amal">▶</button>
+                                    <div class="progress-container">
+                                        <div class="progress-bar" id="progress-audar_mix_2_amal"></div>
+                                    </div>
+                                    <div class="volume-container">
+                                        <span>🔊</span>
+                                        <input type="range" class="volume-slider" min="0" max="1" step="0.01" value="0.7" data-audio="audar_mix_2_amal">
+                                    </div>
+                                    <div class="time-display" id="time-audar_mix_2_amal">0:00</div>
+                                </div>
+                                <audio id="audar_mix_2_amal" preload="none">
+                                    <source src="samples/comparison/audar_mix_2_amal.mp3" type="audio/mpeg">
+                                </audio>
+                            </div>
+                        </div>
+                        <div class="player-row">
+                            <div class="service-label">ElevenLabs Flash</div>
+                            <div class="audio-player">
+                                <div class="controls">
+                                    <button class="control-btn play-btn" data-audio="elevenlabs_mix_2_amal">▶</button>
+                                    <div class="progress-container">
+                                        <div class="progress-bar" id="progress-elevenlabs_mix_2_amal"></div>
+                                    </div>
+                                    <div class="volume-container">
+                                        <span>🔊</span>
+                                        <input type="range" class="volume-slider" min="0" max="1" step="0.01" value="0.7" data-audio="elevenlabs_mix_2_amal">
+                                    </div>
+                                    <div class="time-display" id="time-elevenlabs_mix_2_amal">0:00</div>
+                                </div>
+                                <audio id="elevenlabs_mix_2_amal" preload="none">
+                                    <source src="samples/comparison/elevenlabs_mix_2_amal.mp3" type="audio/mpeg">
+                                </audio>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="section">
+            <h2 class="section-title">Expressive Tags (Audar Exclusive)</h2>
+            <div class="expressive-note">
+                ElevenLabs does not support expressive tags. Audar TTS renders them naturally.
+            </div>
+            <div class="audio-grid">
+                <!-- Expressive 1 -->
+                <div class="audio-item">
+                    <div class="speaker-info">
+                        <span class="speaker-name">Eve</span>
+                        <span class="tag-label">[laughs]</span>
+                    </div>
+                    <div class="text-content">
+                        "I can't believe you actually did that! [laughs] That's the funniest thing I've heard all week!"
+                    </div>
+                    <div class="player-container">
+                        <div class="player-row">
+                            <div class="service-label">Audar TTS Flash V1</div>
+                            <div class="audio-player">
+                                <div class="controls">
+                                    <button class="control-btn play-btn" data-audio="audar_expr_1_eve">▶</button>
+                                    <div class="progress-container">
+                                        <div class="progress-bar" id="progress-audar_expr_1_eve"></div>
+                                    </div>
+                                    <div class="volume-container">
+                                        <span>🔊</span>
+                                        <input type="range" class="volume-slider" min="0" max="1" step="0.01" value="0.7" data-audio="audar_expr_1_eve">
+                                    </div>
+                                    <div class="time-display" id="time-audar_expr_1_eve">0:00</div>
+                                </div>
+                                <audio id="audar_expr_1_eve" preload="none">
+                                    <source src="samples/comparison/audar_expr_1_eve.mp3" type="audio/mpeg">
+                                </audio>
+                            </div>
+                        </div>
+                        <div class="player-row">
+                            <div class="service-label">ElevenLabs Flash</div>
+                            <div class="audio-player">
+                                <div class="controls">
+                                    <button class="control-btn play-btn" data-audio="elevenlabs_expr_1_eve" disabled>▶</button>
+                                    <div class="progress-container">
+                                        <div class="progress-bar" id="progress-elevenlabs_expr_1_eve"></div>
+                                    </div>
+                                    <div class="volume-container">
+                                        <span>🔊</span>
+                                        <input type="range" class="volume-slider" min="0" max="1" step="0.01" value="0.7" data-audio="elevenlabs_expr_1_eve" disabled>
+                                    </div>
+                                    <div class="time-display" id="time-elevenlabs_expr_1_eve">-</div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Expressive 2 -->
+                <div class="audio-item">
+                    <div class="speaker-info">
+                        <span class="speaker-name">Salama</span>
+                        <span class="tag-label">[whispers]</span>
+                    </div>
+                    <div class="text-content">
+                        "[whispers] Listen carefully, I'm only going to say this once. The secret ingredient is... love."
+                    </div>
+                    <div class="player-container">
+                        <div class="player-row">
+                            <div class="service-label">Audar TTS Flash V1</div>
+                            <div class="audio-player">
+                                <div class="controls">
+                                    <button class="control-btn play-btn" data-audio="audar_expr_2_salama">▶</button>
+                                    <div class="progress-container">
+                                        <div class="progress-bar" id="progress-audar_expr_2_salama"></div>
+                                    </div>
+                                    <div class="volume-container">
+                                        <span>🔊</span>
+                                        <input type="range" class="volume-slider" min="0" max="1" step="0.01" value="0.7" data-audio="audar_expr_2_salama">
+                                    </div>
+                                    <div class="time-display" id="time-audar_expr_2_salama">0:00</div>
+                                </div>
+                                <audio id="audar_expr_2_salama" preload="none">
+                                    <source src="samples/comparison/audar_expr_2_salama.mp3" type="audio/mpeg">
+                                </audio>
+                            </div>
+                        </div>
+                        <div class="player-row">
+                            <div class="service-label">ElevenLabs Flash</div>
+                            <div class="audio-player">
+                                <div class="controls">
+                                    <button class="control-btn play-btn" data-audio="elevenlabs_expr_2_salama" disabled>▶</button>
+                                    <div class="progress-container">
+                                        <div class="progress-bar" id="progress-elevenlabs_expr_2_salama"></div>
+                                    </div>
+                                    <div class="volume-container">
+                                        <span>🔊</span>
+                                        <input type="range" class="volume-slider" min="0" max="1" step="0.01" value="0.7" data-audio="elevenlabs_expr_2_salama" disabled>
+                                    </div>
+                                    <div class="time-display" id="time-elevenlabs_expr_2_salama">-</div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Expressive 3 -->
+                <div class="audio-item">
+                    <div class="speaker-info">
+                        <span class="speaker-name">Amal</span>
+                        <span class="tag-label">[sighs]</span>
+                    </div>
+                    <div class="text-content">
+                        "[sighs] After everything we've been through, I never thought we'd actually make it here."
+                    </div>
+                    <div class="player-container">
+                        <div class="player-row">
+                            <div class="service-label">Audar TTS Flash V1</div>
+                            <div class="audio-player">
+                                <div class="controls">
+                                    <button class="control-btn play-btn" data-audio="audar_expr_3_amal">▶</button>
+                                    <div class="progress-container">
+                                        <div class="progress-bar" id="progress-audar_expr_3_amal"></div>
+                                    </div>
+                                    <div class="volume-container">
+                                        <span>🔊</span>
+                                        <input type="range" class="volume-slider" min="0" max="1" step="0.01" value="0.7" data-audio="audar_expr_3_amal">
+                                    </div>
+                                    <div class="time-display" id="time-audar_expr_3_amal">0:00</div>
+                                </div>
+                                <audio id="audar_expr_3_amal" preload="none">
+                                    <source src="samples/comparison/audar_expr_3_amal.mp3" type="audio/mpeg">
+                                </audio>
+                            </div>
+                        </div>
+                        <div class="player-row">
+                            <div class="service-label">ElevenLabs Flash</div>
+                            <div class="audio-player">
+                                <div class="controls">
+                                    <button class="control-btn play-btn" data-audio="elevenlabs_expr_3_amal" disabled>▶</button>
+                                    <div class="progress-container">
+                                        <div class="progress-bar" id="progress-elevenlabs_expr_3_amal"></div>
+                                    </div>
+                                    <div class="volume-container">
+                                        <span>🔊</span>
+                                        <input type="range" class="volume-slider" min="0" max="1" step="0.01" value="0.7" data-audio="elevenlabs_expr_3_amal" disabled>
+                                    </div>
+                                    <div class="time-display" id="time-elevenlabs_expr_3_amal">-</div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const audioElements = {};
+            const playButtons = document.querySelectorAll('.play-btn');
+            const volumeSliders = document.querySelectorAll('.volume-slider');
+            const progressContainers = document.querySelectorAll('.progress-container');
+
+            // Initialize audio elements
+            document.querySelectorAll('audio').forEach(audio => {
+                const id = audio.id;
+                audioElements[id] = {
+                    element: audio,
+                    progressBar: document.getElementById(`progress-${id}`),
+                    timeDisplay: document.getElementById(`time-${id}`)
+                };
+
+                // Update progress bar
+                audio.addEventListener('timeupdate', () => {
+                    const duration = audio.duration || 0;
+                    const currentTime = audio.currentTime;
+                    const progressPercent = (currentTime / duration) * 100;
+                    
+                    if (audioElements[id].progressBar) {
+                        audioElements[id].progressBar.style.width = `${progressPercent}%`;
+                    }
+                    
+                    if (audioElements[id].timeDisplay) {
+                        audioElements[id].timeDisplay.textContent = formatTime(currentTime);
+                    }
+                });
+
+                // Update duration when loaded
+                audio.addEventListener('loadedmetadata', () => {
+                    if (audioElements[id].timeDisplay) {
+                        audioElements[id].timeDisplay.textContent = formatTime(audio.duration);
+                    }
+                });
+
+                // Reset progress bar when audio ends
+                audio.addEventListener('ended', () => {
+                    if (audioElements[id].progressBar) {
+                        audioElements[id].progressBar.style.width = '0%';
+                    }
+                    if (audioElements[id].timeDisplay) {
+                        audioElements[id].timeDisplay.textContent = '0:00';
+                    }
+                    
+                    // Update button to play state
+                    const playBtn = document.querySelector(`.play-btn[data-audio="${id}"]`);
+                    if (playBtn) {
+                        playBtn.textContent = '▶';
+                    }
+                });
+            });
+
+            // Play/Pause functionality
+            playButtons.forEach(button => {
+                button.addEventListener('click', () => {
+                    const audioId = button.getAttribute('data-audio');
+                    const audio = document.getElementById(audioId);
+                    const progressBar = audioElements[audioId]?.progressBar;
+                    
+                    if (!audio) return;
+
+                    if (audio.paused) {
+                        // Pause all other audio elements
+                        Object.values(audioElements).forEach(element => {
+                            if (element.element !== audio && !element.element.paused) {
+                                element.element.pause();
+                                const otherBtn = document.querySelector(`.play-btn[data-audio="${element.element.id}"]`);
+                                if (otherBtn) {
+                                    otherBtn.textContent = '▶';
+                                }
+                            }
+                        });
+                        
+                        audio.play();
+                        button.textContent = '⏸';
+                    } else {
+                        audio.pause();
+                        button.textContent = '▶';
+                    }
+                });
+            });
+
+            // Volume control
+            volumeSliders.forEach(slider => {
+                const audioId = slider.getAttribute('data-audio');
+                const audio = document.getElementById(audioId);
+                
+                if (audio) {
+                    slider.addEventListener('input', () => {
+                        audio.volume = slider.value;
+                    });
+                    
+                    // Set initial volume
+                    audio.volume = slider.value;
+                }
+            });
+
+            // Progress bar seeking
+            progressContainers.forEach(container => {
+                container.addEventListener('click', (e) => {
+                    const audioId = container.parentElement.querySelector('.play-btn').getAttribute('data-audio');
+                    const audio = document.getElementById(audioId);
+                    const rect = container.getBoundingClientRect();
+                    const pos = (e.clientX - rect.left) / rect.width;
+                    
+                    if (audio) {
+                        audio.currentTime = pos * audio.duration;
+                    }
+                });
+            });
+
+            // Format time as MM:SS
+            function formatTime(seconds) {
+                if (isNaN(seconds)) return '0:00';
+                const mins = Math.floor(seconds / 60);
+                const secs = Math.floor(seconds % 60);
+                return `${mins}:${secs.toString().padStart(2, '0')}`;
+            }
+
+            // Handle audio errors
+            document.querySelectorAll('audio').forEach(audio => {
+                audio.addEventListener('error', (e) => {
+                    console.error(`Audio error for ${audio.id}:`, e.target.error);
+                    const audioId = audio.id;
+                    const playBtn = document.querySelector(`.play-btn[data-audio="${audioId}"]`);
+                    const timeDisplay = document.getElementById(`time-${audioId}`);
+                    
+                    if (playBtn) {
+                        playBtn.disabled = true;
+                        playBtn.textContent = '❌';
+                    }
+                    
+                    if (timeDisplay) {
+                        timeDisplay.textContent = 'Error';
+                    }
+                });
+            });
+        });
+    </script>
+</body>
+</html>

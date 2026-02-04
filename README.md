@@ -143,7 +143,9 @@ AudarTTS(
 
 ## TTS Comparison
 
-Side-by-side comparison of **Audar TTS Flash V1** vs **ElevenLabs Flash v2.5** using the **same speaker voice** (instant voice cloning) and **identical text**.
+Interactive side-by-side comparison of **Audar TTS Flash V1** vs **ElevenLabs Flash v2.5** using the **same speaker voice** (instant voice cloning) and **identical text**.
+
+[🎮 Open Interactive Comparison](comparison.html) - Full-featured audio player with play/pause, volume control, and progress bars
 
 ### English
 
