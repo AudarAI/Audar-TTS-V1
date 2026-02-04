@@ -243,6 +243,42 @@
             font-size: 0.9rem;
         }
 
+        .commercial-banner {
+            background: linear-gradient(135deg, #1a1a2e 0%, #16213e 100%);
+            color: white;
+            padding: 20px 40px;
+            text-align: center;
+            border-bottom: 3px solid #667eea;
+        }
+
+        .commercial-banner h3 {
+            font-size: 1.2rem;
+            margin-bottom: 8px;
+            font-weight: 500;
+        }
+
+        .commercial-banner p {
+            font-size: 0.95rem;
+            opacity: 0.9;
+            margin-bottom: 12px;
+        }
+
+        .commercial-banner a {
+            display: inline-block;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 10px 24px;
+            border-radius: 25px;
+            text-decoration: none;
+            font-weight: 600;
+            transition: transform 0.2s ease, box-shadow 0.2s ease;
+        }
+
+        .commercial-banner a:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 4px 15px rgba(102, 126, 234, 0.4);
+        }
+
         @media (max-width: 768px) {
             .speaker-info {
                 flex-direction: column;
@@ -271,6 +307,12 @@
             <h1>Audar TTS vs ElevenLabs Comparison</h1>
             <p class="subtitle">Side-by-side comparison using the same speaker voice and identical text</p>
         </header>
+
+        <div class="commercial-banner">
+            <h3>Want even better quality? Try Audar TTS Turbo & Pro</h3>
+            <p>Lower latency, superior voice consistency, and studio-grade output</p>
+            <a href="https://dev.audarai.com">Try Commercial Models</a>
+        </div>
 
         <div class="section">
             <h2 class="section-title">English</h2>

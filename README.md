@@ -1,84 +1,152 @@
-<h1 align="center">Audar-TTS</h1>
+<h1 align="center">
+  <br>
+  Audar TTS
+  <br>
+</h1>
+
+<h3 align="center">Expressive Multilingual Voice AI</h3>
 
 <p align="center">
-  <strong>Lightning-Fast Zero-Shot Voice Cloning</strong><br/>
-  Clone any voice with 3 seconds of audio · 2x faster than real-time · Bilingual EN/AR
+  <strong>State-of-the-art Arabic + English TTS with expressive tags, zero-shot voice cloning, and real-time streaming</strong>
 </p>
 
 <p align="center">
   <a href="https://huggingface.co/audarai/audar_tts_flash_v1_gguf">
-    <img src="https://img.shields.io/badge/%F0%9F%A4%97%20Hugging%20Face-Model-yellow" alt="Hugging Face"/>
+    <img src="https://img.shields.io/badge/HuggingFace-Models-yellow?logo=huggingface" alt="HuggingFace"/>
+  </a>
+  <a href="https://dev.audarai.com">
+    <img src="https://img.shields.io/badge/Try-Demo-blue?logo=googlechrome" alt="Demo"/>
+  </a>
+  <a href="https://www.audarai.com">
+    <img src="https://img.shields.io/badge/Website-audarai.com-green" alt="Website"/>
   </a>
   <img src="https://img.shields.io/badge/python-3.8+-blue.svg" alt="Python 3.8+"/>
   <img src="https://img.shields.io/badge/license-Apache%202.0-green.svg" alt="License"/>
-  <img src="https://img.shields.io/badge/RTF-0.46x-brightgreen.svg" alt="RTF"/>
-  <img src="https://img.shields.io/badge/latency-500ms-orange.svg" alt="Latency"/>
+  <img src="https://img.shields.io/github/stars/AudarAI/Audar-TTS-V1?style=social" alt="Stars"/>
 </p>
 
 ---
 
 <div align="center">
-  <h2>🎯 Interactive TTS Comparison</h2>
-  <p><strong>Listen to side-by-side comparisons of Audar TTS vs ElevenLabs</strong></p>
-  <p><em>Click below to open the interactive comparison player with full audio controls:</em></p>
+  <h2>Listen to the Difference</h2>
+  <p><strong>Side-by-side comparison: Audar TTS vs ElevenLabs</strong></p>
   <p>
     <a href="https://audarai.github.io/Audar-TTS-V1/comparison.html">
-      <img src="https://img.shields.io/badge/▶%20OPEN%20INTERACTIVE%20PLAYER-Click%20Here-blue?style=for-the-badge&logo=google-chrome&logoColor=white" alt="Open Interactive Comparison Player">
+      <img src="https://img.shields.io/badge/OPEN%20INTERACTIVE%20PLAYER-Listen%20Now-blue?style=for-the-badge&logo=headphones&logoColor=white" alt="Interactive Comparison Player">
     </a>
   </p>
 </div>
 
 ---
 
+## Why Audar TTS?
+
+<table>
+<tr>
+<td width="50%">
+
+### Expressive Tags in Open Source
+
+Unlike competitors who gate expressive speech behind premium tiers, **Audar TTS Flash** supports expressive tags out of the box:
+
+```
+[laughs] That's hilarious!
+[whispers] Can you keep a secret?
+[sighs] It's been a long day...
+```
+
+</td>
+<td width="50%">
+
+### Native Arabic + English
+
+True bilingual architecture - not translation-based. Seamless code-switching mid-sentence:
+
+```
+"Welcome to our event, مرحباً بكم في حدثنا,
+where innovation meets tradition."
+```
+
+</td>
+</tr>
+<tr>
+<td width="50%">
+
+### Zero-Shot Voice Cloning
+
+Clone any voice from just **5 seconds** of audio. No fine-tuning required.
+
+```python
+tts.clone_voice("my_voice", "sample.wav")
+tts.speak("Hello!", speaker="my_voice")
+```
+
+</td>
+<td width="50%">
+
+### Production Ready
+
+Real-time streaming with **<500ms** first-chunk latency. Optimized for deployment.
+
+```python
+for chunk in tts.stream("Long text..."):
+    play_audio(chunk)
+```
+
+</td>
+</tr>
+</table>
+
+---
+
+## Model Family
+
+Audar TTS is available in three tiers to match your needs:
+
+| | **Flash** | **Turbo** | **Pro** |
+|:--|:--:|:--:|:--:|
+| **Parameters** | 0.5B | 1.5B | 4B |
+| **Training Data** | ~200K hrs (Open + Proprietary) | Massive Proprietary | Massive Proprietary |
+| **Languages** | English, Arabic | English, Arabic + more | English, Arabic + more |
+| **Zero-Shot Cloning** | 5s audio | 5s audio | 5s audio |
+| **Expressive Tags** | Full Support | Full Support | Full Support |
+| **Code-Switching** | Native | Enhanced | Enhanced |
+| **First Chunk Latency** | ~500ms | ~400ms | ~300ms |
+| **Voice Quality** | Excellent | Superior | Studio-grade |
+| **License** | Apache 2.0 | Commercial | Commercial |
+| **Access** | [**GitHub**](#quick-start) | [**Try Demo**](https://dev.audarai.com) | [**Try Demo**](https://dev.audarai.com) |
+
+> **Flash** is fully open-source. **Turbo** and **Pro** are available through our commercial API with enhanced capabilities and dedicated support.
+
+---
+
 ## Architecture
 
 <p align="center">
-  <img src="assets/audar_tts_diagrams.png?v=2" alt="Audar-TTS Architecture" width="100%"/>
+  <img src="assets/audar_tts_diagrams.png?v=2" alt="Audar TTS Architecture" width="100%"/>
 </p>
-
----
-
-## Features
-
-| Feature | Description |
-|---------|-------------|
-| **Zero-Shot Cloning** | Clone any voice without fine-tuning |
-| **Real-Time Speed** | 0.46x RTF (2.2x faster than playback) |
-| **Low Latency** | ~500ms to first audio chunk |
-| **Streaming** | Generate audio progressively |
-| **Bilingual** | English + Arabic with code-switching |
-| **Speaker Caching** | Instant reuse of encoded voices |
-
----
-
-## Installation
-
-```bash
-# Clone the repository
-git clone https://github.com/AudarAI/Audar-TTS-V1.git
-cd Audar-TTS-V1
-
-# Install dependencies
-pip install -r requirements.txt
-
-# System dependency (for phonemization)
-# macOS
-brew install espeak-ng
-
-# Ubuntu/Debian
-sudo apt-get install espeak-ng
-```
 
 ---
 
 ## Quick Start
 
-### Python API
+### 1. Install
+
+```bash
+git clone https://github.com/AudarAI/Audar-TTS-V1.git
+cd Audar-TTS-V1
+pip install -r requirements.txt
+
+# System dependency
+brew install espeak-ng  # macOS
+# sudo apt-get install espeak-ng  # Ubuntu
+```
+
+### 2. Synthesize Speech
 
 ```python
 from audar_tts import AudarTTS
 
-# Initialize (auto-downloads model from HuggingFace)
 tts = AudarTTS()
 
 # Basic synthesis
@@ -88,149 +156,150 @@ audio, metrics = tts.speak(
     output="hello.wav"
 )
 
-# Streaming (low latency)
-for chunk, info in tts.stream("Long text here...", speaker="Eve"):
-    play_audio(chunk)  # Play each ~1s chunk
+# With expressive tags
+audio, metrics = tts.speak(
+    "[laughs] That was amazing! [sighs] But now back to work.",
+    speaker="Eve",
+    output="expressive.wav"
+)
+```
 
-# Clone a new voice
+### 3. Clone a Voice
+
+```python
+# Clone from 5 seconds of audio
 tts.clone_voice(
     name="my_voice",
     audio_path="reference.wav",
     transcript="What I said in the recording"
 )
-tts.speak("Now in cloned voice!", speaker="my_voice")
-```
 
-### Command Line
-
-```bash
-# Basic synthesis
-python audar_tts.py "Hello world!" -s Eve -o output.wav
-
-# Streaming mode
-python audar_tts.py "Long text here" -s Eve --stream
-
-# Arabic text
-python audar_tts.py "مرحبا بالعالم" -s Eve --lang ar
-
-# List voices
-python audar_tts.py --list-voices
+# Use cloned voice
+tts.speak("Now speaking in the cloned voice!", speaker="my_voice")
 ```
 
 ---
 
-## API Reference
+## Features
 
-### AudarTTS Class
-
-```python
-AudarTTS(
-    model_path=None,      # Path to GGUF (auto-downloads if None)
-    voices_dir=None,      # Voice profiles directory
-    n_ctx=8192,           # Context window
-    verbose=False
-)
-```
-
-### Methods
-
-| Method | Description |
-|--------|-------------|
-| `speak(text, speaker, output, lang)` | Synthesize speech → `(audio, metrics)` |
-| `stream(text, speaker, lang)` | Stream synthesis → Generator |
-| `clone_voice(name, audio_path, transcript)` | Clone voice → `Speaker` |
-| `voices` | List available voices |
+| Feature | Description |
+|---------|-------------|
+| **Zero-Shot Cloning** | Clone any voice from 5 seconds of audio |
+| **Expressive Tags** | `[laughs]`, `[whispers]`, `[sighs]` and more |
+| **Code-Switching** | Seamless Arabic + English in same sentence |
+| **Real-Time Streaming** | <500ms latency, chunk-by-chunk generation |
+| **7 Built-in Voices** | Eve, Salem, Amal, Salama, Amin, Hanaa, Wadee |
+| **GGUF Support** | Optimized for CPU inference |
 
 ---
 
-## Performance
+## Audio Comparison
 
-| Metric | Value |
-|--------|-------|
-| Real-Time Factor | 0.46x |
-| First Chunk Latency | ~500ms |
-| Model Size | ~800MB |
-| Sample Rate | 24kHz |
+### English Samples
 
----
+| Speaker | Text | Audar TTS Flash | ElevenLabs Flash |
+|---------|------|:---------------:|:----------------:|
+| **Eve** | *"The future of artificial intelligence lies not in replacing human creativity, but in amplifying it beyond imagination."* | [Play](https://audarai.github.io/Audar-TTS-V1/samples/comparison/audar_en_1_eve.mp3) | [Play](https://audarai.github.io/Audar-TTS-V1/samples/comparison/elevenlabs_en_1_eve.mp3) |
+| **Salem** | *"After years of research, scientists finally discovered that the key to longevity was surprisingly simple: genuine human connection."* | [Play](https://audarai.github.io/Audar-TTS-V1/samples/comparison/audar_en_2_salem.mp3) | [Play](https://audarai.github.io/Audar-TTS-V1/samples/comparison/elevenlabs_en_2_salem.mp3) |
+| **Amal** | *"In the quiet moments between chaos and calm, we often find the answers we've been searching for all along."* | [Play](https://audarai.github.io/Audar-TTS-V1/samples/comparison/audar_en_3_amal.mp3) | [Play](https://audarai.github.io/Audar-TTS-V1/samples/comparison/elevenlabs_en_3_amal.mp3) |
 
-## TTS Comparison
+### Arabic Samples
 
-Interactive side-by-side comparison of **Audar TTS Flash V1** vs **ElevenLabs Flash v2.5** using the **same speaker voice** (instant voice cloning) and **identical text**.
-
-> **[Open Full Interactive Player](https://audarai.github.io/Audar-TTS-V1/comparison.html)** for the best experience with embedded audio controls.
-
-### English
-
-| Speaker | Text | Audar TTS Flash V1 | ElevenLabs Flash |
-|---------|------|:------------------:|:----------------:|
-| **Eve** | *"The future of artificial intelligence lies not in replacing human creativity, but in amplifying it beyond imagination."* | [▶ Play](https://audarai.github.io/Audar-TTS-V1/samples/comparison/audar_en_1_eve.mp3) | [▶ Play](https://audarai.github.io/Audar-TTS-V1/samples/comparison/elevenlabs_en_1_eve.mp3) |
-| **Salem** | *"After years of research, scientists finally discovered that the key to longevity was surprisingly simple: genuine human connection."* | [▶ Play](https://audarai.github.io/Audar-TTS-V1/samples/comparison/audar_en_2_salem.mp3) | [▶ Play](https://audarai.github.io/Audar-TTS-V1/samples/comparison/elevenlabs_en_2_salem.mp3) |
-| **Amal** | *"In the quiet moments between chaos and calm, we often find the answers we've been searching for all along."* | [▶ Play](https://audarai.github.io/Audar-TTS-V1/samples/comparison/audar_en_3_amal.mp3) | [▶ Play](https://audarai.github.io/Audar-TTS-V1/samples/comparison/elevenlabs_en_3_amal.mp3) |
-
-### Arabic
-
-| Speaker | Text | Audar TTS Flash V1 | ElevenLabs Flash |
-|---------|------|:------------------:|:----------------:|
-| **Salama** | *"في عالم يتسارع فيه كل شيء، تبقى الحكمة هي البوصلة التي ترشدنا نحو القرارات الصائبة."* | [▶ Play](https://audarai.github.io/Audar-TTS-V1/samples/comparison/audar_ar_1_salama.mp3) | [▶ Play](https://audarai.github.io/Audar-TTS-V1/samples/comparison/elevenlabs_ar_1_salama.mp3) |
-| **Amin** | *"لا تقاس قيمة الإنسان بما يملك، بل بما يقدم للآخرين من خير وعطاء دون انتظار مقابل."* | [▶ Play](https://audarai.github.io/Audar-TTS-V1/samples/comparison/audar_ar_2_amin.mp3) | [▶ Play](https://audarai.github.io/Audar-TTS-V1/samples/comparison/elevenlabs_ar_2_amin.mp3) |
-| **Hanaa** | *"كل رحلة ألف ميل تبدأ بخطوة واحدة، فلا تستهن بالبدايات الصغيرة التي تصنع المستقبل العظيم."* | [▶ Play](https://audarai.github.io/Audar-TTS-V1/samples/comparison/audar_ar_3_hanaa.mp3) | [▶ Play](https://audarai.github.io/Audar-TTS-V1/samples/comparison/elevenlabs_ar_3_hanaa.mp3) |
+| Speaker | Text | Audar TTS Flash | ElevenLabs Flash |
+|---------|------|:---------------:|:----------------:|
+| **Salama** | *"في عالم يتسارع فيه كل شيء، تبقى الحكمة هي البوصلة التي ترشدنا نحو القرارات الصائبة."* | [Play](https://audarai.github.io/Audar-TTS-V1/samples/comparison/audar_ar_1_salama.mp3) | [Play](https://audarai.github.io/Audar-TTS-V1/samples/comparison/elevenlabs_ar_1_salama.mp3) |
+| **Amin** | *"لا تقاس قيمة الإنسان بما يملك، بل بما يقدم للآخرين من خير وعطاء دون انتظار مقابل."* | [Play](https://audarai.github.io/Audar-TTS-V1/samples/comparison/audar_ar_2_amin.mp3) | [Play](https://audarai.github.io/Audar-TTS-V1/samples/comparison/elevenlabs_ar_2_amin.mp3) |
+| **Hanaa** | *"كل رحلة ألف ميل تبدأ بخطوة واحدة، فلا تستهن بالبدايات الصغيرة التي تصنع المستقبل العظيم."* | [Play](https://audarai.github.io/Audar-TTS-V1/samples/comparison/audar_ar_3_hanaa.mp3) | [Play](https://audarai.github.io/Audar-TTS-V1/samples/comparison/elevenlabs_ar_3_hanaa.mp3) |
 
 ### Code-Switching (EN/AR)
 
-| Speaker | Text | Audar TTS Flash V1 | ElevenLabs Flash |
-|---------|------|:------------------:|:----------------:|
-| **Eve** | *"Welcome to our innovation hub, مرحباً بكم في مركز الابتكار، where ideas transform into reality."* | [▶ Play](https://audarai.github.io/Audar-TTS-V1/samples/comparison/audar_mix_1_eve.mp3) | [▶ Play](https://audarai.github.io/Audar-TTS-V1/samples/comparison/elevenlabs_mix_1_eve.mp3) |
-| **Amal** | *"The team worked tirelessly, والنتيجة كانت مذهلة، delivering beyond all expectations."* | [▶ Play](https://audarai.github.io/Audar-TTS-V1/samples/comparison/audar_mix_2_amal.mp3) | [▶ Play](https://audarai.github.io/Audar-TTS-V1/samples/comparison/elevenlabs_mix_2_amal.mp3) |
+| Speaker | Text | Audar TTS Flash | ElevenLabs Flash |
+|---------|------|:---------------:|:----------------:|
+| **Eve** | *"Welcome to our innovation hub, مرحباً بكم في مركز الابتكار، where ideas transform into reality."* | [Play](https://audarai.github.io/Audar-TTS-V1/samples/comparison/audar_mix_1_eve.mp3) | [Play](https://audarai.github.io/Audar-TTS-V1/samples/comparison/elevenlabs_mix_1_eve.mp3) |
+| **Amal** | *"The team worked tirelessly, والنتيجة كانت مذهلة، delivering beyond all expectations."* | [Play](https://audarai.github.io/Audar-TTS-V1/samples/comparison/audar_mix_2_amal.mp3) | [Play](https://audarai.github.io/Audar-TTS-V1/samples/comparison/elevenlabs_mix_2_amal.mp3) |
 
-### Expressive Tags (Audar Exclusive)
+### Expressive Tags (Audar TTS Feature)
 
-ElevenLabs does not support expressive tags. Audar TTS renders them naturally.
+Expressive tags are supported in **Audar TTS Flash** - competitors typically reserve this for premium tiers.
 
-| Speaker | Tag | Text | Audar TTS Flash V1 |
-|---------|-----|------|:------------------:|
-| **Eve** | `[laughs]` | *"I can't believe you actually did that! [laughs] That's the funniest thing I've heard all week!"* | [▶ Play](https://audarai.github.io/Audar-TTS-V1/samples/comparison/audar_expr_1_eve.mp3) |
-| **Salama** | `[whispers]` | *"[whispers] Listen carefully, I'm only going to say this once. The secret ingredient is... love."* | [▶ Play](https://audarai.github.io/Audar-TTS-V1/samples/comparison/audar_expr_2_salama.mp3) |
-| **Amal** | `[sighs]` | *"[sighs] After everything we've been through, I never thought we'd actually make it here."* | [▶ Play](https://audarai.github.io/Audar-TTS-V1/samples/comparison/audar_expr_3_amal.mp3) |
+| Speaker | Tag | Text | Audar TTS Flash |
+|---------|-----|------|:---------------:|
+| **Eve** | `[laughs]` | *"I can't believe you actually did that! [laughs] That's the funniest thing I've heard all week!"* | [Play](https://audarai.github.io/Audar-TTS-V1/samples/comparison/audar_expr_1_eve.mp3) |
+| **Salama** | `[whispers]` | *"[whispers] Listen carefully, I'm only going to say this once. The secret ingredient is... love."* | [Play](https://audarai.github.io/Audar-TTS-V1/samples/comparison/audar_expr_2_salama.mp3) |
+| **Amal** | `[sighs]` | *"[sighs] After everything we've been through, I never thought we'd actually make it here."* | [Play](https://audarai.github.io/Audar-TTS-V1/samples/comparison/audar_expr_3_amal.mp3) |
 
-### Feature Comparison
+---
 
-| Feature | Audar TTS Flash V1 | ElevenLabs Flash |
-|---------|:------------------:|:----------------:|
-| Expressive Tags | :white_check_mark: | :x: |
-| Code-Switching (EN/AR) | :white_check_mark: | :white_check_mark: |
-| Zero-Shot Cloning | :white_check_mark: | :white_check_mark: |
-| On-Premise Deployment | :white_check_mark: | :x: |
-| Open Source | :white_check_mark: | :x: |
+## Ready for Production?
 
-### Available Speakers
+<div align="center">
 
-| Name | Language | Style |
-|------|----------|-------|
-| Eve | EN/AR | Clear, expressive |
-| Salama | EN/AR | Calm, peaceful |
-| Amal | EN/AR | Warm, hopeful |
-| Hanaa | EN/AR | Bright, happy |
-| Salem | EN/AR | Professional |
-| Amin | EN/AR | Trustworthy |
-| Wadee | EN/AR | Gentle, soft |
+**Audar TTS Turbo and Pro** deliver enhanced capabilities for production workloads:
+
+| | Turbo | Pro |
+|:--|:--:|:--:|
+| Lower latency | ~400ms | ~300ms |
+| Voice consistency | Superior | Studio-grade |
+| Additional languages | Coming soon | Coming soon |
+| Priority support | Included | Dedicated |
+
+<br/>
+
+<a href="https://dev.audarai.com">
+  <img src="https://img.shields.io/badge/Try%20Commercial%20Models-dev.audarai.com-blue?style=for-the-badge" alt="Try Demo"/>
+</a>
+
+</div>
 
 ---
 
 ## Documentation
 
-- **[TECHNICAL_REPORT.md](TECHNICAL_REPORT.md)** — Detailed architecture and implementation
-- **[docs/streaming.md](docs/streaming.md)** — Streaming synthesis guide
-- **[docs/voice-cloning.md](docs/voice-cloning.md)** — Voice cloning deep dive
+| Document | Description |
+|----------|-------------|
+| [**MODELS.md**](MODELS.md) | Detailed model comparison and specifications |
+| [**TECHNICAL_REPORT.md**](TECHNICAL_REPORT.md) | Architecture deep-dive and research |
+| [**docs/streaming.md**](docs/streaming.md) | Streaming synthesis guide |
+| [**docs/voice-cloning.md**](docs/voice-cloning.md) | Voice cloning tutorial |
+
+---
+
+## Available Voices
+
+| Name | Style | Languages |
+|------|-------|-----------|
+| **Eve** | Clear, expressive | EN, AR |
+| **Salem** | Professional | EN, AR |
+| **Amal** | Warm, hopeful | EN, AR |
+| **Salama** | Calm, peaceful | EN, AR |
+| **Amin** | Trustworthy | EN, AR |
+| **Hanaa** | Bright, happy | EN, AR |
+| **Wadee** | Gentle, soft | EN, AR |
+
+---
+
+## About Audar AI
+
+**Audar AI** is pioneering expressive multilingual voice synthesis. We're on a mission to make advanced speech AI accessible across languages and cultures.
+
+Our open-source **Flash** model represents our commitment to advancing the field through transparency, while our commercial **Turbo** and **Pro** models deliver production-grade capabilities trained on massive proprietary datasets.
+
+<p>
+  <a href="https://www.audarai.com">Website</a> ·
+  <a href="https://linkedin.com/company/audarai">LinkedIn</a> ·
+  <a href="https://dev.audarai.com">Try Demo</a>
+</p>
 
 ---
 
 ## License
 
-Apache 2.0 — See [LICENSE](LICENSE)
+- **Audar TTS Flash**: Apache 2.0 - Free for commercial and non-commercial use
+- **Audar TTS Turbo/Pro**: Commercial license - [Contact us](https://www.audarai.com)
 
 ---
 
 <p align="center">
-  Built with ❤️ by <a href="https://audar.ai">Audar AI</a>
+  Built with passion by <a href="https://www.audarai.com">Audar AI</a><br/>
+  <em>Making expressive voice AI accessible worldwide</em>
 </p>
