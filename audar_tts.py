@@ -30,6 +30,10 @@ Copyright (c) 2025 Audar AI
 License: Apache 2.0
 """
 
+__version__ = "1.0.0"
+__author__ = "Audar AI"
+__all__ = ["AudarTTS", "Speaker", "split_text_chunks"]
+
 import os
 import sys
 import re
