@@ -257,6 +257,7 @@ Expressive tags are supported in **Audar TTS Flash** - competitors typically res
 
 | Document | Description |
 |----------|-------------|
+| [**BENCHMARKS.md**](BENCHMARKS.md) | Comprehensive performance benchmarks vs competitors |
 | [**MODELS.md**](MODELS.md) | Detailed model comparison and specifications |
 | [**TECHNICAL_REPORT.md**](TECHNICAL_REPORT.md) | Architecture deep-dive and research |
 | [**docs/streaming.md**](docs/streaming.md) | Streaming synthesis guide |
