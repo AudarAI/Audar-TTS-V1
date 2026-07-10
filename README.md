@@ -187,8 +187,7 @@ voice profiles are synthetic and resemble no real individual.
 
 Technical report — *Audar-TTS-V1: A Multilingual, Arabic-First Expressive Speech Synthesis
 Foundation Model*, Audar AI Team, 2026 —
-**[read the PDF](Audar-TTS-V1-Technical-Report.pdf)** (also attached to the
-[latest release](https://github.com/AudarAI/Audar-TTS-V1/releases/latest)).
+**[read the PDF](Audar-TTS-V1-Technical-Report.pdf)**.
 
 ```bibtex
 @techreport{audar-tts-2026,
