@@ -2,13 +2,13 @@
 
 # Audar-TTS-V1
 
-### Arabic-first, expressive zero-shot text-to-speech — clone any voice, speak any dialect.
+### Arabic-first expressive text-to-speech — zero-shot voice cloning and inline expression control, from MSA to every major dialect.
 
 **From Arabic to the world.**
 
 [![Benchmarks](https://img.shields.io/badge/Arabic%20TTS-top%20intelligibility%20tier%20%C2%B7%20two--judge%20eval-2ea44f)](benchmarks/README.md)
 [![Models](https://img.shields.io/badge/🤗%20Models-Flash%20%2B%20Turbo-ffcc4d)](https://huggingface.co/audarai)
-[![Paper](https://img.shields.io/badge/📄%20Technical%20Report-PDF-blue)](Audar-TTS-V1-Technical-Report.pdf)
+[![Paper](https://img.shields.io/badge/📄%20Technical%20Report-PDF-blue)](report/Audar-TTS-V1-Technical-Report.pdf)
 [![Code License](https://img.shields.io/badge/code-Apache%202.0-6f42c1)](LICENSE)
 [![Website](https://img.shields.io/badge/🌐%20audarai.com-informational)](https://www.audarai.com)
 
@@ -122,7 +122,7 @@ A 5–15 s reference clip at 16 kHz is sufficient to clone a voice — **consent
   Machine-readable: [`voices/registry.json`](voices/registry.json). Listen to them in the Voice
   Gallery on the [Flash](https://huggingface.co/audarai/Audar-TTS-V1-Flash) and
   [Turbo](https://huggingface.co/audarai/Audar-TTS-V1-Turbo) model cards.
-- **[Expression-tag reference](docs/expression_tags.md)** — inline tags are first-class vocabulary
+- **[Expression-tag reference](expressions/)** — inline tags are first-class vocabulary
   entries, no SSML. Flash/Turbo ship an 8-tag set
   (`[laughs]` `[curious]` `[excited]` `[sighs]` `[exhales]` `[mischievously]` `[whispers]`
   `[sarcastic]`); Pro carries the full 17-tag vocabulary (11 acoustically-grounded active tags +
@@ -187,7 +187,7 @@ voice profiles are synthetic and resemble no real individual.
 
 Technical report — *Audar-TTS-V1: A Multilingual, Arabic-First Expressive Speech Synthesis
 Foundation Model*, Audar AI Team, 2026 —
-**[read the PDF](Audar-TTS-V1-Technical-Report.pdf)**.
+**[read the PDF](report/Audar-TTS-V1-Technical-Report.pdf)**.
 
 ```bibtex
 @techreport{audar-tts-2026,

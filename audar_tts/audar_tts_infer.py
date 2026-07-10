@@ -117,7 +117,7 @@ def synthesize(
 
     `target_text` may carry inline expression tags, e.g.
     "Oh, you have to hear this — [excited] we just closed the deal!"
-    (see docs/expression_tags.md for the per-tier tag sets).
+    (see expressions/README.md for the per-tier tag sets).
     """
     ref_codes = encode_reference(codec, ref_wav)
     prompt = build_prompt(target_text, ref_text, ref_codes)
