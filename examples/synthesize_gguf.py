@@ -42,7 +42,7 @@ def main() -> None:
     from llama_cpp import Llama
     from neucodec import NeuCodec
 
-    # 1) Backbone (GGUF) + codec. audar-codec tokens are NeuCodec-compatible, so the
+    # 1) Backbone (GGUF) + codec. The speech tokens are NeuCodec-compatible, so the
     #    public neuphonic/neucodec decodes them directly.
     gguf = hf_hub_download(HF_REPOS[args.tier], args.gguf or GGUF_FILES[args.tier])
     llm = Llama(model_path=gguf, n_ctx=4096, n_gpu_layers=args.gpu_layers, verbose=False)

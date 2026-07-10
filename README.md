@@ -8,7 +8,7 @@
 
 [![Benchmarks](https://img.shields.io/badge/Arabic%20TTS-top%20intelligibility%20tier%20%C2%B7%20two--judge%20eval-2ea44f)](benchmarks/README.md)
 [![Models](https://img.shields.io/badge/🤗%20Models-Flash%20%2B%20Turbo-ffcc4d)](https://huggingface.co/audarai)
-[![Paper](https://img.shields.io/badge/📄%20Technical%20Report-2026-blue)](#-citation)
+[![Paper](https://img.shields.io/badge/📄%20Technical%20Report-PDF-blue)](Audar-TTS-V1-Technical-Report.pdf)
 [![Code License](https://img.shields.io/badge/code-Apache%202.0-6f42c1)](LICENSE)
 [![Website](https://img.shields.io/badge/🌐%20audarai.com-informational)](https://www.audarai.com)
 
@@ -28,9 +28,8 @@
 
 **Audar-TTS-V1** is a family of Arabic-first, expressive zero-shot text-to-speech models from
 [AudarAI](https://www.audarai.com). It recasts synthesis as next-token prediction over a joint
-vocabulary of text, control tokens, and discrete speech codes from **audar-codec**, our in-house
-single-codebook neural codec — **no phonemizer and no per-language G2P**, so dialect coverage comes
-from data rather than brittle pronunciation rules. Each model **clones any voice from a 5–15 second
+vocabulary of text, control tokens, and discrete speech codes — **no phonemizer and no
+per-language G2P**, so dialect coverage comes from data rather than brittle pronunciation rules. Each model **clones any voice from a 5–15 second
 reference clip** with no per-speaker fine-tuning, shapes delivery with **inline expression tags**
 (`[laughs]`, `[whispers]`, `[excited]`, …), and speaks **MSA, dialectal Arabic (Gulf/Emirati,
 Egyptian, Levantine, Maghrebi), code-switched Arabic–English, and English** at studio-clean
@@ -57,9 +56,8 @@ expression-tag reference, benchmarks, and copy-paste inference.
 | **License** | [AudarAI Open v1.0](https://www.audarai.com/license/audarai-open-license-v1.0/) | [AudarAI Community v1.0](https://www.audarai.com/license/audarai-community-license-v1.0/) | [AudarAI Enterprise](https://www.audarai.com/license/audarAI-enterprise-license-agreement-v1.0-template/) |
 | **Download** | **[🤗 audarai/Audar-TTS-V1-Flash](https://huggingface.co/audarai/Audar-TTS-V1-Flash)** | **[🤗 audarai/Audar-TTS-V1-Turbo](https://huggingface.co/audarai/Audar-TTS-V1-Turbo)** | *Hugging Face page coming soon* — [contact us](mailto:contact@audarai.com) |
 
-All tiers share **one prompt protocol, one voice-profile registry, and the audar-codec interface**,
-so an application can move between them for the right quality/cost trade-off **without any code
-change**. On intelligibility the tiers are statistically indistinguishable
+All tiers share **one prompt protocol and one voice-profile registry**, so an application can
+move between them for the right quality/cost trade-off **without any code change**. On intelligibility the tiers are statistically indistinguishable
 ([benchmarks](benchmarks/README.md)) — pick by expressiveness and cost.
 
 ## ⚡ Quickstart
@@ -130,20 +128,6 @@ A 5–15 s reference clip at 16 kHz is sufficient to clone a voice — **consent
   `[sarcastic]`); Pro carries the full 17-tag vocabulary (11 acoustically-grounded active tags +
   6 prosody tags) and supports tag stacking. Tags work in both Arabic and English.
 
-## 🔊 The codec — audar-codec
-
-The backbone emits discrete `<|speech_N|>` acoustic tokens; **audar-codec** decodes them to
-waveform. It runs at **50 Hz** with a **single codebook of 65,536 codes** (~800 bps), takes 16 kHz
-mono on the encoder side, and reconstructs **24 kHz** on the decoder side through a causal
-transformer built for streaming-first inference. The single codebook is the load-bearing choice:
-one token per frame makes synthesis a flat autoregressive stream — no RVQ interleaving, no
-multi-stage decoding.
-
-> 🙏 **Credit & thanks to [Neuphonic](https://neuphonic.com) for open-sourcing
-> [NeuCodec](https://huggingface.co/neuphonic/neucodec).** audar-codec builds on the NeuCodec
-> encoder and quantizer, and the tokens remain **NeuCodec-compatible** — you can decode with the
-> public NeuCodec directly, which keeps this release fully open and reproducible.
-
 ## 📊 Benchmarks
 
 Two evaluations, one lesson: **judge choice decides Arabic TTS rankings**, so we score every clip
@@ -202,7 +186,9 @@ voice profiles are synthetic and resemble no real individual.
 ## 📄 Citation
 
 Technical report — *Audar-TTS-V1: A Multilingual, Arabic-First Expressive Speech Synthesis
-Foundation Model*, Audar AI Team, 2026.
+Foundation Model*, Audar AI Team, 2026 —
+**[read the PDF](Audar-TTS-V1-Technical-Report.pdf)** (also attached to the
+[latest release](https://github.com/AudarAI/Audar-TTS-V1/releases/latest)).
 
 ```bibtex
 @techreport{audar-tts-2026,

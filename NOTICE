@@ -19,9 +19,9 @@ Contact: contact@audarai.com  ·  https://www.audarai.com
 
 The models are adapted in-house from permissively-licensed open-weight foundations in the
 Qwen2.5 (Flash, Turbo) and Qwen3 (Pro) architecture format (Apache-2.0). The contribution is
-the adaptation — the Arabic data curriculum, the alignment rubric, the codec, and the prompt
-protocol — not the foundation architecture.
+the adaptation — the Arabic data curriculum, the alignment rubric, and the prompt protocol —
+not the foundation architecture.
 
-audar-codec, the companion acoustic tokenizer, builds on NeuCodec by Neuphonic
-(https://huggingface.co/neuphonic/neucodec); its tokens remain NeuCodec-compatible. Credit
-and thanks to Neuphonic for open-sourcing NeuCodec.
+The example code in this repository uses NeuCodec by Neuphonic
+(https://huggingface.co/neuphonic/neucodec) to encode reference audio and decode generated
+speech tokens.

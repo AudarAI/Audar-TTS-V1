@@ -2,7 +2,7 @@
 Audar-TTS-V1 — official reference inference (Transformers).
 
 Audar-TTS-V1 treats speech synthesis as next-token prediction: a decoder-only LM backbone
-emits discrete `<|speech_N|>` audar-codec tokens from a structured zero-shot prompt, and a
+emits discrete `<|speech_N|>` acoustic tokens from a structured zero-shot prompt, and a
 neural codec decodes them to a 24 kHz waveform. Reference conditioning is a 5-15 s clip
 (16 kHz mono) plus its transcript — no per-speaker fine-tuning, no phonemizer, no G2P.
 
@@ -72,8 +72,8 @@ def load_model(model_dir: str = HF_REPOS["flash"], device: str = "cuda:0", dtype
 def load_codec(repo: str = "neuphonic/neucodec", device: str = "cuda:0"):
     """Load the codec used to encode the reference clip and decode generated tokens.
 
-    audar-codec is Audar's Arabic-tuned NeuCodec; the tokens remain NeuCodec-compatible,
-    so the public `neuphonic/neucodec` decodes them directly.
+    The speech tokens are NeuCodec-compatible, so the public `neuphonic/neucodec`
+    encodes and decodes them directly.
     """
     from neucodec import NeuCodec
 
