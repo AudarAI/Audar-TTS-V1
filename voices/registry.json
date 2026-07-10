@@ -1,0 +1,48 @@
+{
+  "version": "1.0",
+  "description": "Audar-TTS-V1 voice-profile registry. Six ready-to-use synthetic voices, shared by all tiers (one prompt protocol). Each profile is a zero-shot reference: pass its clip + transcript as the REF_TEXT / REF_SPEECH conditioning. The voices were created by interpolating multiple speakers and do not replicate or resemble any real individual; they are free to use.",
+  "reference_format": {
+    "sample_rate_hz": 16000,
+    "duration_s": "5-15",
+    "conditioning": "reference clip + its transcript (see the prompt protocol in the README)"
+  },
+  "voices": [
+    {
+      "id": "demo_male_1",
+      "gender": "male",
+      "style": "warm, confident",
+      "reference": "https://huggingface.co/audarai/Audar-TTS-V1-Flash/resolve/main/samples/demo_male_1_source.wav"
+    },
+    {
+      "id": "demo_male_2",
+      "gender": "male",
+      "style": "soft, intimate",
+      "reference": "https://huggingface.co/audarai/Audar-TTS-V1-Flash/resolve/main/samples/demo_male_2_source.wav"
+    },
+    {
+      "id": "demo_male_3",
+      "gender": "male",
+      "style": "bright, curious",
+      "reference": "https://huggingface.co/audarai/Audar-TTS-V1-Flash/resolve/main/samples/demo_male_3_source.wav"
+    },
+    {
+      "id": "demo_female_1",
+      "gender": "female",
+      "style": "vibrant, joyful",
+      "reference": "https://huggingface.co/audarai/Audar-TTS-V1-Flash/resolve/main/samples/demo_female_1_source.wav"
+    },
+    {
+      "id": "demo_female_2",
+      "gender": "female",
+      "style": "velvety, playful",
+      "reference": "https://huggingface.co/audarai/Audar-TTS-V1-Flash/resolve/main/samples/demo_female_2_source.wav"
+    },
+    {
+      "id": "demo_female_3",
+      "gender": "female",
+      "style": "airy, dreamy",
+      "reference": "https://huggingface.co/audarai/Audar-TTS-V1-Flash/resolve/main/samples/demo_female_3_source.wav"
+    }
+  ],
+  "custom_voices": "Any consented 5-15 s clip works as a reference — zero-shot, no fine-tuning. Clone voices only with the speaker's explicit consent."
+}

@@ -1,0 +1,17 @@
+# In-House Expressive Benchmark — 1,364 scored clips (sum of n) across 10 systems (8 Arabic-supporting; last 2 rows are English-only reference baselines).
+# WER/CER: ASR-resynthesis pronunciation drift via ElevenLabs Scribe v2 (fractions, lower is better);
+# UTMOS: UTMOSv2 predicted MOS; SQUIM: SQUIM_SUBJECTIVE crosscheck MOS (higher is better);
+# SIM: WavLM-base-plus-sv cosine to the reference; EXPR: expression fidelity, openSMILE eGeMAPSv02 + wav2vec2-superb-er (higher is better).
+# Caveats: predicted-MOS metrics are not calibrated for Arabic; SIM/EXPR proxies are English-biased; human MOS/CMOS study to follow.
+# source: Audar-TTS-V1 technical report, Table "baselines" (in-house cross-provider benchmark)
+system,WER,CER,UTMOS,SQUIM,SIM,EXPR,n
+Audar-TTS-V1-Pro,0.1667,0.0545,3.093,4.185,0.9251,0.9904,247
+Audar-TTS-V1-Turbo,0.2240,0.2710,2.960,--,0.9310,0.9430,184
+ElevenLabs v3,0.1774,0.0452,3.218,4.161,0.9400,0.9904,300
+GPT-4o-mini-TTS,0.1994,0.0963,3.385,4.369,0.9573,0.9907,103
+Gemini-2.5-Flash,0.1644,0.0410,2.982,4.184,0.9304,0.9887,123
+ElevenLabs Flash,0.2081,0.1105,2.876,4.258,0.9510,0.9877,180
+Orpheus Arabic,0.2657,0.1091,3.010,4.384,0.9798,0.9515,69
+GPT-4o-audio-preview,0.5379,0.4042,2.852,4.131,0.9201,0.9264,93
+Kokoro (en-only),0.0761,0.0938,3.730,4.238,0.9890,0.9899,34
+Orpheus 3B (en-only),0.0725,0.0813,3.313,4.323,0.9876,0.9741,31

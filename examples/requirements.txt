@@ -1,0 +1,10 @@
+# Audar-TTS-V1 — Transformers reference inference (Flash tier, bf16)
+transformers>=4.57
+torch>=2.4
+neucodec>=0.1
+soundfile>=0.12
+librosa>=0.10
+numpy>=1.24
+
+# GGUF path (Flash or Turbo on CPU/GPU/edge) additionally needs:
+# pip install llama-cpp-python huggingface_hub

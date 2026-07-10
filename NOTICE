@@ -1,0 +1,27 @@
+Audar-TTS-V1 — developer resources
+Copyright 2026 AUDARAI PTE. LTD.
+
+This repository (example code, reference inference helpers, and documentation) is licensed
+under the Apache License, Version 2.0. See the LICENSE file.
+
+THE MODEL WEIGHTS ARE LICENSED SEPARATELY — the Apache-2.0 license in this repository does
+NOT cover the model weights:
+
+  * Audar-TTS-V1-Flash  — AudarAI Open License v1.0
+      https://www.audarai.com/license/audarai-open-license-v1.0/
+  * Audar-TTS-V1-Turbo  — AudarAI Community License v1.0
+      https://www.audarai.com/license/audarai-community-license-v1.0/
+  * Audar-TTS-V1-Pro    — AudarAI Enterprise License Agreement v1.0
+      https://www.audarai.com/license/audarAI-enterprise-license-agreement-v1.0-template/
+
+Enterprise, large-scale, or model-as-a-service use may require an AudarAI Enterprise License.
+Contact: contact@audarai.com  ·  https://www.audarai.com
+
+The models are adapted in-house from permissively-licensed open-weight foundations in the
+Qwen2.5 (Flash, Turbo) and Qwen3 (Pro) architecture format (Apache-2.0). The contribution is
+the adaptation — the Arabic data curriculum, the alignment rubric, the codec, and the prompt
+protocol — not the foundation architecture.
+
+audar-codec, the companion acoustic tokenizer, builds on NeuCodec by Neuphonic
+(https://huggingface.co/neuphonic/neucodec); its tokens remain NeuCodec-compatible. Credit
+and thanks to Neuphonic for open-sourcing NeuCodec.

@@ -1,0 +1,13 @@
+# Intelligibility on the public Habibi test sets (WER %, lower is better; 250 clips per cell; frozen manifests, same texts synthesized by every system).
+# Two judges per clip: WER_W = Whisper large-v3 (MSA-leaning); WER_O = Omnilingual-ASR-LLM-7B prompted with dialect codes (dialect-aware).
+# ground_truth_floor = real spontaneous dialectal recordings scored under the same pipeline; read model scores relative to it.
+# macro_avg_WER_O = mean of the three WER_O columns (the hero metric).
+# source: Audar-TTS-V1 technical report, Table "public-bench" (public two-judge intelligibility eval, 2026-07)
+system,WER_W_MSA,WER_W_Saudi,WER_W_UAE,WER_O_MSA,WER_O_Saudi,WER_O_UAE,macro_avg_WER_O
+ground_truth_floor,13.1,45.2,4.2,11.5,28.1,11.8,17.1
+Audar-TTS-V1-Flash,7.9,15.7,6.2,6.4,14.9,7.1,9.5
+Audar-TTS-V1-Turbo,7.9,15.0,6.6,7.6,14.7,6.9,9.7
+Audar-TTS-V1-Pro,7.3,15.8,6.6,5.9,15.0,7.4,9.4
+GPT-4o-mini-TTS,6.2,13.7,5.1,7.2,16.0,9.0,10.7
+Gemini-2.5-Flash-TTS,7.8,15.3,7.6,6.7,14.4,7.8,9.6
+ElevenLabs v3,10.2,16.2,7.6,7.4,15.4,6.2,9.7
