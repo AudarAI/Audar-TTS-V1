@@ -2,7 +2,7 @@
 
 # Audar-TTS-V1
 
-### Arabic-first expressive text-to-speech — zero-shot voice cloning and inline expression control, from MSA to every major dialect.
+### Arabic-first expressive zero-shot text-to-speech.
 
 **From Arabic to the world.**
 
