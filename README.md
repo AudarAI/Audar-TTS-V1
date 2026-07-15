@@ -54,7 +54,7 @@ expression-tag reference, benchmarks, and copy-paste inference.
 | **Expression tags** | 8 | 8 | 17 |
 | **Best for** | On-device, high-throughput, interactive agents | Balanced quality & latency | Maximum expressiveness & fidelity |
 | **License** | [AudarAI Open v1.0](https://www.audarai.com/license/audarai-open-license-v1.0/) | [AudarAI Community v1.0](https://www.audarai.com/license/audarai-community-license-v1.0/) | [AudarAI Enterprise](https://www.audarai.com/license/audarAI-enterprise-license-agreement-v1.0-template/) |
-| **Download** | **[🤗 audarai/Audar-TTS-V1-Flash](https://huggingface.co/audarai/Audar-TTS-V1-Flash)** | **[🤗 audarai/Audar-TTS-V1-Turbo](https://huggingface.co/audarai/Audar-TTS-V1-Turbo)** | *Hugging Face page coming soon* — [contact us](mailto:contact@audarai.com) |
+| **Download** | **[🤗 audarai/Audar-TTS-V1-Flash](https://huggingface.co/audarai/Audar-TTS-V1-Flash)** | **[🤗 audarai/Audar-TTS-V1-Turbo](https://huggingface.co/audarai/Audar-TTS-V1-Turbo)** | *Access online: https://app.audarai.com* — [contact us](mailto:contact@audarai.com) |
 
 All tiers share **one prompt protocol and one voice-profile registry**, so an application can
 move between them for the right quality/cost trade-off **without any code change**. On intelligibility the tiers are statistically indistinguishable
